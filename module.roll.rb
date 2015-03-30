@@ -6,7 +6,7 @@ class Answer
 
 		diceValue = @message.split(" ")[2].to_i
 
-		if diceValue > 100000000000 || diceValue < 1
+		if diceValue > 100000000000
 			return Hash["text" => "Mhm, grow up."]
 		end
 
