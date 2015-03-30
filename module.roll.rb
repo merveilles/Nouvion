@@ -13,5 +13,11 @@ class Answer
 	  	return Hash["text" => "Rolling a 6 sided dice, the result is "+(rand(6)+1).to_s+"."]
 
 	end
+
+	def barrel
+
+		return Hash["text" => "*does a barrel roll*"]
+
+	end
 	
 end
