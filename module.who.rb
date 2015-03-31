@@ -12,7 +12,7 @@ class Answer
 		vessels["3wm"] = "a single wise man"
 		vessels["maxdeviant"] = "actually Marshall"
 		vessels["cancel"] = "someone very clever"
-		vessels["ciel"] = "t▃▚ k░i"
+		vessels["ciel"] = "the koi"
 
 		if vessels[username] then return Hash["text" => "*@#{username}* is "+vessels[username]+"."] end
 
