@@ -1,6 +1,19 @@
  #!/bin/env ruby
 # encoding: utf-8
 
+# Require the main class
+require './answer'
+# Require any modules you might need
+
+
+# Set up the payload
+answer = Answer.new("moduleName", "methodName", "username", "message")
+
+# Output the result
+puts answer.fact()
+
+
+
 class Answer
 
  # Available: moduleName,methodName,username,message
