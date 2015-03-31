@@ -2,16 +2,16 @@
 # encoding: utf-8
 
 class Answer
- 
+
  # Available: moduleName,methodName,username,message
- 
+
   def color
      return Hash["text" => "What about colors?"]
   end
 
 def aura
- 
- colorNames = 
+
+ colorNames =
  [
  "Acid Green",
 "Aero",
@@ -1235,8 +1235,8 @@ def aura
 "Flange",
 "Silentropae"
  ]
- 
- 
+
+
  colorHexa =
  [
  "#B0BF1A",
@@ -2461,12 +2461,13 @@ def aura
 "#??????",
 "#??????"
  ]
- 
+
  randomValue = (rand(colorNames.length))
- 
- return Hash["text" => "I see the color of your aura, it's " + colorNames[randomValue] + " ("+ colorHexa[randomValue] + ")."]
- 
- 
+
+ hex = colorHexa[randomValue]
+
+ return Hash["text" => "I see the color of your aura, it's #{colorNames[randomValue]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+
  end
 
 end
