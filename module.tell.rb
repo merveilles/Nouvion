@@ -2,6 +2,16 @@ class Answer
 
     # Available: moduleName,methodName,username,message
 
+    def tell
+        
+        if @message.include?("something dark")
+            return Hash["text" => "#{darkArray}."]
+        end
+
+        return Hash["text" => "I don't know what to tell you."]
+
+    end
+
     def darkArray
 
         return ["Everyone you know will eventually be dead",
@@ -135,16 +145,6 @@ class Answer
         "Your cat doesn’t even love you",
         "Life is utterly and completely meaningless",
         "Justin Bieber"].shuffle[0]
-
-    end
-
-    def me
-
-        if @message.include?("something dark")
-            return Hash["text" => "#{darkArray}."]
-        end
-
-        return Hash["text" => "I don't know what to tell you."]
 
     end
 
