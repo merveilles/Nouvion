@@ -2,7 +2,9 @@
 # encoding: utf-8
 
 class Answer
-
+ 
+ # Available: moduleName,methodName,username,message
+ 
   def color
      return Hash["text" => "What about colors?"]
   end
