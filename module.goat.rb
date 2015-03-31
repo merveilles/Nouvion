@@ -27,7 +27,7 @@ class Answer
             "The poster reads: \"There is no futBAAAAAAHHHHure but what we mBAAAAHHHHHHHHke for ouBAAAAAAHHHHHHHHHHHHHrselves.\""
         ]
 
-        return Hash["text" => tower.shuffle[0]]
+        return Hash["text" => "@#{@username}: #{tower.shuffle[0]}"]
 
     end
 
