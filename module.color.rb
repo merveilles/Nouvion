@@ -1241,33 +1241,12 @@ return colors[index]
 
  def random
  
- srand
+
  randomValue = rand(1221)
  hex = getcolor(randomValue)[1].downcase
  return Hash["text" => "Here, take this random color: #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
 
  end
- 
- def today
-  
- time = Time.new
- srand time.yday
- randomValue = rand(1221)
- hex = getcolor(randomValue)[1].downcase
- return Hash["text" => "Today's color is #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
-  
- end
- 
- def aura
- 
 
-   srand = @username.hash*714982
-
- 
- randomValue = rand(1221)
- hex = getcolor(randomValue)[1].downcase
- return Hash["text" => "I see the color of your aura, "+@username+", it's #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
-  
- end
 
 end
