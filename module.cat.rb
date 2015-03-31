@@ -155,7 +155,7 @@ class Answer
             "Cats have 30 vertebrae--5 more than humans have."
         ]
 
-        return Hash["text" => facts.sample]
+        return Hash["text" => facts.shuffle[0]]
 
     end
 

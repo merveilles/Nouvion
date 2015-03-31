@@ -134,7 +134,7 @@ class Answer
         "Both of my cats are black",
         "Your cat doesn’t even love you",
         "Life is utterly and completely meaningless",
-        "Justin Bieber"].sample
+        "Justin Bieber"].shuffle[0]
 
     end
 
