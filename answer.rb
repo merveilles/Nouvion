@@ -22,5 +22,8 @@ class Answer
     return Hash["text" => "Xoka #{@username}, nice to see you."]
   end
 
+  def sorry
+    return Hash["text" => "Don't worry about it *#{@username}*."]
+  end
 
 end
