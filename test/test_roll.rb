@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 require 'minitest/autorun'
 require_relative '../answer'
 require_relative '../module.roll'

@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 require "erb"
 include ERB::Util
 
@@ -23,5 +26,5 @@ class Answer
             term = getTerm(@message)
             return Hash["text" => "https://duckduckgo.com/?q=!ducky+" + term + "+%s"]
       end
-      
+
 end

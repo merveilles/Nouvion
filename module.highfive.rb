@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class Answer
       def me
             if @username == nil
@@ -7,7 +10,7 @@ class Answer
                   return Hash["text" => meanthings(@username)]
             end
             return Hash["text" => nicethings(@username)]
-      end  
+      end
       def nicethings(name)
             return ["**High fives " + name + "**",
             "**High fives**",

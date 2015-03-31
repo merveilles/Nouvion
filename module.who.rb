@@ -1,44 +1,47 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class Answer
 
-	# Available: moduleName,methodName,username,message
+    # Available: moduleName,methodName,username,message
 
-	def vesselsArray
+    def vesselsArray
 
-		vessels = {}
+        vessels = {}
 
-		vessels["aliceffekt"] = "many witches"
-		vessels["theneko"] = "a cat"
-		vessels["3wm"] = "a single wise man"
-		vessels["maxdeviant"] = "actually Marshall"
-		vessels["cancel"] = "someone very clever"
-		vessels["ciel"] = "the koi"
-		vessels["ludivine"] = "the past of the future singularity"
-		vessels["bluelion"] = "a Mu traveler"
-		vessels["slackbot"] = "no one"
+        vessels["aliceffekt"] = "many witches"
+        vessels["theneko"] = "a cat"
+        vessels["3wm"] = "a single wise man"
+        vessels["maxdeviant"] = "actually Marshall"
+        vessels["cancel"] = "someone very clever"
+        vessels["ciel"] = "the koi"
+        vessels["ludivine"] = "the past of the future singularity"
+        vessels["bluelion"] = "a Mu traveler"
+        vessels["slackbot"] = "no one"
 
-		return vessels
-	end
+        return vessels
+    end
 
-	def is
+    def is
 
-		vessels = vesselsArray
+        vessels = vesselsArray
 
-		username = @message.split(" ")[2].lstrip.rstrip
+        username = @message.split(" ")[2].lstrip.rstrip
 
-		if vessels[username] && username == @username then return Hash["text" => "You are "+vessels[username]+"."]
-		elsif vessels[username] then return Hash["text" => "*@#{username}* is "+vessels[username]+"."] end
+        if vessels[username] && username == @username then return Hash["text" => "You are "+vessels[username]+"."]
+        elsif vessels[username] then return Hash["text" => "*@#{username}* is "+vessels[username]+"."] end
 
-		return Hash["text" => "I do not know *#{username}*."]
+        return Hash["text" => "I do not know *#{username}*."]
 
-	end
+    end
 
-	def am
+    def am
 
-		vessels = vesselsArray
+        vessels = vesselsArray
 
-		if vessels[@username] then return Hash["text" => "You are "+vessels[@username]+"."] end
-		return Hash["text" => "I do not know you."]
+        if vessels[@username] then return Hash["text" => "You are "+vessels[@username]+"."] end
+        return Hash["text" => "I do not know you."]
 
-	end
-	
+    end
+
 end

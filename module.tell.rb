@@ -1,9 +1,12 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class Answer
 
     # Available: moduleName,methodName,username,message
 
     def tell
-        
+
         if @message.include?("something dark")
             return Hash["text" => "#{darkArray}."]
         end
