@@ -4,7 +4,7 @@ class Answer
 
 	def is
 
-		username = @message.split(" ")[2]
+		username = @message.split(" ")[2].lstrip.rstrip
 
 		vessels = {}
 		vessels["aliceffekt"] = "many witches"
@@ -13,6 +13,7 @@ class Answer
 		vessels["maxdeviant"] = "actually Marshall"
 		vessels["cancel"] = "someone very clever"
 		vessels["ciel"] = "the koi"
+		vessels["ludivine"] = "the past of the future singularity"
 
 		if vessels[username] then return Hash["text" => "*@#{username}* is "+vessels[username]+"."] end
 
