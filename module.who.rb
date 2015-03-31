@@ -10,6 +10,7 @@ class Answer
 		vessels["theneko"] = "a cat"
 		vessels["3wm"] = "a single wise man"
 		vessels["maxdeviant"] = "actually Marshall"
+        vessels["nestor"] = "@maxdeviant's undead butler"
 		vessels["cancel"] = "someone very clever"
 		vessels["ciel"] = "the koi"
 		vessels["ludivine"] = "the past of the future singularity"
@@ -22,7 +23,7 @@ class Answer
 		vessels["nullfruit"] = "a dead pixel"
 		vessels["horsman"] = "a continuous effort to become a ghost"
 		vessels["d6"] = "six faces, twenty-one unblinking eyes"
-		
+
 		return vessels
 	end
 
@@ -47,5 +48,5 @@ class Answer
 		return Hash["text" => "I do not know you."]
 
 	end
-	
+
 end
