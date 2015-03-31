@@ -1260,11 +1260,9 @@ return colors[index]
  
  def aura
  
- if(@username==nil)
-   srand
- else
+
    srand = @username.hash*714982
- end
+
  
  randomValue = rand(1221)
  hex = getcolor(randomValue)[1].downcase
