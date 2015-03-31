@@ -1,13 +1,13 @@
 #!/bin/env ruby
 # encoding: utf-8
 
+require 'coveralls'
+Coveralls.wear!
+
 require 'minitest/autorun'
 require 'memory'
-require 'coveralls'
 require_relative '../answer'
 require_relative '../module.roll'
-
-Coveralls.wear!
 
 class TestRoll < Minitest::Test
 
