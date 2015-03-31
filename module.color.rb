@@ -2465,3 +2465,5 @@ def aura
  return Hash["text" => "I can see the color of your aura, it is " + colorNames[randomValue] + " ("+ colorHexa[randomValue] + ")."]
  
  end
+
+end
