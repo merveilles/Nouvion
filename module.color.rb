@@ -1261,7 +1261,7 @@ return colors[index]
  def aura
  
 
-   srand = @username.hash*714982
+   srand @username.hash*714982
 
  
  randomValue = rand(1221)
