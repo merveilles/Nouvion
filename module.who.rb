@@ -13,7 +13,7 @@ class Answer
 		vessels["cancel"] = "someone very clever"
 		vessels["ciel"] = "the koi"
 		vessels["ludivine"] = "the past of the future singularity"
-		vessels["bluelion"] = "a Mu traveler"
+		vessels["greylion"] = "a Mu traveler"
 		vessels["somnius"] = "a tiger who codes"
 		vessels["slackbot"] = "no one"
 		vessels["floatvoid"] = "a robot trapped in a flesh-suit"
