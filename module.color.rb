@@ -1244,7 +1244,7 @@ return colors[index]
  srand
  randomValue = rand(1221)
  hex = getcolor(randomValue)[1].downcase
- return Hash["text" => "I see the color of your aura, it's #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+ return Hash["text" => "Here, take this random color: #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
 
  end
  
@@ -1254,7 +1254,23 @@ return colors[index]
  srand time.yday
  randomValue = rand(1221)
  hex = getcolor(randomValue)[1].downcase
- return Hash["text" => "I see the color of your aura, it's #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+ return Hash["text" => "Today's color is #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+  
+ end
+ 
+ def aura
+  
+ 
+ if(@username==nil)
+   srand
+ else
+   srand = @username.hex*714982
+  
+
+  
+ randomValue = rand(1221)
+ hex = getcolor(randomValue)[1].downcase
+ return Hash["text" => "I see the color of your aura, "+@username+", it's #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
   
  end
 
