@@ -9,7 +9,7 @@ class TestRoll < Minitest::Test
 
     def test_roll_dice
 
-        answer = Answer.new("roll", "dice", "maxdeviant", "ludivine roll dice ")
+        answer = Answer.new("roll", "dice", "maxdeviant", "ludivine roll dice ", "theartificiallounge")
 
     end
 
