@@ -1239,8 +1239,8 @@ class Answer
 ]
 
  randomValue = rand(1221)
- hex = colors[randomValue][1].downcase
- return Hash["text" => "Here, take this random color: #{colors[randomValue][0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+ hex = colors[randomValue,1].downcase
+ return Hash["text" => "Here, take this random color: #{colors[randomValue,0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
 
  end
 
