@@ -2,8 +2,9 @@ class Answer
 
     # Available: moduleName,methodName,username,message
 
-    @@dark = [
-        "Everyone you know will eventually be dead",
+    def darkArray 
+
+        return ["Everyone you know will eventually be dead",
         "One day your name will be said for the last time",
         "People die over money. It's such a useless things, but people are still dying",
         "Chuck Noris isn't special. His round-house can't destroy the moon and his sexual penetration didn't birth the 1972 Miami Dolphins",
@@ -133,15 +134,14 @@ class Answer
         "Both of my cats are black",
         "Your cat doesn’t even love you",
         "Life is utterly and completely meaningless",
-        "Justin Bieber"
-    ]
+        "Justin Bieber"].shuffle[0]
+        
+    end
 
     def me
 
-        option = @message.split(" ")[2, 3].join(" ")
-
-        if option == "something dark"
-            return Hash["text" => "#{@@dark.sample}."]
+        if @message.include?("something dark")
+            return Hash["text" => darkArray]
         end
 
         return Hash["text" => "I don't know what to tell you."]
