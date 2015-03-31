@@ -14,6 +14,7 @@ class Answer
 		vessels["ciel"] = "the koi"
 		vessels["ludivine"] = "the past of the future singularity"
 		vessels["bluelion"] = "a Mu traveler"
+		vessels["somnius"] = "a tiger who codes"
 		vessels["slackbot"] = "no one"
 
 		return vessels
