@@ -2,7 +2,7 @@ class Answer
 
     # Available: moduleName,methodName,username,message
 
-    def darkArray 
+    def darkArray
 
         return ["Everyone you know will eventually be dead",
         "One day your name will be said for the last time",
@@ -134,14 +134,14 @@ class Answer
         "Both of my cats are black",
         "Your cat doesn’t even love you",
         "Life is utterly and completely meaningless",
-        "Justin Bieber"].shuffle[0]
-        
+        "Justin Bieber"].sample
+
     end
 
     def me
 
         if @message.include?("something dark")
-            return Hash["text" => darkArray]
+            return Hash["text" => "#{darkArray}."]
         end
 
         return Hash["text" => "I don't know what to tell you."]

@@ -1,7 +1,7 @@
 class Answer
 
   def cat
-      return Hash["text" => "What about cats?"]      
+      return Hash["text" => "What about cats?"]
   end
 
     def fact
@@ -155,7 +155,7 @@ class Answer
             "Cats have 30 vertebrae--5 more than humans have."
         ]
 
-        return Hash["text" => facts.shuffle[0]]
+        return Hash["text" => facts.sample]
 
     end
 
