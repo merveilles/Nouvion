@@ -15,6 +15,7 @@ class Answer
 		vessels["ludivine"] = "the past of the future singularity"
 		vessels["bluelion"] = "a Mu traveler"
 		vessels["slackbot"] = "no one"
+		vessels["floatvoid"] = "a robot trapped in a flesh-suit"
 
 		return vessels
 	end
