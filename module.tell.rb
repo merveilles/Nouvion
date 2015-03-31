@@ -6,7 +6,7 @@ class Answer
         "Everyone you know will eventually be dead",
         "One day your name will be said for the last time",
         "People die over money. It's such a useless things, but people are still dying",
-        "Chuck Noris isn't special. His round-house can't destroy the moon and his sexual penetration didn't birth the 1972 Miami Dolphins",
+        "Chuck Norris isn't special. His round-house can't destroy the moon and his sexual penetration didn't birth the 1972 Miami Dolphins",
         "Your flesh was constructed upon the graves of hundreds of innocent beasts",
         "Every breath you take brings you one instant closer to your inevitable demise",
         "There is no God",
