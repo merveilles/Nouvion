@@ -30,4 +30,10 @@ class Answer
 
 	end
 	
+	def katamari
+
+		return Hash["text" => "na na   na na na na na na na"]
+
+	end
+	
 end
