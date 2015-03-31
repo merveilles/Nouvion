@@ -19,6 +19,7 @@ class Answer
 		vessels["floatvoid"] = "a robot trapped in a flesh-suit"
 		vessels["phrhd"] = "a house of haunted spirits"
 		vessels["christian"] = "a tamer of basilisks"
+		vessels["d6"] = "six faces, twenty-one unblinking eyes"
 
 		return vessels
 	end
