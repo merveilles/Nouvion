@@ -9,9 +9,11 @@ class Answer
      return Hash["text" => "What about colors?"]
  end
 
- def getcolor(index)
+ 
 
-colors =
+
+ def random
+ colors =
 [
 ["Acid Green","#B0BF1A"],
 ["Aero","#7CB9E8"],
@@ -1235,16 +1237,10 @@ colors =
 ["Flange","#??????"],
 ["Silentropae","#??????"]
 ]
-return [colors[index][0],colors[index][1]]
-
- end
-
- def random
- 
 
  randomValue = rand(1221)
- hex = getcolor(randomValue)[1].downcase
- return Hash["text" => "Here, take this random color: #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+ hex = colors[randomValue][1].downcase
+ return Hash["text" => "Here, take this random color: #{colors[randomValue][0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
 
  end
 
