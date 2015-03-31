@@ -23,6 +23,7 @@ class Answer
 		vessels["nullfruit"] = "a dead pixel"
 		vessels["horsman"] = "a continuous effort to become a ghost"
 		vessels["d6"] = "six faces, twenty-one unblinking eyes"
+		vessels["dualhammers"] = "a pair of sentient tools"
 
 		return vessels
 	end
