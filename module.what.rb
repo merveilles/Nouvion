@@ -15,7 +15,7 @@ class Answer
         query = @message.sub("what is ","").strip
         thoughts = @memory.load(query).shuffle
 
-        if @message.include? "twitter"
+        if @message.include?("twitter") && thoughts.length > 0
             return Hash["text" => "*#{thoughts[0][1]}* is https://twitter.com/#{thoughts[0][2]}."]
         end
 
