@@ -1260,14 +1260,11 @@ return colors[index]
  
  def aura
   
- 
  if(@username==nil)
    srand
  else
    srand = @username.hex*714982
-  
-
-  
+ 
  randomValue = rand(1221)
  hex = getcolor(randomValue)[1].downcase
  return Hash["text" => "I see the color of your aura, "+@username+", it's #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
