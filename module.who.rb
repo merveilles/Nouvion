@@ -20,7 +20,9 @@ class Answer
 		vessels["phrhd"] = "a house of haunted spirits"
 		vessels["christian"] = "a tamer of basilisks"
 		vessels["nullfruit"] = "a dead pixel"
-
+		vessels["horsman"] = "a continuous effort to become a ghost"
+		vessels["d6"] = "six faces, twenty-one unblinking eyes"
+		
 		return vessels
 	end
 
