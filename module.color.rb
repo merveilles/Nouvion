@@ -4,8 +4,10 @@
 class Answer
 
   def color
- 
- 
+     return Hash["text" => "What about colors?"]
+  end
+
+def aura
  
  colorNames = 
  [
