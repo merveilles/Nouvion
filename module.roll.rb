@@ -24,4 +24,10 @@ class Answer
 
 	end
 	
+	def cigarette
+
+		return Hash["text" => "Sorry, I don't smoke."]
+
+	end
+	
 end
