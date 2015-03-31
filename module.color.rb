@@ -1235,7 +1235,7 @@ colors =
 ["Flange","#??????"],
 ["Silentropae","#??????"]
 ]
-return colors[index]
+return [colors[index][0],colors[index][1]]
 
  end
 
