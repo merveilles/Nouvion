@@ -1,4 +1,4 @@
- #!/bin/env ruby
+#!/bin/env ruby
 # encoding: utf-8
 
 class Answer
@@ -9,11 +9,9 @@ class Answer
      return Hash["text" => "What about colors?"]
  end
 
- 
+ def getcolor(index)
 
-
- def random
- colors =
+colors =
 [
 ["Acid Green","#B0BF1A"],
 ["Aero","#7CB9E8"],
@@ -1237,12 +1235,39 @@ class Answer
 ["Flange","#??????"],
 ["Silentropae","#??????"]
 ]
-
- randomValue = rand(1221)
- hex = SFHSH
- return Hash["text" => "Here, take this random color: #{sdfgsdf} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+return colors[index]
 
  end
 
+ def random
+ 
+ srand
+ randomValue = rand(1221)
+ hex = getcolor(randomValue)[1].downcase
+ return Hash["text" => "Here, take this random color: #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+
+ end
+ 
+ def today
+  
+ time = Time.new
+ srand time.yday
+ randomValue = rand(1221)
+ hex = getcolor(randomValue)[1].downcase
+ return Hash["text" => "Today's color is #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+  
+ end
+ 
+ def aura
+ 
+
+   srand = @username.hash*714982
+
+ 
+ randomValue = rand(1221)
+ hex = getcolor(randomValue)[1].downcase
+ return Hash["text" => "I see the color of your aura, "+@username+", it's #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+  
+ end
 
 end
