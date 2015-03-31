@@ -8,6 +8,11 @@ class Answer
             return Hash["text" => "#{darkArray}."]
         end
 
+        if @message.include?("rules") or @message.include?("manifesto")
+            manifesto = "https://merveilles.slack.com/files/maxdeviant/F046SD1PN/Rules"
+            return Hash["text" => manifesto]
+        end
+
         return Hash["text" => "I don't know what to tell you."]
 
     end
