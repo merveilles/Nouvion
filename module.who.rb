@@ -16,6 +16,7 @@ class Answer
 		vessels["bluelion"] = "a Mu traveler"
 		vessels["somnius"] = "a tiger who codes"
 		vessels["slackbot"] = "no one"
+		vessels["floatvoid"] = "a robot trapped in a flesh-suit"
 
 		return vessels
 	end
