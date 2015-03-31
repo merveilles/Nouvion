@@ -3,11 +3,13 @@
 
 class Answer
 
-  def initialize(moduleName,methodName,username,message)
+  def initialize(moduleName,methodName,username,message,channel)
     @username = username
-    @message = message
+    @message  = message
     @username = username
-    @message = message
+    @message  = message
+    @channel  = channel
+    @memory   = Memory.new()
   end
 
   def text
@@ -24,6 +26,10 @@ class Answer
 
   def sorry
     return Hash["text" => "Don't worry about it *#{@username}*."]
+  end
+
+  def where
+    return Hash["text" => "You are in *#{@channel}*."]
   end
 
 end
