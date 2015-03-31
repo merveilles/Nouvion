@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 require 'minitest/autorun'
+require 'memory'
 require_relative '../answer'
 require_relative '../module.cat'
 
@@ -9,7 +10,7 @@ class TestCat < Minitest::Test
 
     def test_cat_cat
 
-        answer = Answer.new("cat", "cat", "maxdeviant", "ludivine cat")
+        answer = Answer.new("cat", "cat", "maxdeviant", "ludivine cat", "theartificiallounge")
 
         fact = answer.cat()
 
@@ -19,7 +20,7 @@ class TestCat < Minitest::Test
 
     def test_cat_fact
 
-        answer = Answer.new("cat", "fact", "maxdeviant", "ludivine cat fact")
+        answer = Answer.new("cat", "fact", "maxdeviant", "ludivine cat fact", "theartificiallounge")
 
         fact = answer.fact()
 
