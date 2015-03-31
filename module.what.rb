@@ -16,7 +16,8 @@ class Answer
         thoughts = @memory.load(query).shuffle
 
         if @message.include?("twitter") && thoughts.length > 0
-            return Hash["text" => "*#{thoughts[0][1]}* is https://twitter.com/#{thoughts[0][2]}."]
+            username = thoughts[0][2]
+            return Hash["text" => "*#{thoughts[0][1]}* is <https://twitter.com/#{username}|@#{username}>."]
         end
 
         if thoughts.length > 1
