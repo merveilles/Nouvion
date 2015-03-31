@@ -1,0 +1,10 @@
+# Require the main class
+require './answer'
+# Require any modules you might need
+require('./module.cat')
+
+# Set up the payload
+answer = Answer.new("moduleName", "methodName", "username", "message")
+
+# Output the result
+puts answer.fact()
