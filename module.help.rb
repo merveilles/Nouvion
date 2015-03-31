@@ -7,6 +7,12 @@ class Answer
 
     def help
 
+        return Hash["text" => "I am bot created in *Ruby* by the Merveilles community. I can only take alphaNumeric commands. You can improve my responses by creating pull requests on Github: https://github.com/merveilles/ludivine"]        
+
+    end
+
+    def modules
+
         visibleModules = ""
 
         Dir.entries(".").each do |name,v|
