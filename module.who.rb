@@ -18,6 +18,7 @@ class Answer
 		vessels["slackbot"] = "no one"
 		vessels["floatvoid"] = "a robot trapped in a flesh-suit"
 		vessels["phrhd"] = "a house of haunted spirits"
+		vessels["horsman"] = "a continuous effort to become a ghost"
 
 		return vessels
 	end
