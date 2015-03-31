@@ -1,16 +1,19 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class Answer
 
-	# Available: moduleName,methodName,username,message
+    # Available: moduleName,methodName,username,message
 
-	def time
+    def time
 
-		return Hash["text" => "The XXIIV server time is "+Time.new.strftime("%H:%M:%S")+"."]
+        return Hash["text" => "The XXIIV server time is "+Time.new.strftime("%H:%M:%S")+"."]
 
-	end
+    end
 
 
-	def day
-		return Hash["text" => "We are the "+Time.new.strftime("%B %d, %Y")+"."]
-	end
-	
+    def day
+        return Hash["text" => "We are the "+Time.new.strftime("%B %d, %Y")+"."]
+    end
+
 end
