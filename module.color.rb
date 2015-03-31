@@ -1261,7 +1261,7 @@ return colors[index]
  def aura
  
  userSeed = 0
- @username.each do |k|
+ @username.each_char do |k|
  userSeed += k.ord
  end
  srand userSeed
