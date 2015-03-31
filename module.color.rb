@@ -2464,7 +2464,7 @@ def aura
 
  randomValue = (rand(colorNames.length))
 
- hex = colorHexa[randomValue]
+ hex = colorHexa[randomValue].downcase
 
  return Hash["text" => "I see the color of your aura, it's #{colorNames[randomValue]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
 
