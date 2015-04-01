@@ -40,6 +40,10 @@ class Answer
     return Hash["text" => "You are in *#{@channel}*."]
   end
 
+  def say
+    return Hash["text" => @message.sub("say ","")]
+  end
+
   def rules
     return Hash["text" => "Rule #1: You must find yourself a monochromatic avatar.\nRule #2: I, *Ludivine*, am above the law.\n"]
   end
