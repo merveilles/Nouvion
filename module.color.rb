@@ -1202,7 +1202,7 @@ class Answer
         srand
         chosenColor = colorsCollection[rand(colorsCollection.length)]
 
-        return Hash["text" => "Take this random color: <http://www.colorhexa.com/"+chosenColor[1]+"|"+chosenColor[0]+">."]
+        return Hash["text" => "Take this random color: <http://www.colorhexa.com/"+chosenColor[1].downcase+"|"+chosenColor[0]+">."]
 
     end
 
@@ -1213,7 +1213,7 @@ class Answer
 
         chosenColor = colorsCollection[rand(colorsCollection.length)]
 
-        return Hash["text" => "Today's color is <http://www.colorhexa.com/"+chosenColor[1]+"|"+chosenColor[0]+">."]
+        return Hash["text" => "Today's color is <http://www.colorhexa.com/"+chosenColor[1].downcase+"|"+chosenColor[0]+">."]
 
     end
 
