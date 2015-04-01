@@ -10,16 +10,6 @@ require_relative '../answer'
 
 class TestAnswer < Minitest::Test
 
-    def test_answer_text
-
-        answer = Answer.new("answer", "text", "maxdeviant", "text", "theartificiallounge")
-
-        text = answer.text()
-
-        assert_equal "hello there", text["text"]
-
-    end
-
     def test_answer_hello
 
         answer = Answer.new("answer", "hello", "maxdeviant", "hello", "theartificiallounge")
