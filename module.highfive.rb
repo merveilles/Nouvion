@@ -15,12 +15,12 @@ class Answer
 
       def nice_things(name)
             return [
-                "**High fives " + name + "**",
+                "**High fives #{name}**",
                 "**High fives**",
-                ":xoka: " + name + " **high fives**",
-                "Looking sharp, " + name + ". **high fives**",
-                "You're one classy bitch, " + name + ". **high fives**",
-                "Keep it real, " + name + ". **high fives**"
+                ":xoka: #{name} **high fives**",
+                "Looking sharp, #{name}. **high fives**",
+                "You're one classy bitch, #{name}. **high fives**",
+                "Keep it real, #{name}. **high fives**"
             ].shuffle[0]
       end
 
@@ -29,9 +29,9 @@ class Answer
                 "Uhhh, maybe later?",
                 "Ohhh, heeeey. It's you. Heeeey... another time? :D",
                 "...",
-                "Come on " + name + " ... :smirk:",
-                name + "? Riiiight. How about next time?",
-                "Oh, uh hello " + name + ". Wasn't expecting you..."
+                "Come on #{name} ... :smirk:",
+                "#{name}? Riiiight. How about next time?",
+                "Oh, uh hello #{name}. Wasn't expecting you..."
             ].shuffle[0]
       end
 
