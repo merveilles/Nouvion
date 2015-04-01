@@ -22,7 +22,8 @@ class Answer
             "nullfruit" => "a dead pixel",
             "horsman" => "a continuous effort to become a ghost",
             "d6" => "six faces, twenty-one unblinking eyes",
-            "dualhammers" => "a pair of sentient tools"
+            "dualhammers" => "a pair of sentient tools",
+            "poka" => "a key"
         }
 
         return vessels
