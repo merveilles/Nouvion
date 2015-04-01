@@ -1262,7 +1262,7 @@ return colors[index]
 
  userSeed = 0
  @username.each_char.with_index do |k,index|
- userSeed += k.ord*index
+ userSeed += k[0].ord*index
  end
  srand userSeed
  randomValue = rand(1221)
