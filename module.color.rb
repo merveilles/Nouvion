@@ -1340,5 +1340,31 @@ class Answer
         return Hash["text" => "We are the #{linkColorDay} day of the #{linkColorMonth} month of the #{linkColorYear} year."]
 
     end
+    
+    def hexa
+     
+        colorIndex = -1
+        colorsCollection.each.with_index do |i,index|
+            if(@message.to_s.downcase == i[0].downcase)
+                colorIndex = index
+            end
+        end
+        
+        reply = "Sorry, the color #{@message} doesn't exist."
+        if(colorIndex!=-1)
+            linkColor = ""
+            if(colorsCollection[colorIndex][1]!=nil)
+                hex  = colorsCollection[colorIndex][1].downcase
+                linkColor = "<http://www.colorhexa.com/#{hex}|#{colorsCollection[colorIndex][0]}>"
+                reply = "The hexadecimal value of the color #{linkColor} is ##{colorsCollection[colorIndex][1]}."
+            else
+                linkColor = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{colorsCollection[colorIndex][0]}>"
+                reply = "The color #{linkColor} exists, but I can't give you its hexadecimal value."
+            end
+        end
+        
+        return Hash["text" => reply]
+        
+    end
   
 end
