@@ -13,7 +13,7 @@ class TestHelp < Minitest::Test
 
     def test_help_help
 
-        answer = Answer.new("help", "help", "maxdeviant", "ludivine help", "theartificiallounge")
+        answer = Answer.new("help", "help", "maxdeviant", "help", "theartificiallounge")
 
         help = answer.help()
 
@@ -24,7 +24,7 @@ class TestHelp < Minitest::Test
 
     def test_help_modules
 
-        answer = Answer.new("help", "modules", "maxdeviant", "ludivine help modules", "theartificiallounge")
+        answer = Answer.new("help", "modules", "maxdeviant", "help modules", "theartificiallounge")
 
         modules = answer.modules()
 

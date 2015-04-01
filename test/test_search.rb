@@ -13,7 +13,7 @@ class TestSearch < Minitest::Test
 
     def test_search_google
 
-        answer = Answer.new("search", "google", "maxdeviant", "ludivine google cat fact", "theartificiallounge")
+        answer = Answer.new("search", "google", "maxdeviant", "google cat fact", "theartificiallounge")
 
         google = answer.google()
 
@@ -23,7 +23,7 @@ class TestSearch < Minitest::Test
 
     def test_search_duckduckgo
 
-        answer = Answer.new("search", "duckduckgo", "maxdeviant", "ludivine search duckduckgo cat fact", "theartificiallounge")
+        answer = Answer.new("search", "duckduckgo", "maxdeviant", "search duckduckgo cat fact", "theartificiallounge")
 
         duckduckgo = answer.duckduckgo()
 

@@ -13,7 +13,7 @@ class TestLorem < Minitest::Test
 
     def test_lorem_gibson
 
-        answer = Answer.new("lorem", "gibson", "maxdeviant", "ludivine lorem gibson", "theartificiallounge")
+        answer = Answer.new("lorem", "gibson", "maxdeviant", "lorem gibson", "theartificiallounge")
 
         gibson = answer.gibson()
 

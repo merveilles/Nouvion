@@ -13,7 +13,7 @@ class TestEmote < Minitest::Test
 
     def test_emote_emote
 
-        answer = Answer.new("emote", "emote", "maxdeviant", "ludivine emote", "theartificiallounge")
+        answer = Answer.new("emote", "emote", "maxdeviant", "emote", "theartificiallounge")
 
         emote = answer.emote()
 
@@ -24,13 +24,13 @@ class TestEmote < Minitest::Test
 
     def test_emote_smile
 
-        answer = Answer.new("emote", "smile", "maxdeviant", "ludivine emote smile", "theartificiallounge")
+        answer = Answer.new("emote", "smile", "maxdeviant", "emote smile", "theartificiallounge")
 
     end
 
     def test_cat_fact
 
-        answer = Answer.new("cat", "fact", "maxdeviant", "ludivine cat fact", "theartificiallounge")
+        answer = Answer.new("cat", "fact", "maxdeviant", "cat fact", "theartificiallounge")
 
         emote = answer.emote()
 

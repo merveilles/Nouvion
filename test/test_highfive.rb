@@ -13,7 +13,7 @@ class TestHighFive < Minitest::Test
 
     def test_highfive_highfive
 
-        answer = Answer.new("highfive", "highfive", "maxdeviant", "ludivine highfive", "theartificiallounge")
+        answer = Answer.new("highfive", "highfive", "maxdeviant", "highfive", "theartificiallounge")
 
         highfive = answer.highfive()
 

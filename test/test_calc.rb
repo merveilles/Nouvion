@@ -14,7 +14,7 @@ class TestCalc < Minitest::Test
     def test_calc_add
 
         # Need to double check this test case
-        answer = Answer.new("calc", "add", "maxdeviant", "ludivine calc add 1 1", "theartificiallounge")
+        answer = Answer.new("calc", "add", "maxdeviant", "calc add 1 1", "theartificiallounge")
 
         add = answer.add()
 
@@ -24,7 +24,7 @@ class TestCalc < Minitest::Test
 
     def test_calc_subtract
 
-        answer = Answer.new("calc", "subtract", "maxdeviant", "ludivine calc subtract 5 3", "theartificiallounge")
+        answer = Answer.new("calc", "subtract", "maxdeviant", "calc subtract 5 3", "theartificiallounge")
 
         subtract = answer.subtract()
 
@@ -34,7 +34,7 @@ class TestCalc < Minitest::Test
 
     def test_calc_multiply
 
-        answer = Answer.new("calc", "multiply", "maxdeviant", "ludivine calc multiply 4 4", "theartificiallounge")
+        answer = Answer.new("calc", "multiply", "maxdeviant", "calc multiply 4 4", "theartificiallounge")
 
         multiply = answer.multiply()
 
@@ -44,7 +44,7 @@ class TestCalc < Minitest::Test
 
     def test_calc_divide
 
-        answer = Answer.new("calc", "divide", "maxdeviant", "ludivine calc divide 3 4", "theartificiallounge")
+        answer = Answer.new("calc", "divide", "maxdeviant", "calc divide 3 4", "theartificiallounge")
 
         divide = answer.divide()
 

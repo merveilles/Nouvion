@@ -17,8 +17,8 @@ class Answer
 
     def add
 
-        val1 = @message.split(" ")[3].to_i
-        val2 = @message.split(" ")[4].to_i
+        val1 = @message.split(" ")[2].to_i
+        val2 = @message.split(" ")[3].to_i
 
         sum = (val1 + val2).to_s
 
@@ -28,8 +28,8 @@ class Answer
 
     def subtract
 
-        val1 = @message.split(" ")[3].to_i
-        val2 = @message.split(" ")[4].to_i
+        val1 = @message.split(" ")[2].to_i
+        val2 = @message.split(" ")[3].to_i
 
         difference = (val1 - val2).to_s
 
@@ -39,8 +39,8 @@ class Answer
 
     def multiply
 
-        val1 = @message.split(" ")[3].to_i
-        val2 = @message.split(" ")[4].to_i
+        val1 = @message.split(" ")[2].to_i
+        val2 = @message.split(" ")[3].to_i
 
         product = (val1 * val2).to_s
 
@@ -50,8 +50,8 @@ class Answer
 
     def divide
 
-        val1 = @message.split(" ")[3].to_i
-        val2 = @message.split(" ")[4].to_i
+        val1 = @message.split(" ")[2].to_i
+        val2 = @message.split(" ")[3].to_i
 
         dividend = (val1.to_f / val2.to_f).to_s
 

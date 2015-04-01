@@ -13,7 +13,7 @@ class TestGoat < Minitest::Test
 
     def test_goat_goat
 
-        answer = Answer.new("goat", "goat", "maxdeviant", "ludivine goat", "theartificiallounge")
+        answer = Answer.new("goat", "goat", "maxdeviant", "goat", "theartificiallounge")
 
         goat = answer.goat()
 
@@ -23,7 +23,7 @@ class TestGoat < Minitest::Test
 
     def test_goat_tower
 
-        answer = Answer.new("goat", "tower", "maxdeviant", "ludivine goat tower", "theartificiallounge")
+        answer = Answer.new("goat", "tower", "maxdeviant", "goat tower", "theartificiallounge")
 
         tower = answer.tower()
 
@@ -34,7 +34,7 @@ class TestGoat < Minitest::Test
 
     def test_goat_thrower
 
-        answer = Answer.new("goat", "thrower", "maxdeviant", "ludivine goat thrower", "theartificiallounge")
+        answer = Answer.new("goat", "thrower", "maxdeviant", "goat thrower", "theartificiallounge")
 
         thrower = answer.thrower()
 

@@ -13,7 +13,7 @@ class TestColor < Minitest::Test
 
     def test_color_color
 
-        answer = Answer.new("color", "color", "maxdeviant", "ludivine color", "theartificiallounge")
+        answer = Answer.new("color", "color", "maxdeviant", "color", "theartificiallounge")
 
         color = answer.color()
 
@@ -23,7 +23,7 @@ class TestColor < Minitest::Test
 
     def test_color_random
 
-        answer = Answer.new("color", "random", "maxdeviant", "ludivine color random", "theartificiallounge")
+        answer = Answer.new("color", "random", "maxdeviant", "color random", "theartificiallounge")
 
         random = answer.random()
 
@@ -34,7 +34,7 @@ class TestColor < Minitest::Test
 
     def test_color_today
 
-        answer = Answer.new("color", "today", "maxdeviant", "ludivine color today", "theartificiallounge")
+        answer = Answer.new("color", "today", "maxdeviant", "color today", "theartificiallounge")
 
         today = answer.today()
 
@@ -45,7 +45,7 @@ class TestColor < Minitest::Test
 
     def test_color_aura
 
-        answer = Answer.new("color", "aura", "maxdeviant", "ludivine color aura", "theartificiallounge")
+        answer = Answer.new("color", "aura", "maxdeviant", "color aura", "theartificiallounge")
 
         aura = answer.aura()
 

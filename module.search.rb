@@ -10,7 +10,7 @@ class Answer
             term = "cat fact" # just a default
             terms = msg.split(" ")
             if terms.length > 2
-                  term = terms.drop(2).join(" ")
+                  term = terms.drop(1).join(" ")
             end
             term = term != nil ? term.lstrip.rstrip : 'cat fact'
             term = url_encode(term)

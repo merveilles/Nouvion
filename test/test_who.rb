@@ -13,19 +13,19 @@ class TestWho < Minitest::Test
 
     def test_who_is
 
-        answer = Answer.new("who", "is", "maxdeviant", "ludivine who is aliceffekt", "theartificiallounge")
+        answer = Answer.new("who", "is", "maxdeviant", "who is aliceffekt", "theartificiallounge")
 
         is = answer.is()
 
         assert_equal "*@aliceffekt* is many witches.", is["text"]
 
-        answer = Answer.new("who", "is", "maxdeviant", "ludivine who is maxdeviant", "theartificiallounge")
+        answer = Answer.new("who", "is", "maxdeviant", "who is maxdeviant", "theartificiallounge")
 
         is = answer.is()
 
         assert_equal "You are actually Marshall.", is["text"]
 
-        answer = Answer.new("who", "is", "maxdeviant", "ludivine who is name-that-does-not-exist", "theartificiallounge")
+        answer = Answer.new("who", "is", "maxdeviant", "who is name-that-does-not-exist", "theartificiallounge")
 
         is = answer.is()
 
@@ -35,13 +35,13 @@ class TestWho < Minitest::Test
 
     def test_who_am
 
-        answer = Answer.new("who", "am", "maxdeviant", "ludivine who am i", "theartificiallounge")
+        answer = Answer.new("who", "am", "maxdeviant", "who am i", "theartificiallounge")
 
         am = answer.am()
 
         assert_equal "You are actually Marshall.", am["text"]
 
-        answer = Answer.new("who", "am", "name-that-does-not-exist", "ludivine who am i", "theartificiallounge")
+        answer = Answer.new("who", "am", "name-that-does-not-exist", "who am i", "theartificiallounge")
 
         am = answer.am()
 

@@ -13,14 +13,14 @@ class TestRoll < Minitest::Test
 
     def test_roll_dice
 
-        answer = Answer.new("roll", "dice", "maxdeviant", "ludivine roll dice 20", "theartificiallounge")
+        answer = Answer.new("roll", "dice", "maxdeviant", "roll dice 20", "theartificiallounge")
 
         dice = answer.dice()
 
         assert_equal true, (dice.instance_of? Hash)
         assert_equal true, (dice["text"].instance_of? String)
 
-        answer = Answer.new("roll", "dice", "maxdeviant", "ludivine roll dice", "theartificiallounge")
+        answer = Answer.new("roll", "dice", "maxdeviant", "roll dice", "theartificiallounge")
 
         dice = answer.dice()
 
@@ -31,7 +31,7 @@ class TestRoll < Minitest::Test
 
     def test_roll_barrel
 
-        answer = Answer.new("roll", "barrel", "maxdeviant", "ludivine roll barrel ", "theartificiallounge")
+        answer = Answer.new("roll", "barrel", "maxdeviant", "roll barrel ", "theartificiallounge")
 
         barrel = answer.barrel()
 
@@ -41,7 +41,7 @@ class TestRoll < Minitest::Test
 
     def test_roll_cigarette
 
-        answer = Answer.new("roll", "cigarette", "maxdeviant", "ludivine roll cigarette ", "theartificiallounge")
+        answer = Answer.new("roll", "cigarette", "maxdeviant", "roll cigarette ", "theartificiallounge")
 
         cigarette = answer.cigarette()
 
@@ -51,7 +51,7 @@ class TestRoll < Minitest::Test
 
     def test_roll_katamari
 
-        answer = Answer.new("roll", "katamari", "maxdeviant", "ludivine roll katamari ", "theartificiallounge")
+        answer = Answer.new("roll", "katamari", "maxdeviant", "roll katamari ", "theartificiallounge")
 
         katamari = answer.katamari()
 

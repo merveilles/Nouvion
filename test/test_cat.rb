@@ -13,7 +13,7 @@ class TestCat < Minitest::Test
 
     def test_cat_cat
 
-        answer = Answer.new("cat", "cat", "maxdeviant", "ludivine cat", "theartificiallounge")
+        answer = Answer.new("cat", "cat", "maxdeviant", "cat", "theartificiallounge")
 
         fact = answer.cat()
 
@@ -23,7 +23,7 @@ class TestCat < Minitest::Test
 
     def test_cat_fact
 
-        answer = Answer.new("cat", "fact", "maxdeviant", "ludivine cat fact", "theartificiallounge")
+        answer = Answer.new("cat", "fact", "maxdeviant", "cat fact", "theartificiallounge")
 
         fact = answer.fact()
 

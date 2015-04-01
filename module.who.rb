@@ -33,7 +33,7 @@ class Answer
 
         vessels = vesselsArray
 
-        username = @message.split(" ")[3].lstrip.rstrip
+        username = @message.split(" ")[2].lstrip.rstrip
 
         if vessels[username] && username == @username then return Hash["text" => "You are "+vessels[username]+"."]
         elsif vessels[username] then return Hash["text" => "*@#{username}* is "+vessels[username]+"."] end
