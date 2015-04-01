@@ -12,10 +12,6 @@ class Answer
     @memory   = Memory.new()
   end
 
-  def text
-    return Hash["text" => "hello there"]
-  end
-
   def hello
     return Hash["text" => "Hello #{@username}, nice to see you."]
   end
@@ -41,6 +37,7 @@ class Answer
   end
 
   def say
+    if @username == "slackbot" then return Hash["text" => "Stop messing with me.."] end
     return Hash["text" => @message.sub("say ","")]
   end
 
