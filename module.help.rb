@@ -21,7 +21,7 @@ class Answer
             visible_modules += "`" + name.sub("module.", "").sub(".rb", "")+ "` "
         end
 
-        return Hash["text" => "My current active modules are: #{visible_modules.rstrip}."]
+        return Hash["text" => "My current active modules are:\n#{visible_modules.rstrip}."]
 
     end
 

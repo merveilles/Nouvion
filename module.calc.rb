@@ -11,7 +11,7 @@ class Answer
         val1 = @message.split(" ")[1].to_i
         val2 = @message.split(" ")[2].to_i
 
-        return Hash["text" => "Module by Aliceffekt."]
+        return Hash["text" => "My calc module requires a method from this list:\n`add` `subtract` `multiply` `divide`."]
 
     end
 
@@ -59,4 +59,4 @@ class Answer
 
     end
 
-end
+e
