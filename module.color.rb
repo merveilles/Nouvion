@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class Answer
 
  # Available: moduleName,methodName,username,message
@@ -77,7 +80,7 @@ colors =
 ["Beaver","#9F8170"],
 ["Beige","#F5F5DC"],
 ["B'dazzled Blue","#2E5894"],
-["Big Dip O’ruby","#9C2542"],
+["Big Dip O'ruby","#9C2542"],
 ["Bisque","#FFE4C4"],
 ["Bistre","#3D2B1F"],
 ["Bistre Brown","#967117"],
@@ -1237,26 +1240,26 @@ return colors[index]
  end
 
  def random
- 
+
  srand
  randomValue = rand(1221)
  hex = getcolor(randomValue)[1].downcase
  return Hash["text" => "Here, take this random color: #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
 
  end
- 
+
  def today
-  
+
  time = Time.new
  srand time.yday
  randomValue = rand(1221)
  hex = getcolor(randomValue)[1].downcase
  return Hash["text" => "Today's color is #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
-  
+
  end
- 
+
  def aura
- 
+
  userSeed = 0
  @username.each_char.with_index do |k,index|
  userSeed += k.ord*index
@@ -1265,28 +1268,28 @@ return colors[index]
  randomValue = rand(1221)
  hex = getcolor(randomValue)[1].downcase
  return Hash["text" => "I see the color of your aura, "+@username+", it's #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
-  
+
  end
- 
+
  def date
-  
+
  srand Time.new.day * Time.new.year
  randomValue = rand(1221)
  nameDay = getcolor(randomValue)[0]
  hexDay = getcolor(randomValue)[1].downcase
- 
+
  srand Time.new.month * Time.new.year
  randomValue = rand(1221)
  nameMonth = getcolor(randomValue)[0]
  hexMonth = getcolor(randomValue)[1].downcase
- 
+
  srand Time.new.year * Time.new.year
  randomValue = rand(1221)
  nameYear = getcolor(randomValue)[0]
  hexYear = getcolor(randomValue)[1].downcase
- 
+
  return Hash["text" => "We are the #{nameDay} (<http://www.colorhexa.com/#{hexDay[1, hexDay.length]}|#{hexDay}>) day of the #{nameMonth} (<http://www.colorhexa.com/#{hexMonth[1, hexMonth.length]}|#{hexMonth}>) month of the #{nameYear} (<http://www.colorhexa.com/#{hexYear[1, hexYear.length]}|#{hexYear}>) year."]
- 
+
  end
 
 end
