@@ -14,11 +14,11 @@ class Answer
     end
 
     words.shuffle!
-    sentence = words.pop(rand(7..9)).join(" ").concat(".")
+    sentence = words.pop(rand(10 - 7) + 7).join(" ").concat(".")
     sentenceCount = sentenceCount - 1
 
     if sentenceCount > 0
-      sentenceCount.times { sentence << words.pop(rand(7..9)).join(" ").prepend(" ").concat(".") }
+      sentenceCount.times { sentence << words.pop(rand(10 - 7) + 7).join(" ").insert(0, " ").concat(".") }
     end
 
     return Hash["text" => sentence]
