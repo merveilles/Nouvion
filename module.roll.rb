@@ -7,17 +7,21 @@ class Answer
 
     def dice
 
-        diceValue = @message.split(" ")[2].to_i
+        diceValue = @message.split(" ")[3].to_i
 
         if diceValue > 100000000000
             return Hash["text" => "Mhm, grow up."]
         end
 
         if diceValue > 0
-            return Hash["text" => "Rolling a "+diceValue.to_s+" sided dice, the result is "+(rand(diceValue)+1).to_s+"."]
+            roll = rand(diceValue) + 1
+
+            return Hash["text" => "Rolling a #{diceValue} sided dice, the result is #{roll}."]
         end
 
-        return Hash["text" => "Rolling a 6 sided dice, the result is "+(rand(6)+1).to_s+"."]
+        roll = rand(6) + 1
+
+        return Hash["text" => "Rolling a 6 sided dice, the result is #{roll}."]
 
     end
 

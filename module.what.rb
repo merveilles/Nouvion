@@ -38,7 +38,7 @@ class Answer
         elsif thoughts.length > 0
           return Hash["text" => "*"+thoughts[0][1]+"* is *"+thoughts[0][2]+"*."]
         end
-        
+
         return Hash["text" => "I don't know.."]
     end
 

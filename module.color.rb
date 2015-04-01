@@ -1,4 +1,4 @@
- #!/bin/env ruby
+#!/bin/env ruby
 # encoding: utf-8
 
 class Answer
@@ -1260,10 +1260,11 @@ return colors[index]
  
  def aura
  
-
-   srand = @username.hash*714982
-
- 
+ userSeed = 0
+ @username.each_char do |k|
+ userSeed += k.ord
+ end
+ srand userSeed
  randomValue = rand(1221)
  hex = getcolor(randomValue)[1].downcase
  return Hash["text" => "I see the color of your aura, "+@username+", it's #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
