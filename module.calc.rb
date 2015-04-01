@@ -17,37 +17,45 @@ class Answer
 
     def add
 
-        val1 = @message.split(" ")[2].to_i
-        val2 = @message.split(" ")[3].to_i
+        val1 = @message.split(" ")[3].to_i
+        val2 = @message.split(" ")[4].to_i
 
-        return Hash["text" => "The sum of #{val1} and #{val2}, is "+(val1+val2).to_s+"."]
+        sum = (val1 + val2).to_s
+
+        return Hash["text" => "The sum of #{val1} and #{val2}, is #{sum}."]
 
     end
 
     def subtract
 
-        val1 = @message.split(" ")[2].to_i
-        val2 = @message.split(" ")[3].to_i
+        val1 = @message.split(" ")[3].to_i
+        val2 = @message.split(" ")[4].to_i
 
-        return Hash["text" => "The result of #{val2} subtracted to #{val1}, is "+(val1-val2).to_s+"."]
+        difference = (val1 - val2).to_s
+
+        return Hash["text" => "The difference of #{val2} subtracted from #{val1}, is #{difference}."]
 
     end
 
     def multiply
 
-        val1 = @message.split(" ")[2].to_i
-        val2 = @message.split(" ")[3].to_i
+        val1 = @message.split(" ")[3].to_i
+        val2 = @message.split(" ")[4].to_i
 
-        return Hash["text" => "The result of #{val1} multiplied by #{val2}, is "+(val1*val2).to_s+"."]
+        product = (val1 * val2).to_s
+
+        return Hash["text" => "The product of #{val1} and #{val2}, is #{product}."]
 
     end
 
     def divide
 
-        val1 = @message.split(" ")[2].to_i
-        val2 = @message.split(" ")[3].to_i
+        val1 = @message.split(" ")[3].to_i
+        val2 = @message.split(" ")[4].to_i
 
-        return Hash["text" => "The result of #{val1} divided by #{val2}, is "+(val1.to_f/val2.to_f).to_s+"."]
+        dividend = (val1.to_f / val2.to_f).to_s
+
+        return Hash["text" => "The dividend of #{val1} divided by #{val2}, is #{dividend}."]
 
     end
 

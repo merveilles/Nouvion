@@ -16,7 +16,39 @@ class TestCalc < Minitest::Test
         # Need to double check this test case
         answer = Answer.new("calc", "add", "maxdeviant", "ludivine calc add 1 1", "theartificiallounge")
 
-        assert_equal "The sum of 0 and 1, is 1.", answer.add()["text"]
+        add = answer.add()
+
+        assert_equal "The sum of 1 and 1, is 2.", add["text"]
+
+    end
+
+    def test_calc_subtract
+
+        answer = Answer.new("calc", "subtract", "maxdeviant", "ludivine calc subtract 5 3", "theartificiallounge")
+
+        subtract = answer.subtract()
+
+        assert_equal "The difference of 3 subtracted from 5, is 2.", subtract["text"]
+
+    end
+
+    def test_calc_multiply
+
+        answer = Answer.new("calc", "multiply", "maxdeviant", "ludivine calc multiply 4 4", "theartificiallounge")
+
+        multiply = answer.multiply()
+
+        assert_equal "The product of 4 and 4, is 16.", multiply["text"]
+
+    end
+
+    def test_calc_divide
+
+        answer = Answer.new("calc", "divide", "maxdeviant", "ludivine calc divide 3 4", "theartificiallounge")
+
+        divide = answer.divide()
+
+        assert_equal "The dividend of 3 divided by 4, is 0.75.", divide["text"]
 
     end
 
