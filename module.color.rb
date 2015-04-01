@@ -1267,7 +1267,22 @@ return colors[index]
  srand userSeed
  randomValue = rand(1221)
  hex = getcolor(randomValue)[1].downcase
- return Hash["text" => "I see the color of your aura, "+@username+", it's #{getcolor(randomValue)[0]} (<http://www.colorhexa.com/#{hex[1, hex.length]}|#{hex}>)."]
+ colorName = getcolor(randomValue)[0]
+ hexLink = hex[1, hex.length]
+ 
+ if( @username == "aliceffekt" )
+    if( rand(1) > 0 )
+     colorName = "Black"
+     hexLink = "000000"
+     hex = "#000000"
+    else
+     colorName = "White"
+     hexLink = "FFFFFF"
+     hex = "#FFFFFF"
+    end
+ end
+ 
+ return Hash["text" => "I see the color of your aura, "+@username+", it's #{colorName} (<http://www.colorhexa.com/#{hexLink}|#{hex}>)."]
   
  end
 
