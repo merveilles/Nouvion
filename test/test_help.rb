@@ -1,0 +1,36 @@
+#!/bin/env ruby
+# encoding: utf-8
+
+require 'coveralls'
+Coveralls.wear!
+
+require 'minitest/autorun'
+require 'memory'
+require_relative '../answer'
+require_relative '../module.help'
+
+class TestHelp < Minitest::Test
+
+    def test_help_help
+
+        answer = Answer.new("help", "help", "maxdeviant", "ludivine help", "theartificiallounge")
+
+        help = answer.help()
+
+        assert_equal true, (help.instance_of? Hash)
+        assert_equal true, (help["text"].instance_of? String)
+
+    end
+
+    def test_help_modules
+
+        answer = Answer.new("help", "modules", "maxdeviant", "ludivine help modules", "theartificiallounge")
+
+        modules = answer.modules()
+
+        assert_equal true, (modules.instance_of? Hash)
+        assert_equal true, (modules["text"].instance_of? String)
+
+    end
+
+end
