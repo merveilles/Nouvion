@@ -22,6 +22,10 @@ class Answer
     		votesSum += 1
     	end
 
+    	if votesSum < 1
+	    	return Hash["text" => "I don't know what *"+query+"* is."]
+	    end
+
     	graph = ""
     	votes.sort_by {|_key, value| value}.reverse.each do |value,count|
     		percent = ((count.to_f/votesSum.to_f)*100).to_i
