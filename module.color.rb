@@ -1258,8 +1258,8 @@ return colors[index]
  def aura
  
  userSeed = 0
- @username.each_char do |k|
- userSeed += k.ord
+ @username.each_char.with_index do |k,index|
+ userSeed += k.ord*index
  end
  srand userSeed
  randomValue = rand(1221)
