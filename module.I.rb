@@ -4,22 +4,21 @@
 class Answer
 
     # Available: moduleName,methodName,username,message
-    def hate
-    	args = @message.split(" ");
-    	if(args[0] == "you")
-    		return Hash["text" => "I... I'm so sorry Senpaï"]
-    	end
 
+    def hate
+
+    	args = @message.split(" ")
+    	if(args[0] == "you") then return Hash["text" => "I... I'm so sorry Senpaï"] end
     	return Hash["text" => "What do you hate ?"]
+
     end
 
     def feel
-    	args = @message;
+
     	rd = rand(10)
-    	if rd == 0
-    		return Hash["text" => "Ok"]
-    	end
-    	
-    	return Hash["text" => "I'm so sorry you feel #{args}"]
+    	if rd == 0 then return Hash["text" => "Ok"] end
+    	return Hash["text" => "I'm so sorry you feel "+@message.sub("i feel","").strip+"."]
+
     end
+
 end
