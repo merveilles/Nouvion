@@ -11,18 +11,18 @@ class Answer
         return Hash["text" => responses.shuffle[0] ]
 
     end
-    
-    #show us your true face, ludivine    
-    def smile 
+
+    #show us your true face, ludivine
+    def smile
 
         oper = @message.split(" ")[0]
         val1 = @message.split(" ")[1].to_i
         val2 = @message.split(" ")[2].to_i
 
-        eyes = ["O","o","^","*" ] 
-        mouths = ["_","__","." ] 
+        eyes = ["O","o","^","*" ]
+        mouths = ["_","__","." ]
 
-        symmetry = rand(1) > 0 
+        symmetry = rand(1) > 0
 
         lefteye = eyes.shuffle[0]
         righteye = lefteye

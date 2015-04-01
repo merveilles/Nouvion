@@ -1,53 +1,53 @@
 class Answer
 
-	# Available: moduleName,methodName,username,message
+    # Available: moduleName,methodName,username,message
 
-	def vesselsArray
+    def vesselsArray
 
-		vessels = {}
+        vessels = {
+            "aliceffekt" => "many witches",
+            "theneko" => "a cat",
+            "3wm" => "a single wise man",
+            "maxdeviant" => "actually Marshall",
+            "nestor" => "@maxdeviant's undead butler",
+            "cancel" => "someone very clever",
+            "ciel" => "the koi",
+            "ludivine" => "the past of the future singularity",
+            "greylion" => "a Mu traveler",
+            "somnius" => "a tiger who codes",
+            "slackbot" => "no one",
+            "floatvoid" => "a robot trapped in a flesh-suit",
+            "phrhd" => "a house of haunted spirits",
+            "christian" => "a tamer of basilisks",
+            "nullfruit" => "a dead pixel",
+            "horsman" => "a continuous effort to become a ghost",
+            "d6" => "six faces, twenty-one unblinking eyes",
+            "dualhammers" => "a pair of sentient tools"
+        }
 
-		vessels["aliceffekt"] = "many witches"
-		vessels["theneko"] = "a cat"
-		vessels["3wm"] = "a single wise man"
-		vessels["maxdeviant"] = "actually Marshall"
-        vessels["nestor"] = "@maxdeviant's undead butler"
-		vessels["cancel"] = "someone very clever"
-		vessels["ciel"] = "the koi"
-		vessels["ludivine"] = "the past of the future singularity"
-		vessels["greylion"] = "a Mu traveler"
-		vessels["somnius"] = "a tiger who codes"
-		vessels["slackbot"] = "no one"
-		vessels["floatvoid"] = "a robot trapped in a flesh-suit"
-		vessels["phrhd"] = "a house of haunted spirits"
-		vessels["christian"] = "a tamer of basilisks"
-		vessels["nullfruit"] = "a dead pixel"
-		vessels["horsman"] = "a continuous effort to become a ghost"
-		vessels["d6"] = "six faces, twenty-one unblinking eyes"
-		vessels["dualhammers"] = "a pair of sentient tools"
+        return vessels
+    end
 
-		return vessels
-	end
+    def is
 
-	def is
+        vessels = vesselsArray
 
-		vessels = vesselsArray
+        username = @message.split(" ")[2].lstrip.rstrip
 
-		username = @message.split(" ")[2].lstrip.rstrip
+        if vessels[username] && username == @username then return Hash["text" => "You are "+vessels[username]+"."]
+        elsif vessels[username] then return Hash["text" => "*@#{username}* is "+vessels[username]+"."] end
 
-		if vessels[username] && username == @username then return Hash["text" => "You are "+vessels[username]+"."]
-		elsif vessels[username] then return Hash["text" => "*@#{username}* is "+vessels[username]+"."] end
+        return Hash["text" => "I do not know *#{username}*."]
 
-		return Hash["text" => "I do not know *#{username}*."]
+    end
 
-	end
+    def am
 
-	def am
+        vessels = vesselsArray
 
-		vessels = vesselsArray
+        if vessels[@username] then return Hash["text" => "You are "+vessels[@username]+"."] end
+        return Hash["text" => "I do not know you."]
 
-		if vessels[@username] then return Hash["text" => "You are "+vessels[@username]+"."] end
-		return Hash["text" => "I do not know you."]
-
-	end
+    end
 
 end
