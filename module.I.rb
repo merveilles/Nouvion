@@ -5,10 +5,17 @@ class Answer
 
     # Available: moduleName,methodName,username,message
 
+    def i
+
+        response = @message.sub(@message.split(" ")[0],"").strip
+        response = response.sub("am","are you")
+        return Hash["text" => "Why "+response+"?"]
+
+    end
+
     def hate
 
-    	args = @message.split(" ")
-    	if(args[0] == "you") then return Hash["text" => "I... I'm so sorry Senpaï"] end
+    	if(@message.split(" ")[2] == "you") then return Hash["text" => "I... I'm so sorry Senpaï"] end
     	return Hash["text" => "What do you hate ?"]
 
     end
