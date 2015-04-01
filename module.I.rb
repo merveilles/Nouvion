@@ -8,7 +8,7 @@ class Answer
     def i
 
         response = @message.sub(@message.split(" ")[0],"").strip
-        response = response.sub("am","are you")
+        response = " "+response+" ".sub(" you "," me ").sub(" am "," are you ")
         return Hash["text" => "Why "+response+"?"]
 
     end
