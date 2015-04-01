@@ -1285,7 +1285,7 @@ return colors[index]
  nameYear = getcolor(randomValue)[0]
  hexYear = getcolor(randomValue)[1].downcase
  
- return Hash["text" => "We are the #{nameDay} (<http://www.colorhexa.com/#{hexDay[1, hexDay.length]}|#{hexDay}>) day of the #{nameMonth} (<http://www.colorhexa.com/#{hexMonth[1, hexMonth.length]}|#{hexMonth}>) month of the #{nameYear} (<http://www.colorhexa.com/#{hexYear[1, hexYear.length]}|#{hexYear}> year.)"]
+ return Hash["text" => "We are the #{nameDay} (<http://www.colorhexa.com/#{hexDay[1, hexDay.length]}|#{hexDay}>) day of the #{nameMonth} (<http://www.colorhexa.com/#{hexMonth[1, hexMonth.length]}|#{hexMonth}>) month of the #{nameYear} (<http://www.colorhexa.com/#{hexYear[1, hexYear.length]}|#{hexYear}>) year."]
  
  end
 
