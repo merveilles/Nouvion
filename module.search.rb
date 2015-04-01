@@ -19,12 +19,14 @@ class Answer
 
       def google
             term = getTerm(@message)
-            return Hash["text" => "http://www.google.com/search?q=" + term + "&btnI"]
+
+            return Hash["text" => "http://www.google.com/search?q=#{term}&btnI"]
       end
 
       def duckduckgo
             term = getTerm(@message)
-            return Hash["text" => "https://duckduckgo.com/?q=!ducky+" + term + "+%s"]
+
+            return Hash["text" => "https://duckduckgo.com/?q=!ducky+#{term}+%s"]
       end
 
 end
