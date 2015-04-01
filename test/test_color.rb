@@ -17,7 +17,8 @@ class TestColor < Minitest::Test
 
         color = answer.color()
 
-        assert_equal "What about colors?", color["text"]
+        assert_equal true, (color.instance_of? Hash)
+        assert_equal true, (color["text"].instance_of? String)
 
     end
 
