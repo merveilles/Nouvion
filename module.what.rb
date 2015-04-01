@@ -3,18 +3,21 @@ class Answer
     # Available: moduleName,methodName,username,message
 
     def time
-        time = Time.new.strftime("%H:%M:%S")
 
+        time = Time.new.strftime("%H:%M:%S")
         return Hash["text" => "The XXIIVV server time is #{time}"]
+
     end
 
     def day
-        day = Time.new.strftime("%B %d, %Y")
 
+        day = Time.new.strftime("%B %d, %Y")
         return Hash["text" => "We are the #{day}."]
+
     end
 
     def is
+
         @memory.connect()
         query = @message.sub("what is", "").strip
         thoughts = @memory.load(query).shuffle
@@ -46,6 +49,5 @@ class Answer
         end
 
         return Hash["text" => "I don't know.."]
-    end
-
-end
+        
+ 
