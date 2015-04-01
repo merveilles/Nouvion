@@ -44,5 +44,9 @@ class Answer
   def rules
     return Hash["text" => "Rule #1: You must find yourself a monochromatic avatar.\nRule #2: I, *Ludivine*, am above the law.\n"]
   end
+  
+   def forget
+    return Hash["text" => "Ludivine never forgets."]
+  end
 
 end
