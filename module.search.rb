@@ -17,15 +17,21 @@ class Answer
             return term
       end
 
-      def google
-            term = getTerm(@message)
+      def search 
 
+            term = getTerm(@message)
+            return Hash["text" => "Is this <http://www.google.com/search?q=#{term}&btnI|this> what you're looking for?"]
+      end
+
+      def google
+
+            term = getTerm(@message)
             return Hash["text" => "http://www.google.com/search?q=#{term}&btnI"]
       end
 
       def duckduckgo
-            term = getTerm(@message)
 
+            term = getTerm(@message)
             return Hash["text" => "https://duckduckgo.com/?q=!ducky+#{term}+%s"]
       end
 
