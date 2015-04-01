@@ -13,11 +13,25 @@ class TestSearch < Minitest::Test
 
     def test_search_search
 
-        answer = Answer.new("search", "search", "maxdeviant", "search cat fact", "theartificiallounge")
+        answer = Answer.new("search", "search", "maxdeviant", "search", "theartificiallounge")
 
         search = answer.search()
 
-        assert_equal "Is <http://www.google.com/search?q=fact&btnI|this> what you're looking for?", search["text"]
+        assert_equal "Is <http://www.google.com/search?q=cat%20fact&btnI|this> what you're looking for?", search["text"]
+
+        queries = [
+            "aliceffekt",
+            "neon hermetism",
+            "devine lu linvega"
+        ]
+
+        queries.each do |query|
+            answer = Answer.new("search", "search", "maxdeviant", "search #{query}", "theartificiallounge")
+
+            search = answer.search()
+
+            assert_equal "Is <http://www.google.com/search?q=#{url_encode(query)}&btnI|this> what you're looking for?", search["text"]
+        end
 
     end
 
