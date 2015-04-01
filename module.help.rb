@@ -11,6 +11,12 @@ class Answer
 
     end
 
+    def channels
+
+        return Hash["text" => "<#the-studio> Audio Channel\n<#the-observatory> Visual Channel\n<#the-atheneum> Code Channel\n<#the-workshop> Project Channel"]
+
+    end
+
     def modules
 
         visible_modules = ""
