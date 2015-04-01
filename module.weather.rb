@@ -14,7 +14,7 @@ class Answer
 
     def in # get weather for a city
 
-        cityname = @message.split(" ")[3].lstrip.rstrip
+        cityname = @message.split(" ")[2].lstrip.rstrip
 
         url = "http://api.openweathermap.org/data/2.5/weather?mode=json&units=metric&q=#{cityname}"
         response = Net::HTTP.get_response(URI.parse(url))
