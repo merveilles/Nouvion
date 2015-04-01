@@ -6,7 +6,7 @@ class Answer
       def highfive
             if @username == nil
                   return Hash["text" => "Huh?"]
-            elsif @username.downcase == 'preston' or @username.downcase == 'dx' or @username.downcase == 'poka' # it's because I care <3 - xoorath
+            elsif @username.downcase == 'preston' or @username.downcase == 'dx' or @username.downcase == 'poka' or @username.downcase =='xoorath' # it's because I care <3 - xoorath // I <3 u too - poka
                   return Hash["text" => mean_things(@username)]
             end
 
