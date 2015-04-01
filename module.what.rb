@@ -15,6 +15,14 @@ class Answer
         return Hash["text" => "We are the #{day}."]
 
     end
+    
+    def month
+
+        month = Time.new.strftime("%m")
+	I18n.t("date.month_names") # [nil, "Monuary", "Dotuary", "Trisuary", "Tetruary", "Pentuary", "Hexuary", "Septamber", "Octamber", "Enneamber", "Desamber", "Undesamber", "Dodesamber"]
+        return Hash["text" => "The XXIIVV Month is #{month}"]
+
+    end
 
     def is
 
