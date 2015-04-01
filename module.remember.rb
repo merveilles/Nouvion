@@ -13,7 +13,9 @@ class Answer
       memoryName = @message.split(" is ")[0].to_s.strip
       memoryValue = @message.split(" is ")[1].to_s.strip
 
-      if memoryName != "" && memoryValue != ""
+      if memoryValue.include?("http")
+        return Hash["text" => "I cannot remember URLs."]
+      elsif memoryName != "" && memoryValue != ""
         @memory.save(@username,memoryName,memoryValue)
         return Hash["text" => "I will remember that *#{memoryName}* is *#{memoryValue}*."]
       end
