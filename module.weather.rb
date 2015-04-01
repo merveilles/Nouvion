@@ -8,7 +8,7 @@ class Answer
 
     def weather 
 
-        return Hash["text" => "Enter a city name to get current weather conditions from OpenWeather API.\nYou can specify country code after a comma.\nExample usage: ```ludivine weather in vancouver,us```"]
+        return Hash["text" => "Enter a city name to get current weather conditions from OpenWeather API.\nExample usage: ```ludivine weather in vancouver```"]
 
     end
 
