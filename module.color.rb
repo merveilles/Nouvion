@@ -1192,17 +1192,50 @@ class Answer
             ["Yellow Rose","FFF000"],
             ["Zaffre","0014A8"],
             ["Zinnwaldite Brown","2C1608"],
-            ["Zomp","39A78E"]
+            ["Zomp","39A78E"],
+            ["Actinic"],
+            ["Amarklor"],
+            ["Kalish"],
+            ["Garrow"],
+            ["Infra-White"],
+            ["Fuligin"],
+            ["Grue"],
+            ["Bleen"],
+            ["Mull"],
+            ["Glow"],
+            ["Hooloovoo"],
+            ["Ultra Violent"],
+            ["Infra Dead"],
+            ["Liver Purple"],
+            ["Loathsome Lilac"],
+            ["Matter Yellow"],
+            ["Burnt Hombre"],
+            ["Gan Green"],
+            ["Octarine"],
+            ["Squant"],
+            ["Jale"],
+            ["Ulfire"],
+            ["Dolm"],
+            ["The Colour Out Of Space"],
+            ["Tang"],
+            ["Burn"],
+            ["Berl"],
+            ["Crynor"],
+            ["Nusp"],
+            ["Onsible"],
+            ["Htun"],
+            ["Sangoire"],
+            ["Celestewhite"],
+            ["The Eighth Ray"],
+            ["The Ninth Ray"],
+            ["Smaudre"],
+            ["Rawn"],
+            ["Pallow"],
+            ["Plaid"],
+            ["Shattan"],
+            ["Flange"],
+            ["Silentropae"]
         ]
-
-    end
-
-    def random
-
-        srand
-        chosenColor = colorsCollection[rand(colorsCollection.length)]
-
-        return Hash["text" => "Take this random color: <http://www.colorhexa.com/"+chosenColor[1].downcase+"|"+chosenColor[0]+">."]
 
     end
 
@@ -1210,25 +1243,102 @@ class Answer
 
         time = Time.new
         srand time.yday
-
         chosenColor = colorsCollection[rand(colorsCollection.length)]
+        
+        linkColor = ""
+        if(chosenColor[1]!=nil)
+            hex  = chosenColor[1].downcase
+            linkColor = "<http://www.colorhexa.com/#{hex}|#{chosenColor[0]}>"
+        else
+           linkColor = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColor[0]}>"
+        end
 
-        return Hash["text" => "Today's color is <http://www.colorhexa.com/"+chosenColor[1].downcase+"|"+chosenColor[0]+">."]
+        return Hash["text" => "Today's color is #{linkColor}."]
 
     end
 
     def aura
 
+        time = Time.new
+        
         userSeed = 0
         @username.each_char.with_index do |k,index|
-            userSeed += k[0].ord*index
+            userSeed += k[0].ord*index*(time.month-3).modulo(12)
         end
-
         srand userSeed
         chosenColor = colorsCollection[rand(colorsCollection.length)]
+        
+        linkColor = ""
+        if(chosenColor[1]!=nil)
+            hex  = chosenColor[1].downcase
+            linkColor = "<http://www.colorhexa.com/#{hex}|#{chosenColor[0]}>"
+        else
+           linkColor = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColor[0]}>"
+        end
 
-        return Hash["text" => "<@#{@username}>, the color of your aura is <http://www.colorhexa.com/"+chosenColor[1].downcase+"|"+chosenColor[0]+">."]
+        return Hash["text" => "<@#{@username}>, the color of your aura is #{linkColor}."]
 
     end
 
+
+    def random
+
+        srand
+        chosenColor = colorsCollection[rand(colorsCollection.length)]
+
+        linkColor = ""
+        if(chosenColor[1]!=nil)
+            hex  = chosenColor[1].downcase
+            linkColor = "<http://www.colorhexa.com/#{hex}|#{chosenColor[0]}>"
+        else
+           linkColor = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColor[0]}>"
+        end
+
+        return Hash["text" => "Here, take this random color: #{linkColor}."]
+
+    end
+    
+    def date
+
+        # I'll optimize this in a loop later
+
+        time = Time.new
+
+        srand time.day*time.year
+        chosenColorDay = colorsCollection[rand(colorsCollection.length)]
+
+        linkColorDay = ""
+        if(chosenColorDay[1]!=nil)
+             hex  = chosenColorDay[1].downcase
+            linkColorDay = "<http://www.colorhexa.com/#{hex}|#{chosenColorDay[0]}>"
+        else
+           linkColorDay = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColorDay[0]}>"
+        end
+        
+        srand time.month*time.year
+        chosenColorMonth = colorsCollection[rand(colorsCollection.length)]
+
+        linkColorMonth = ""
+        if(chosenColorMonth[1]!=nil)
+            hex  = chosenColorMonth[1].downcase
+            linkColorMonth = "<http://www.colorhexa.com/#{hex}|#{chosenColorMonth[0]}>"
+        else
+           linkColorMonth = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColorMonth[0]}>"
+        end
+        
+        srand time.year*time.year
+        chosenColorYear = colorsCollection[rand(colorsCollection.length)]
+
+        linkColorYear = ""
+        if(chosenColorYear[1]!=nil)
+            hex  = chosenColorYear[1].downcase
+            linkColorYear = "<http://www.colorhexa.com/#{hex}|#{chosenColorYear[0]}>"
+        else
+           linkColorYear = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColorYear[0]}>"
+        end
+        
+        return Hash["text" => "We are the #{linkColorDay} day of the #{linkColorMonth} month of the #{linkColorYear} year."]
+
+    end
+  
 end
