@@ -7,7 +7,7 @@ class Answer
 
     def color
 
-        return Hash["text" => "What about colors?"]
+        return today
 
     end
 
