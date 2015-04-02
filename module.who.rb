@@ -1,4 +1,4 @@
-class Answer
+class Who < Answer
 
     # Available: moduleName,methodName,username,message
 

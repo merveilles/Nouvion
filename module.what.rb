@@ -1,4 +1,4 @@
-class Answer
+class What < Answer
 
     # Available: moduleName,methodName,username,message
 
@@ -18,9 +18,23 @@ class Answer
 
     def month
 
-        month = Time.new.strftime("%B")
-        if month = April
-            puts "Tetruary"
+        desamber = [
+            "Monuary",
+            "Dotuary",
+            "Trisuary",
+            "Tetruary",
+            "Pentuary",
+            "Hexuary",
+            "Septamber",
+            "Octamber",
+            "Enneamber",
+            "Desamber",
+            "Undesamber",
+            "Dodesamber"
+        ]
+
+        month = desamber[Time.now.month - 1]
+
         return Hash["text" => "The XXIIVV Month is #{month}"]
 
     end
