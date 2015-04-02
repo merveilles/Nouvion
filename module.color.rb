@@ -7,7 +7,7 @@ class Answer
 
     def color
 
-        return Hash["text" => "Use one of the following methods: random - aura - date - today - hexa - name."]
+        return Hash["text" => "Use one of the following methods:\n`random` `aura` `date` `today` `hexa` `name`"]
 
     end
 
