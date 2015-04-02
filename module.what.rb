@@ -15,6 +15,15 @@ class Answer
         return Hash["text" => "We are the #{day}."]
 
     end
+    
+    def month
+
+        month = Time.new.strftime("%B")
+		if month = April  
+			puts "Tetruary"	
+        return Hash["text" => "The XXIIVV Month is #{month}"]
+
+    end
 
     def is
 
