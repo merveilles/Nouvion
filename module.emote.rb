@@ -35,5 +35,9 @@ class Answer
         return Hash["text" => text ]
 
     end
+    
+    def flip
+        return Hash["text" => "(╯°□°）╯︵ ┻━┻"]
+    end
 
 end
