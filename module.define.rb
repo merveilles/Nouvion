@@ -12,6 +12,8 @@ class Answer
 
     	if splits.length == 0
     		return Hash["text" => "Tell me a word and I'll try to define it."]
+        elsif splits.length > 1
+            return Hash["text" => "Huh, I only define one word at a time.."]
     	end
 
     	word = splits[0]
