@@ -1244,7 +1244,7 @@ class Answer
         time = Time.new
         srand time.yday
         chosenColor = colorsCollection[rand(colorsCollection.length)]
-        
+
         linkColor = ""
         if(chosenColor[1]!=nil)
             hex  = chosenColor[1].downcase
@@ -1260,14 +1260,14 @@ class Answer
     def aura
 
         time = Time.new
-        
+
         userSeed = 0
         @username.each_char.with_index do |k,index|
             userSeed += k[0].ord*index*(time.month-3).modulo(12)
         end
         srand userSeed
         chosenColor = colorsCollection[rand(colorsCollection.length)]
-        
+
         linkColor = ""
         if(chosenColor[1]!=nil)
             hex  = chosenColor[1].downcase
@@ -1297,7 +1297,7 @@ class Answer
         return Hash["text" => "Here, take this random color: #{linkColor}."]
 
     end
-    
+
     def date
 
         # I'll optimize this in a loop later
@@ -1314,7 +1314,7 @@ class Answer
         else
            linkColorDay = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColorDay[0]}>"
         end
-        
+
         srand time.month*time.year
         chosenColorMonth = colorsCollection[rand(colorsCollection.length)]
 
@@ -1325,7 +1325,7 @@ class Answer
         else
            linkColorMonth = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColorMonth[0]}>"
         end
-        
+
         srand time.year*time.year
         chosenColorYear = colorsCollection[rand(colorsCollection.length)]
 
@@ -1336,22 +1336,22 @@ class Answer
         else
            linkColorYear = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColorYear[0]}>"
         end
-        
+
         return Hash["text" => "We are the #{linkColorDay} day of the #{linkColorMonth} month of the #{linkColorYear} year."]
 
     end
-    
+
     def hex
-    
+
             targetColor = @message.sub("color hex","").strip.upcase
             colorsCollection.each do |color|
                   if color[0].downcase != targetColor.downcase then next end
                   return Hash["text" => "You are looking for the <http://www.colorhexa.com/"+color[1].downcase+"|"+color[1]+"> color."]
             end
             return Hash["text" => "I don't know this color"]
-        
+
       end
-    
+
       def name
 
             targetColor = @message.split(" ").last.upcase
@@ -1361,6 +1361,6 @@ class Answer
             end
             return Hash["text" => "I don't know this color"]
 
-    end  
-  
+    end
+
 end

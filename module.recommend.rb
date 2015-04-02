@@ -3,8 +3,10 @@
 
 class Answer
 
-    def goat
+    def recommend
+
         return Hash["text" => "What would you like me to recommend?"]
+
     end
 
     def alcohol

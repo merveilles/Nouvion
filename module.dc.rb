@@ -30,7 +30,7 @@ class Answer
           fix = nil
           frac = nil
         end
-        
+
         if rcmd
           _dc.send "_#{rcmd}".to_sym, c[0].ord
           rcmd = nil
@@ -52,7 +52,7 @@ class Dc
     @stack = []
     @registers = []
     @result = []
-    
+
     # TODO: support these
     @precision = 0
     @input_radix = 10
@@ -109,7 +109,7 @@ class Dc
     b = @stack.pop
     @stack.push(b ** a)
   end
-  
+
   define_method '_|' do
     a = @stack.pop
     b = @stack.pop

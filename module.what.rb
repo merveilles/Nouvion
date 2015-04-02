@@ -15,12 +15,12 @@ class Answer
         return Hash["text" => "We are the #{day}."]
 
     end
-    
+
     def month
 
         month = Time.new.strftime("%B")
-		if month = April  
-			puts "Tetruary"	
+        if month = April
+            puts "Tetruary"
         return Hash["text" => "The XXIIVV Month is #{month}"]
 
     end
@@ -58,5 +58,7 @@ class Answer
         end
 
         return Hash["text" => "I don't know.."]
-        
- 
+
+    end
+
+end

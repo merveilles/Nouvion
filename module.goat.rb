@@ -4,7 +4,9 @@
 class Answer
 
     def goat
+
         return Hash["text" => "What about goats?"]
+
     end
 
     def tower

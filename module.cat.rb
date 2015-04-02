@@ -3,9 +3,11 @@
 
 class Answer
 
-  def cat
-      return Hash["text" => "What about cats?"]
-  end
+    def cat
+
+        return Hash["text" => "What about cats?"]
+
+    end
 
     def fact
 

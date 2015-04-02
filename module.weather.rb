@@ -6,7 +6,7 @@ require 'json'
 
 class Answer
 
-    def weather 
+    def weather
 
         return Hash["text" => "Enter a city name to get current weather conditions from OpenWeather API.\nExample usage: ```ludivine weather in vancouver```"]
 
@@ -35,7 +35,5 @@ class Answer
         return Hash["text" => "I couldn't get weather information for #{cityname}."]
 
     end
-
-
 
 end

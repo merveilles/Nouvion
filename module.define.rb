@@ -6,19 +6,19 @@ require 'json'
 
 class Answer
 
-    def define 
+    def define
 
-    	splits = @message.sub("define","").strip.split(" ")
+        splits = @message.sub("define","").strip.split(" ")
 
-    	if splits.length == 0
-    		return Hash["text" => "Tell me a word and I'll try to define it."]
+        if splits.length == 0
+            return Hash["text" => "Tell me a word and I'll try to define it."]
         elsif splits.length > 1
             return Hash["text" => "Huh, I only define one word at a time.."]
-    	end
+        end
 
-    	word = splits[0]
+        word = splits[0]
 
-    	url = "http://api.wordnik.com:80/v4/word.json/#{word}/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=true&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
+        url = "http://api.wordnik.com:80/v4/word.json/#{word}/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=true&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
         response = Net::HTTP.get_response(URI.parse(url))
         data = JSON.parse(response.body)
 
