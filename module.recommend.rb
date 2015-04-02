@@ -12,10 +12,10 @@ class Answer
 
         thoughts.each do |known|
             if !known[2].include?(topic) then next end
-            return Hash["text" => "How about *"+known[1]+"*?"]
+            return Hash["text" => "<@username>: How about *"+known[1]+"*?"]
         end
 
-        return Hash["text" => "What the hell is *"+known[2]+"*?"]
+        return Hash["text" => "<@username>: What the hell is *"+known[2]+"*?"]
 
     end
 
