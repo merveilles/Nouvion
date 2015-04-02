@@ -7,8 +7,7 @@ class Answer
 
     def emote
 
-        responses = ["My emotion module is tender.", "I feel electric" ]
-        return Hash["text" => responses.shuffle[0] ]
+        return smile
 
     end
 

@@ -7,7 +7,7 @@ class Answer
 
     def color
 
-        return Hash["text" => "Use one of the following methods:\n`random` `aura` `date` `today` `hexa` `name`"]
+        return Hash["text" => "Use one of the following methods:\n`random` `aura` `date` `today` `hex` `name`"]
 
     end
 
@@ -1341,77 +1341,26 @@ class Answer
 
     end
     
-    def hexa
+    def hex
     
-        messageHexa = @message.split(" ").drop(2).join(" ").to_s.downcase
-        reply = "Sorry, the color #{messageHexa} doesn't exist."
-       
-        if(messageHexa != "")
-            colorIndex = -1
-            colorsCollection.each.with_index do |i,index|
-                if(messageHexa == i[0].downcase)
-                    colorIndex = index
-                end
+            targetColor = @message.split(" ").last.upcase
+            colorsCollection.each do |color|
+                  if color[0].downcase != targetColor.downcase then next end
+                  return Hash["text" => "You are looking for the <http://www.colorhexa.com/"+color[1].downcase+"|"+color[0]+"> color."]
             end
-            
-            if(colorIndex!=-1)
-                linkColor = ""
-                if(colorsCollection[colorIndex][1]!=nil)
-                    hex  = colorsCollection[colorIndex][1].downcase
-                    linkColor = "<http://www.colorhexa.com/#{hex}|#{colorsCollection[colorIndex][0]}>"
-                    reply = "The hexadecimal code of the color #{linkColor} is ##{colorsCollection[colorIndex][1].downcase}."
-                else
-                    linkColor = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{colorsCollection[colorIndex][0]}>"
-                    reply = "The color #{linkColor} exists, but I can't give you its hexadecimal code."
-                end
-            end
-        else
-            reply = "Please specify a color name."    
-        end
+            return Hash["text" => "I don't know this color"]
         
-        return Hash["text" => reply]
-        
-    end
+      end
     
-     def name
-        messageName = @message.split(" ").drop(2).join("").to_s.downcase
-        reply = ""
-        isIncorrect = false
-        messageName.each_char.with_index do |k, indexChar|
-            if(k[0]=="#") 
-                if(indexChar!=0)
-                    isIncorrect = true
-                end
-            else 
-                if(k[0]!="a" && k[0]!="b" && k[0]!="c" && k[0]!="d" && k[0]!="e" && k[0]!="f" && k[0]!="0" && k[0]!="1" && k[0]!="2" && k[0]!="3" && k[0]!="4" && k[0]!="5" && k[0]!="6" && k[0]!="7" && k[0]!="8" && k[0]!="9")
-                    isIncorrect = true       
-                end
+      def name
+
+            targetColor = @message.split(" ").last.upcase
+            colorsCollection.each do |color|
+                  if color[1] != targetColor then next end
+                  return Hash["text" => "You are looking for the <http://www.colorhexa.com/"+color[1].downcase+"|"+color[0]+"> color."]
             end
-        end
-        if(!isIncorrect && (messageName.length == 6 || (messageName.length ==7 && messageName[0] == "#")))
-            if(messageName.length==7)
-                messageName[0] = ""
-            end
-            colorIndex = -1
-            colorsCollection.each.with_index do |i,index|
-                if(i[1]!=nil)
-                    if(messageName == i[1].to_s.downcase)
-                        colorIndex = index
-                    end
-                end
-            end
-            if(colorIndex!=-1)
-                linkColor = ""
-                hex  = colorsCollection[colorIndex][1].downcase
-                linkColor = "<http://www.colorhexa.com/#{hex}|#{colorsCollection[colorIndex][0]}>"
-                reply = "The code ##{colorsCollection[colorIndex][1].downcase} corresponds to a color named #{linkColor}."
-            else
-                reply = "Sorry, the code ##{messageName} doesn't corresponds to a color name."
-            end
-        else
-            reply = "Please specify a correct six digits hexadecimal code. Debug: The message was #{messageName}"    
-        end
-        return Hash["text" => reply]
+            return Hash["text" => "I don't know this color"]
+
     end  
   
 end
