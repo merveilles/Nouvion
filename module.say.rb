@@ -18,9 +18,14 @@ class Answer
 
 			url = URI.parse("https://hooks.slack.com/services/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")
 			params = {:payload => {:text => cleanMessage, :channel => channel}}
-			resp = Net::HTTP.post_form(url, params)
-			puts resp.inspect
-			puts data.inspect
+			res = Net::HTTP.post_form(url, params)
+
+			case res
+			when Net::HTTPSuccess, Net::HTTPRedirection
+				# all good
+			else
+			 	return Hash["text" => "Couldn't make it happen, sorry."]
+			end      			
 
 		else
 
