@@ -1373,16 +1373,10 @@ class Answer
         
     end
     
-    def name
-     
-        
+     def name
         messageName = @message.split(" ").drop(2).join("").to_s.downcase
         reply = ""
-        
-        
-        
         isIncorrect = false
-        
         messageName.each_char.with_index do |k, indexChar|
             if(k[0]=="#") 
                 if(indexChar!=0)
@@ -1394,14 +1388,10 @@ class Answer
                 end
             end
         end
-        
-        
-        
         if(!isIncorrect && (messageName.length == 6 || (messageName.length ==7 && messageName[0] == "#")))
             if(messageName.length==7)
                 messageName[0] = ""
             end
-            
             colorIndex = -1
             colorsCollection.each.with_index do |i,index|
                 if(i[1]!=nil)
@@ -1410,7 +1400,6 @@ class Answer
                     end
                 end
             end
-            
             if(colorIndex!=-1)
                 linkColor = ""
                 hex  = colorsCollection[colorIndex][1].downcase
@@ -1420,9 +1409,8 @@ class Answer
                 reply = "Sorry, the code ##{messageName} doesn't corresponds to a color name."
             end
         else
-            reply = "Please specify a correct six digits hexadecimal code."    
+            reply = "Please specify a correct six digits hexadecimal code. Debug: The message was #{messageName}"    
         end
-        
         return Hash["text" => reply]
     end  
   
