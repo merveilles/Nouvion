@@ -8,7 +8,7 @@ class Answer
         topic = @message.gsub("recommend","").strip
 
         @memory.connect()
-        thoughts = @memory.load(topic)
+        thoughts = @memory.load(topic).shuffle
 
         thoughts.each do |known|
             if !known[2].include?(topic) then next end
