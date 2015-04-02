@@ -17,7 +17,7 @@ class Answer
 			cleanMessage = parts[0].strip()
 
 			url = URI.parse("https://hooks.slack.com/services/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")
-			params = {:payload => {:text => cleanMessage, :channel => channel}}
+			params = {:payload => {:text => cleanMessage, :channel => "##{channel}"}}
 			res = Net::HTTP.post_form(url, params)
 
 			case res
