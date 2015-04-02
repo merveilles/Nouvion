@@ -6,31 +6,32 @@ require 'json'
 
 class Answer
 
-	def say
-		if @username == "slackbot" then return Hash["text" => "Stop messing with me..."] end
+    def say
 
-		cleanMessage = @message.sub("say ", "").strip()
+        if @username == "slackbot" then return Hash["text" => "Stop messing with me..."] end
 
-		if cleanMessage.include? "in channel"
-			parts = cleanMessage.split("in channel")
-			channel = parts[1].strip()
-			cleanMessage = parts[0].strip()
+        cleanMessage = @message.sub("say ", "").strip()
 
-			url = URI.parse($webhookIncoming)
-			params = {:payload => {:text => cleanMessage, :channel => "##{channel}"}}
-			res = Net::HTTP.post_form(url, params)
+        if cleanMessage.include? "in channel"
+            parts = cleanMessage.split("in channel")
+            channel = parts[1].strip()
+            cleanMessage = parts[0].strip()
 
-			case res
-			when Net::HTTPSuccess, Net::HTTPRedirection
-				# all good
-			else
-			 	return Hash["text" => "Couldn't make it happen, sorry."]
-			end      			
+            url = URI.parse($webhookIncoming)
+            params = {:payload => {:text => cleanMessage, :channel => "##{channel}"}}
+            res = Net::HTTP.post_form(url, params)
 
-		else
+            case res
+            when Net::HTTPSuccess, Net::HTTPRedirection
+                # all good
+            else
+                return Hash["text" => "Couldn't make it happen, sorry."]
+            end
 
-			return Hash["text" => cleanMessage]
-		end
-	end
+        else
+            return Hash["text" => cleanMessage]
+        end
+
+    end
 
 end
