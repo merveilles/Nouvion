@@ -23,7 +23,8 @@ class Answer
             "horsman" => "a continuous effort to become a ghost",
             "d6" => "six faces, twenty-one unblinking eyes",
             "dualhammers" => "a pair of sentient tools",
-            "poka" => "a key"
+            "poka" => "a key",
+            "ragekit" => "an unstable thaumaturgist"
         }
 
         return vessels
