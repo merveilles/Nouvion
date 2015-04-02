@@ -1373,5 +1373,34 @@ class Answer
         return Hash["text" => reply]
         
     end
+    
+    def name
+     
+        # TODO: check if @message is a correct hexadecimal code
+     
+        reply = "Sorry, the color code ##{@message} doesn't have a name."
+       
+        if(@message.length == 6)
+            colorIndex = -1
+            colorsCollection.each.with_index do |i,index|
+                if(i[1]!=nil)
+                    if(@message.to_s.downcase == i[1].to_s.downcase)
+                        colorIndex = index
+                    end
+                end
+            end
+            if(colorIndex!=-1)
+                linkColor = ""
+                hex  = colorsCollection[colorIndex][1].downcase
+                linkColor = "<http://www.colorhexa.com/#{hex}|#{colorsCollection[colorIndex][0]}>"
+                reply = "The color code ##{colorsCollection[colorIndex][1]} gives a color named #{linkColor}."
+            end
+        else
+            reply = "Please specify a six digits hexadecimal code."    
+        end
+        
+        return Hash["text" => reply]
+        
+    end
   
 end
