@@ -6,13 +6,14 @@ Coveralls.wear!
 
 require 'minitest/autorun'
 require 'memory'
+require_relative '../answer'
 require_relative '../module.who'
 
 class TestWho < Minitest::Test
 
     def test_who_is
 
-        answer = Who.new("who", "is", "maxdeviant", "who is aliceffekt", "theartificiallounge")
+        answer = Answer.new("who", "is", "maxdeviant", "who is aliceffekt", "theartificiallounge")
 
         is = answer.is()
 
@@ -23,7 +24,7 @@ class TestWho < Minitest::Test
 
     def test_who_am
 
-        answer = Who.new("who", "am", "maxdeviant", "who am i", "theartificiallounge")
+        answer = Answer.new("who", "am", "maxdeviant", "who am i", "theartificiallounge")
 
         am = answer.am()
 

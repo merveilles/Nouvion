@@ -6,13 +6,14 @@ Coveralls.wear!
 
 require 'minitest/autorun'
 require 'memory'
+require_relative '../answer'
 require_relative '../module.what'
 
 class TestWhat < Minitest::Test
 
     def test_what_time
 
-        answer = What.new("what", "time", "maxdeviant", "what time", "theartificiallounge")
+        answer = Answer.new("what", "time", "maxdeviant", "what time", "theartificiallounge")
 
         time = answer.time()
 
@@ -23,7 +24,7 @@ class TestWhat < Minitest::Test
 
     def test_what_day
 
-        answer = What.new("what", "day", "maxdeviant", "what day", "theartificiallounge")
+        answer = Answer.new("what", "day", "maxdeviant", "what day", "theartificiallounge")
 
         day = answer.day()
 
@@ -34,7 +35,7 @@ class TestWhat < Minitest::Test
 
     def test_what_month
 
-        answer = What.new("what", "month", "maxdeviant", "what month", "theartificiallounge")
+        answer = Answer.new("what", "month", "maxdeviant", "what month", "theartificiallounge")
 
         month = answer.month()
 
@@ -45,7 +46,7 @@ class TestWhat < Minitest::Test
 
     def test_what_is
 
-        answer = What.new("what", "is", "maxdeviant", "what is alcohol", "theartificiallounge", MemoryTest.new())
+        answer = Answer.new("what", "is", "maxdeviant", "what is alcohol", "theartificiallounge", MemoryTest.new())
 
         is = answer.is()
 
