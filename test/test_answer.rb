@@ -10,6 +10,10 @@ require_relative '../answer'
 
 class TestAnswer < Minitest::Test
 
+    def setup
+
+    end
+
     def test_answer_hello
 
         answer = Answer.new("answer", "hello", "maxdeviant", "hello", "theartificiallounge")

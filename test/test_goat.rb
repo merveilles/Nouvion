@@ -7,9 +7,14 @@ Coveralls.wear!
 require 'minitest/autorun'
 require 'memory'
 require_relative '../answer'
-require_relative '../module.goat'
 
 class TestGoat < Minitest::Test
+
+    def setup
+
+        require_relative '../module.goat'
+
+    end
 
     def test_goat_goat
 

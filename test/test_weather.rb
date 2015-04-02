@@ -7,9 +7,14 @@ Coveralls.wear!
 require 'minitest/autorun'
 require 'memory'
 require_relative '../answer'
-require_relative '../module.weather'
 
 class TestWeather < Minitest::Test
+
+    def setup
+
+        require_relative '../module.weather'
+
+    end
 
     # TODO: add tests for API success/failure
 

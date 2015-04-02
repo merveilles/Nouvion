@@ -7,9 +7,14 @@ Coveralls.wear!
 require 'minitest/autorun'
 require 'memory'
 require_relative '../answer'
-require_relative '../module.lorem'
 
 class TestLorem < Minitest::Test
+
+    def setup
+
+        require_relative '../module.lorem'
+
+    end
 
     def test_lorem_gibson
 

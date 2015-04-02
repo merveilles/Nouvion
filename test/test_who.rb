@@ -7,9 +7,14 @@ Coveralls.wear!
 require 'minitest/autorun'
 require 'memory'
 require_relative '../answer'
-require_relative '../module.who'
 
 class TestWho < Minitest::Test
+
+    def setup
+
+        require_relative '../module.who'
+
+    end
 
     def test_who_is
 

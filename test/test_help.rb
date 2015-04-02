@@ -7,9 +7,14 @@ Coveralls.wear!
 require 'minitest/autorun'
 require 'memory'
 require_relative '../answer'
-require_relative '../module.help'
 
 class TestHelp < Minitest::Test
+
+    def setup
+
+        require_relative '../module.help'
+
+    end
 
     def test_help_help
 

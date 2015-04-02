@@ -7,9 +7,14 @@ Coveralls.wear!
 require 'minitest/autorun'
 require 'memory'
 require_relative '../answer'
-require_relative '../module.color'
 
 class TestColor < Minitest::Test
+
+    def setup
+
+        require_relative '../module.color'
+
+    end
 
     def test_color_color
 
