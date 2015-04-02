@@ -17,19 +17,8 @@ class TestWho < Minitest::Test
 
         is = answer.is()
 
-        assert_equal "*@aliceffekt* is many witches.", is["text"]
-
-        answer = Answer.new("who", "is", "maxdeviant", "who is maxdeviant", "theartificiallounge")
-
-        is = answer.is()
-
-        assert_equal "You are actually Marshall.", is["text"]
-
-        answer = Answer.new("who", "is", "maxdeviant", "who is name-that-does-not-exist", "theartificiallounge")
-
-        is = answer.is()
-
-        assert_equal "I do not know *name-that-does-not-exist*.", is["text"]
+        assert_equal true, (is.instance_of? Hash)
+        assert_equal true, (is["text"].instance_of? String)
 
     end
 
@@ -39,13 +28,8 @@ class TestWho < Minitest::Test
 
         am = answer.am()
 
-        assert_equal "You are actually Marshall.", am["text"]
-
-        answer = Answer.new("who", "am", "name-that-does-not-exist", "who am i", "theartificiallounge")
-
-        am = answer.am()
-
-        assert_equal "I do not know you.", am["text"]
+        assert_equal true, (am.instance_of? Hash)
+        assert_equal true, (am["text"].instance_of? String)
 
     end
 
