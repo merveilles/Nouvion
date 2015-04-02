@@ -7,7 +7,7 @@ class Answer
 
         message = @message.gsub("recommend", "").strip.split(" ")
 
-        for_index = message.index("for")
+        for_index = message.rindex("for")
 
         if for_index != nil
             topic = message.take(for_index).join(" ")

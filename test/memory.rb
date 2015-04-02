@@ -15,8 +15,9 @@ class MemoryTest < Memory
     def load(topic)
 
         return [
-            [ "", "javascript", "programming language" ],
-            [ "", "beer", "alcohol" ]
+            [ "ludivine", "javascript", "programming language" ],
+            [ "ludivine", "beer", "alcohol" ],
+            [ "ludivine", "win", "for the win" ]
         ]
 
     end

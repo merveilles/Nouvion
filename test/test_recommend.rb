@@ -17,7 +17,8 @@ class TestRecommend < Minitest::Test
             "alcohol",
             "programming language",
             "alcohol for aliceffekt",
-            "programming language for aliceffekt"
+            "programming language for aliceffekt",
+            "for the win for aliceffekt"
         ]
 
         recommendations.each do |recommendation|
