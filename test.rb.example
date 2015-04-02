@@ -4,7 +4,7 @@ require './answer'
 require('./module.cat')
 
 # Set up the payload
-answer = Answer.new("moduleName", "methodName", "username", "message")
+answer = Answer.new("module_name", "method_name", "username", "message", "channel_name")
 
 # Output the result
 puts answer.fact()
