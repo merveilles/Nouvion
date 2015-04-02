@@ -37,7 +37,7 @@ class Answer
     end
     
     def flip
-        return Hash["text" => "(╯°□°）╯︵ ┻━┻"]
+        return Hash["text" => "(╯°□°）╯︵ ┻━┻ *"+@message.sub("emote flip","").capitalize+"*"]
     end
 
 end
