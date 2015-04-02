@@ -6,13 +6,10 @@ class Answer
     # Available: moduleName,methodName,username,message
 
     def color
-
         return Hash["text" => "Use one of the following methods:\n`random` `aura` `date` `today` `hex` `name`"]
-
     end
 
     def colorsCollection
-
         return [
             ["Acid Green","B0BF1A"],
             ["Aero","7CB9E8"],
@@ -1234,133 +1231,89 @@ class Answer
             ["Plaid"],
             ["Shattan"],
             ["Flange"],
-            ["Silentropae"]
-        ]
-
+            ["Silentropae"]]
     end
 
     def today
-
         time = Time.new
         srand time.yday
         chosenColor = colorsCollection[rand(colorsCollection.length)]
-
         linkColor = ""
         if(chosenColor[1]!=nil)
-            hex  = chosenColor[1].downcase
-            linkColor = "<http://www.colorhexa.com/#{hex}|#{chosenColor[0]}>"
+            linkColor = "<http://www.colorhexa.com/#{chosenColor[1].downcase}|#{chosenColor[0]}>"
         else
            linkColor = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColor[0]}>"
         end
-
         return Hash["text" => "Today's color is #{linkColor}."]
-
     end
 
     def aura
-
         time = Time.new
-
         userSeed = 0
         @username.each_char.with_index do |k,index|
             userSeed += k[0].ord*index*(time.month-3).modulo(12)
         end
         srand userSeed
         chosenColor = colorsCollection[rand(colorsCollection.length)]
-
         linkColor = ""
         if(chosenColor[1]!=nil)
-            hex  = chosenColor[1].downcase
-            linkColor = "<http://www.colorhexa.com/#{hex}|#{chosenColor[0]}>"
+            linkColor = "<http://www.colorhexa.com/#{chosenColor[1].downcase}|#{chosenColor[0]}>"
         else
            linkColor = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColor[0]}>"
         end
-
         return Hash["text" => "<@#{@username}>, the color of your aura is #{linkColor}."]
-
     end
 
 
     def random
-
         srand
         chosenColor = colorsCollection[rand(colorsCollection.length)]
-
         linkColor = ""
         if(chosenColor[1]!=nil)
-            hex  = chosenColor[1].downcase
-            linkColor = "<http://www.colorhexa.com/#{hex}|#{chosenColor[0]}>"
+            linkColor = "<http://www.colorhexa.com/#{chosenColor[1].downcase}|#{chosenColor[0]}>"
         else
            linkColor = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColor[0]}>"
         end
-
         return Hash["text" => "Here, take this random color: #{linkColor}."]
-
     end
-
+    
     def date
-
-        # I'll optimize this in a loop later
-
         time = Time.new
-
-        srand time.day*time.year
-        chosenColorDay = colorsCollection[rand(colorsCollection.length)]
-
-        linkColorDay = ""
-        if(chosenColorDay[1]!=nil)
-             hex  = chosenColorDay[1].downcase
-            linkColorDay = "<http://www.colorhexa.com/#{hex}|#{chosenColorDay[0]}>"
-        else
-           linkColorDay = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColorDay[0]}>"
+        colorsCollectionInstance = colorsCollection
+        seeds = [time.day*time.year,time.month*time.year,time.year*time.year]
+        links = ["","",""]
+        for i in 0..2
+            srand seeds[i]
+            chosenColor = colorsCollectionInstance[rand(colorsCollectionInstance.length)]
+            if(color[1]!=nil)
+                links[i] = "<http://www.colorhexa.com/#{chosenColor[1].downcase}|#{chosenColor[0]}>"
+            else
+                links[i] = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColor[0]}>"
+            end
         end
-
-        srand time.month*time.year
-        chosenColorMonth = colorsCollection[rand(colorsCollection.length)]
-
-        linkColorMonth = ""
-        if(chosenColorMonth[1]!=nil)
-            hex  = chosenColorMonth[1].downcase
-            linkColorMonth = "<http://www.colorhexa.com/#{hex}|#{chosenColorMonth[0]}>"
-        else
-           linkColorMonth = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColorMonth[0]}>"
-        end
-
-        srand time.year*time.year
-        chosenColorYear = colorsCollection[rand(colorsCollection.length)]
-
-        linkColorYear = ""
-        if(chosenColorYear[1]!=nil)
-            hex  = chosenColorYear[1].downcase
-            linkColorYear = "<http://www.colorhexa.com/#{hex}|#{chosenColorYear[0]}>"
-        else
-           linkColorYear = "<http://en.wikipedia.org/wiki/List_of_fictional_colors|#{chosenColorYear[0]}>"
-        end
-
-        return Hash["text" => "We are the #{linkColorDay} day of the #{linkColorMonth} month of the #{linkColorYear} year."]
-
+        return Hash["text" => "We are the #{links[0]} day of the #{links[1]} month of the #{links[2]} year."]
     end
-
+    
     def hex
-
-            targetColor = @message.sub("color hex","").strip.upcase
-            colorsCollection.each do |color|
-                  if color[0].downcase != targetColor.downcase then next end
-                  return Hash["text" => "You are looking for the <http://www.colorhexa.com/"+color[1].downcase+"|"+color[1]+"> color."]
-            end
-            return Hash["text" => "I don't know this color"]
-
-      end
-
-      def name
-
-            targetColor = @message.split(" ").last.upcase
-            colorsCollection.each do |color|
-                  if color[1] != targetColor then next end
-                  return Hash["text" => "You are looking for the <http://www.colorhexa.com/"+color[1].downcase+"|"+color[0]+"> color."]
-            end
-            return Hash["text" => "I don't know this color"]
-
+        targetColor = @message.sub("color hex","").strip.upcase
+        colorsCollection.each do |color|
+              if color[0].downcase != targetColor.downcase then next end
+                  if color[1] != nil
+                     return Hash["text" => "You are looking for the <http://www.colorhexa.com/"+color[1].downcase+"|"+color[1]+"> color."]
+                  else
+                     return Hash["text" => "This color is <http://en.wikipedia.org/wiki/List_of_fictional_colors|fictional>."]
+                  end
+        end
+        return Hash["text" => "I don't know this color"]
     end
-
+    
+    def name
+        targetColor = @message.split(" ").last.upcase
+        colorsCollection.each do |color|
+              if color[1] == nil || color[1] != targetColor then next end
+              return Hash["text" => "You are looking for the <http://www.colorhexa.com/"+color[1].downcase+"|"+color[0]+"> color."]
+        end
+        return Hash["text" => "I don't know this color"]
+    end  
+  
 end
