@@ -8,7 +8,8 @@ class Answer
 
     def define 
 
-    	splits = @message.strip.split(" ")
+    	splits = @message.sub("define","").strip.split(" ")
+
     	if splits.length == 0
     		return Hash["text" => "Tell me a word and I'll try to define it."]
     	end
