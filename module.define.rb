@@ -28,7 +28,24 @@ class Answer
             end
         end
 
-        return Hash["text" => "*#{word}* is a #{data[0]['partOfSpeech']} that means '#{data[0]['text'].strip}'."]
+        if data[0]
+            return Hash["text" => "*#{word}* is a #{data[0]['partOfSpeech']} that means '#{data[0]['text'].strip}'."]
+        end
+
+        # Check in memory
+
+        username = @message.split(" ")[1].strip
+
+        @memory.connect()
+        thoughts = @memory.load(username).shuffle
+
+        thoughts.each do |known|
+            if known[1] != username then next end
+            return Hash["text" => "*"+username+"* is "+known[2]+"."]
+        end
+
+        return Hash["text" => "I do not know what *#{word}* is, sorry."]
+
     end
 
     #def remember # remember the definition it found
