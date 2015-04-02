@@ -7,8 +7,7 @@ class Answer
 
     def emote
 
-        responses = ["My emotion module is tender.", "I feel electric" ]
-        return Hash["text" => responses.shuffle[0] ]
+        return smile
 
     end
 
@@ -34,6 +33,10 @@ class Answer
 
         return Hash["text" => text ]
 
+    end
+    
+    def flip
+        return Hash["text" => "(╯°□°）╯︵ ┻━┻ *"+@message.sub("emote flip","").capitalize+"*"]
     end
 
 end

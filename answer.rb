@@ -12,6 +12,14 @@ class Answer
     @memory   = Memory.new()
   end
 
+  def unknownModule
+    return Hash["text" => "Huh? #{@username}, what do you want me to do?"]
+  end
+
+  def unknownMethod
+    return Hash["text" => "Huh? Sorry #{@username}, *#{@moduleName}* does not have a method called *#{@methodName}*."]
+  end
+
   def hello
     return Hash["text" => "Hello #{@username}, nice to see you."]
   end

@@ -2,41 +2,17 @@ class Answer
 
     # Available: moduleName,methodName,username,message
 
-    def vesselsArray
-
-        vessels = {
-            "aliceffekt" => "many witches",
-            "theneko" => "a cat",
-            "3wm" => "a single wise man",
-            "maxdeviant" => "actually Marshall",
-            "nestor" => "@maxdeviant's undead butler",
-            "cancel" => "someone very clever",
-            "ciel" => "the koi",
-            "ludivine" => "the past of the future singularity",
-            "greylion" => "a Mu traveler",
-            "somnius" => "a tiger who codes",
-            "slackbot" => "no one",
-            "floatvoid" => "a robot trapped in a flesh-suit",
-            "phrhd" => "a house of haunted spirits",
-            "christian" => "a tamer of basilisks",
-            "nullfruit" => "a dead pixel",
-            "horsman" => "a continuous effort to become a ghost",
-            "d6" => "six faces, twenty-one unblinking eyes",
-            "dualhammers" => "a pair of sentient tools",
-            "poka" => "a key"
-        }
-
-        return vessels
-    end
-
     def is
-
-        vessels = vesselsArray
 
         username = @message.split(" ")[2].lstrip.rstrip
 
-        if vessels[username] && username == @username then return Hash["text" => "You are "+vessels[username]+"."]
-        elsif vessels[username] then return Hash["text" => "*@#{username}* is "+vessels[username]+"."] end
+        @memory.connect()
+        thoughts = @memory.load(username).shuffle
+
+        thoughts.each do |known|
+            if known[1] != username then next end
+            return Hash["text" => "*"+username+"* is "+known[2]+"."]
+        end
 
         return Hash["text" => "I do not know *#{username}*."]
 
@@ -44,9 +20,14 @@ class Answer
 
     def am
 
-        vessels = vesselsArray
+        @memory.connect()
+        thoughts = @memory.load(@username).shuffle
 
-        if vessels[@username] then return Hash["text" => "You are "+vessels[@username]+"."] end
+        thoughts.each do |known|
+            if known[1] != @username then next end
+            return Hash["text" => "*You* are "+known[2]+"."]
+        end
+
         return Hash["text" => "I do not know you."]
 
     end
