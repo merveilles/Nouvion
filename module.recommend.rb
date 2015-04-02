@@ -15,7 +15,7 @@ class Answer
             return Hash["text" => "<@username>: How about *"+known[1]+"*?"]
         end
 
-        return Hash["text" => "<@username>: What the hell is *"+known[2]+"*?"]
+        return Hash["text" => "<@username>: What the hell is *"+topic+"*?"]
 
     end
 
