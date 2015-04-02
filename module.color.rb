@@ -1343,10 +1343,10 @@ class Answer
     
     def hex
     
-            targetColor = @message.split(" ").last.upcase
+            targetColor = @message.sub("color hex","").strip.upcase
             colorsCollection.each do |color|
                   if color[0].downcase != targetColor.downcase then next end
-                  return Hash["text" => "You are looking for the <http://www.colorhexa.com/"+color[1].downcase+"|"+color[0]+"> color."]
+                  return Hash["text" => "You are looking for the <http://www.colorhexa.com/"+color[1].downcase+"|"+color[1]+"> color."]
             end
             return Hash["text" => "I don't know this color"]
         
