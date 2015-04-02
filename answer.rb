@@ -45,7 +45,20 @@ class Answer
   end
 
   def say
-    if @username == "slackbot" then return Hash["text" => "Stop messing with me.."] end
+    if @username == "slackbot" then return Hash["text" => "Stop messing with me..."] end
+
+    cleanMessage = @message.sub("say ", "").strip()
+
+    if cleanMessage.include? "in channel"
+      parts = cleanMessage.split("in channel")
+      channel = parts[1].strip()
+      cleanMessage = parts[0].strip()
+
+      return Hash["text" => cleanMessage, "channel" => "##{channel}"]
+    else
+      return Hash["text" => cleanMessage]
+    end
+
     return Hash["text" => @message.sub("say ","")]
   end
 

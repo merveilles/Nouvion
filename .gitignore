@@ -36,3 +36,4 @@ Gemfile.lock
 test/coverage/.last_run.json
 test/coverage/.resultset.json
 test/coverage/.resultset.json.lock
+/test.rb
