@@ -9,3 +9,16 @@ class Memory
     end
 
 end
+
+class MemoryTest < Memory
+
+    def load(topic)
+
+        return [
+            [ "", "javascript", "programming language" ],
+            [ "", "beer", "alcohol" ]
+        ]
+
+    end
+
+end
