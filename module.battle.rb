@@ -2,7 +2,7 @@ class Answer
 
     def battle
 
-        return "Choose a user for me to `attack` `heal` or `raise` - or request to see the `scores`."]
+        return "Choose a user for me to `attack` `heal` or `raise` - or request to see the `scores`."
 
     end
 
