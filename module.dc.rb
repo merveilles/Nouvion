@@ -6,7 +6,7 @@ require 'bigdecimal'
 class Answer
   def dc
     cmd = @message.split
-    cmd.pop # get rid of 'dc' prefix
+    cmd.unshift # get rid of 'dc' prefix
     cmd = cmd.join ' '
 
     _dc = Dc.new
@@ -101,8 +101,8 @@ class Dc
   define_method '_~' do
     a = @stack.pop
     b = @stack.pop
-    @stack.push(b / a)
     @stack.push(b % a)
+    @stack.push(b / a)
   end
   define_method '_^' do
     a = @stack.pop
@@ -119,7 +119,7 @@ class Dc
 
   def _v
     a = @stack.pop
-    @stack.push(Math.sqrt a)
+    @stack.push a.sqrt @precision
   end
 
   # Output
@@ -207,14 +207,17 @@ class Dc
   def _Z
     # Probably wrong, FIXME
     a = @stack.pop
-    @stack.push(a.fix.to_i.to_s.length + a.frac.to_i.to_s.length)
+    l = (a.fix.to_i.to_s.length + a.frac.to_i.to_s.length).to_s
+    @stack.push BigDecimal.new l
   end
 
   def _X
-    @stack.push @stack.pop.frac.to_i.to_s.length
+    l = @stack.pop.frac.to_i.to_s.length.to_s
+    @stack.push BigDecimal.new l
   end
 
   def _z
-    @stack.push @stack.length
+    l = @stack.length.to_s
+    @stack.push BigDecimal.new l
   end
 end
