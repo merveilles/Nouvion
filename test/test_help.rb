@@ -22,8 +22,7 @@ class TestHelp < Minitest::Test
 
         help = answer.help()
 
-        assert_equal true, (help.instance_of? Hash)
-        assert_equal true, (help["text"].instance_of? String)
+        assert_equal true, (help.instance_of? String)
 
     end
 
@@ -33,8 +32,7 @@ class TestHelp < Minitest::Test
 
         modules = answer.modules()
 
-        assert_equal true, (modules.instance_of? Hash)
-        assert_equal true, (modules["text"].instance_of? String)
+        assert_equal true, (modules.instance_of? String)
 
     end
 

@@ -31,21 +31,21 @@ class Answer
 
         text = lefteye + mouths.shuffle[0] + righteye
 
-        return Hash["text" => text ]
+        return text
 
     end
 
     def flip
         message = @message.sub("emote flip", "").strip
 
-        return Hash["text" => "(╯°□°）╯︵ ┻━┻" + if message.length > 0 then " *#{message}*" else "" end]
+        return ("(╯°□°）╯︵ ┻━┻" + if message.length > 0 then " *#{message}*" else "" end)
     end
 
     def shrug
 
         message = @message.sub("emote shrug", "").strip
 
-        return Hash["text" => if message.length > 0 then "*#{message}* " else "" end + "¯\\_(ツ)_/¯"]
+        return (if message.length > 0 then "*#{message}* " else "" end + "¯\\_(ツ)_/¯")
 
     end
 
@@ -55,7 +55,7 @@ class Answer
 
         message = if message.length > 0 then message else "raise your dongers" end
 
-        return Hash["text" => "ヽ༼ຈل͜ຈ༽ﾉ #{message} ヽ༼ຈل͜ຈ༽ﾉ"]
+        return "ヽ༼ຈل͜ຈ༽ﾉ #{message} ヽ༼ຈل͜ຈ༽ﾉ"
 
     end
 
@@ -65,7 +65,7 @@ class Answer
 
         message = if message.length > 0 then message.upcase else "MOLLY" end
 
-        return Hash["text" => "༼ つ ◕_◕ ༽つ #{message} ༼ つ ◕_◕ ༽つ"]
+        return "༼ つ ◕_◕ ༽つ #{message} ༼ つ ◕_◕ ༽つ"
 
     end
 

@@ -22,8 +22,7 @@ class TestEmote < Minitest::Test
 
         emote = answer.emote()
 
-        assert_equal true, (emote.instance_of? Hash)
-        assert_equal true, (emote["text"].instance_of? String)
+        assert_equal true, (emote.instance_of? String)
 
     end
 
@@ -39,8 +38,7 @@ class TestEmote < Minitest::Test
 
         emote = answer.emote()
 
-        assert_equal true, (emote.instance_of? Hash)
-        assert_equal true, (emote["text"].instance_of? String)
+        assert_equal true, (emote.instance_of? String)
 
     end
 

@@ -1,5 +1,6 @@
 # Require the main class
 require './answer'
+require './test/memory'
 # Require any modules you might need
 require('./module.cat')
 

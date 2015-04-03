@@ -22,7 +22,7 @@ class TestGoat < Minitest::Test
 
         goat = answer.goat()
 
-        assert_equal "What about goats?", goat["text"]
+        assert_equal "What about goats?", goat
 
     end
 
@@ -32,8 +32,7 @@ class TestGoat < Minitest::Test
 
         tower = answer.tower()
 
-        assert_equal true, (tower.instance_of? Hash)
-        assert_equal true, (tower["text"].instance_of? String)
+        assert_equal true, (tower.instance_of? String)
 
     end
 
@@ -43,8 +42,7 @@ class TestGoat < Minitest::Test
 
         thrower = answer.thrower()
 
-        assert_equal true, (thrower.instance_of? Hash)
-        assert_equal true, (thrower["text"].instance_of? String)
+        assert_equal true, (thrower.instance_of? String)
 
     end
 

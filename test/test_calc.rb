@@ -23,7 +23,7 @@ class TestCalc < Minitest::Test
 
         add = answer.add()
 
-        assert_equal "The sum of 1 and 1, is 2.", add["text"]
+        assert_equal "The sum of 1 and 1, is 2.", add
 
     end
 
@@ -33,7 +33,7 @@ class TestCalc < Minitest::Test
 
         subtract = answer.subtract()
 
-        assert_equal "The difference of 3 subtracted from 5, is 2.", subtract["text"]
+        assert_equal "The difference of 3 subtracted from 5, is 2.", subtract
 
     end
 
@@ -43,7 +43,7 @@ class TestCalc < Minitest::Test
 
         multiply = answer.multiply()
 
-        assert_equal "The product of 4 and 4, is 16.", multiply["text"]
+        assert_equal "The product of 4 and 4, is 16.", multiply
 
     end
 
@@ -53,7 +53,7 @@ class TestCalc < Minitest::Test
 
         divide = answer.divide()
 
-        assert_equal "The dividend of 3 divided by 4, is 0.75.", divide["text"]
+        assert_equal "The dividend of 3 divided by 4, is 0.75.", divide
 
     end
 

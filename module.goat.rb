@@ -4,9 +4,7 @@
 class Answer
 
     def goat
-
-        return Hash["text" => "What about goats?"]
-
+        return "What about goats?"
     end
 
     def tower
@@ -32,7 +30,7 @@ class Answer
             "The poster reads: \"There is no futBAAAAAAHHHHure but what we mBAAAAHHHHHHHHke for ouBAAAAAAHHHHHHHHHHHHHrselves.\""
         ]
 
-        return Hash["text" => "@#{@username}: #{tower.shuffle[0]}"]
+        return "@#{@username}: #{tower.shuffle[0]}"
 
     end
 
@@ -42,9 +40,9 @@ class Answer
             outcome = rand(2)
 
             if outcome == 0
-                return Hash["text" => "@#{@username}: The goat thrower engulfs you in a billowing wave of goat. Goats swim over your body as they reduce your flesh to a blackened pile of goat feces."]
+                return "@#{@username}: The goat thrower engulfs you in a billowing wave of goat. Goats swim over your body as they reduce your flesh to a blackened pile of goat feces."
             else
-                return Hash["text" => "@#{@username}: The goat thrower issues a stream of goats out onto the bushlands. The goats spread all over the forest, causing an irreversable reduction in biodiversity."]
+                return "@#{@username}: The goat thrower issues a stream of goats out onto the bushlands. The goats spread all over the forest, causing an irreversable reduction in biodiversity."
             end
         else
             distance = 1 + rand(100)
@@ -63,7 +61,7 @@ class Answer
                 judgement = "Calm down, kingpin."
             end
 
-            return Hash["text" => "@#{@username}: You manage to heave #{num_goats} goats for #{distance}M. #{judgement}"]
+            return "@#{@username}: You manage to heave #{num_goats} goats for #{distance}M. #{judgement}"
 
         end
 

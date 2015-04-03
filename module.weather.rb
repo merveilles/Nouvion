@@ -6,9 +6,9 @@ require 'json'
 
 class Answer
 
-    def weather
+    def weather 
 
-        return Hash["text" => "Enter a city name to get current weather conditions from OpenWeather API.\nExample usage: ```ludivine weather in vancouver```"]
+        return "Enter a city name to get current weather conditions from OpenWeather API.\nExample usage: ```ludivine weather in vancouver```"
 
     end
 
@@ -22,18 +22,20 @@ class Answer
 
         if data['cod'] != 200
             if data['cod'] = 404
-                return Hash["text" => "I couldn't find weather information for a place called \"#{cityname}\", sorry."]
+                return "I couldn't find weather information for a place called \"#{cityname}\", sorry."
             else
                 raise "API error"
             end
         end
 
-        return Hash["text" => "The current weather in *#{data['name']}* (#{data['sys']['country']}) is described as *#{data['weather'].first['description']}*, with a temperature of *#{data['main']['temp']} degrees* Celsius."]
+        return "The current weather in *#{data['name']}* (#{data['sys']['country']}) is described as *#{data['weather'].first['description']}*, with a temperature of *#{data['main']['temp']} degrees* Celsius."
 
     rescue
 
-        return Hash["text" => "I couldn't get weather information for #{cityname}."]
+        return "I couldn't get weather information for #{cityname}."
 
     end
+
+
 
 end

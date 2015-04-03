@@ -22,8 +22,7 @@ class TestHighFive < Minitest::Test
 
         highfive = answer.highfive()
 
-        assert_equal true, (highfive.instance_of? Hash)
-        assert_equal true, (highfive["text"].instance_of? String)
+        assert_equal true, (highfive.instance_of? String)
 
     end
 

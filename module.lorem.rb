@@ -4,7 +4,7 @@
 class Answer
 
     def lorem
-        return Hash["text" => "My lorem module requires a method, and optionally the # of sentences, from this list:\n`gibson` `stephenson` | `gibson 3` `stephenson 4`."]
+        return "My lorem module requires a method, and optionally the # of sentences, from this list:\n`gibson` `stephenson` | `gibson 3` `stephenson 4`."
     end
 
     def gibson
@@ -14,7 +14,7 @@ class Answer
         sentenceCount = @message.split(" ")[2].to_i.abs
         sentence = self.text(sentenceCount, words)
 
-        return Hash["text" => sentence]
+        return sentence
 
     end
 
@@ -25,7 +25,7 @@ class Answer
         sentenceCount = @message.split(" ")[2].to_i.abs
         sentence = self.text(sentenceCount, words)
 
-        return Hash["text" => sentence]
+        return sentence
 
     end
 

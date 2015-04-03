@@ -4,19 +4,16 @@
 class Answer
 
       def highfive
-
             if @username == nil
-                  return Hash["text" => "Huh?"]
+                  return "Huh?"
             elsif @username.downcase == 'preston' or @username.downcase == 'dx' or @username.downcase == 'poka' or @username.downcase =='xoorath' # it's because I care <3 - xoorath // I <3 u too - poka
-                  return Hash["text" => mean_things(@username)]
+                  return mean_things(@username)
             end
 
-            return Hash["text" => nice_things(@username)]
-
+            return nice_things(@username)
       end
 
       def nice_things(name)
-
             return [
                 "**High fives #{name}**",
                 "**High fives**",
@@ -25,11 +22,9 @@ class Answer
                 "You're one classy bitch, #{name}. **high fives**",
                 "Keep it real, #{name}. **high fives**"
             ].shuffle[0]
-
       end
 
       def mean_things(name)
-
             return [
                 "Uhhh, maybe later?",
                 "Ohhh, heeeey. It's you. Heeeey... another time? :D",
@@ -38,7 +33,6 @@ class Answer
                 "#{name}? Riiiight. How about next time?",
                 "Oh, uh hello #{name}. Wasn't expecting you..."
             ].shuffle[0]
-
       end
 
 end

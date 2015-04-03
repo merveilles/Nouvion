@@ -10,7 +10,7 @@ require_relative '../answer'
 require_relative '../module.dc'
 
 def dc_answer(op)
-    Answer.new('dc', 'dc', 'aliceffekt', op, 'theartificiallounge').dc['text']
+    Answer.new('dc', 'dc', 'aliceffekt', op, 'theartificiallounge').dc
 end
 
 class TestDc < Minitest::Test

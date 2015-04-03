@@ -42,7 +42,7 @@ class Answer
       end
     end
 
-    {'text' => _dc.result}
+    return _dc.result
   end
 end
 

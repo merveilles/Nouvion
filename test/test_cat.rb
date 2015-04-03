@@ -22,7 +22,7 @@ class TestCat < Minitest::Test
 
         fact = answer.cat()
 
-        assert_equal "What about cats?", fact["text"]
+        assert_equal true, (fact.instance_of? String)
 
     end
 
@@ -32,8 +32,7 @@ class TestCat < Minitest::Test
 
         fact = answer.fact()
 
-        assert_equal true, (fact.instance_of? Hash)
-        assert_equal true, (fact["text"].instance_of? String)
+        assert_equal true, (fact.instance_of? String)
 
     end
 

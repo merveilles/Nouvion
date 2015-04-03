@@ -8,15 +8,15 @@ class Answer
     def tell
 
         if @message.include?("something dark")
-            return Hash["text" => "#{dark_array}."]
+            return "#{dark_array}."
         end
 
         if @message.include?("rules") or @message.include?("manifesto")
             manifesto = "https://merveilles.slack.com/files/maxdeviant/F046SD1PN/Rules"
-            return Hash["text" => manifesto]
+            return manifesto
         end
 
-        return Hash["text" => "I don't know what to tell you."]
+        return "I don't know what to tell you."
 
     end
 

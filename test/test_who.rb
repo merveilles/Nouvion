@@ -22,8 +22,7 @@ class TestWho < Minitest::Test
 
         is = answer.is()
 
-        assert_equal true, (is.instance_of? Hash)
-        assert_equal true, (is["text"].instance_of? String)
+        assert_equal true, (is.instance_of? String)
 
     end
 
@@ -33,8 +32,7 @@ class TestWho < Minitest::Test
 
         am = answer.am()
 
-        assert_equal true, (am.instance_of? Hash)
-        assert_equal true, (am["text"].instance_of? String)
+        assert_equal true, (am.instance_of? String)
 
     end
 

@@ -22,8 +22,7 @@ class TestLorem < Minitest::Test
 
         gibson = answer.gibson()
 
-        assert_equal true, (gibson.instance_of? Hash)
-        assert_equal true, (gibson["text"].instance_of? String)
+        assert_equal true, (gibson.instance_of? String)
 
     end
 

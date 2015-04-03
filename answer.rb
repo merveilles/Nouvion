@@ -15,52 +15,52 @@ class Answer
     end
 
     def unknownModule
-        # return Hash["text" => "Huh? #{@username}, what do you want me to do?"]
+        # return "Huh? #{@username}, what do you want me to do?"
     end
 
     def unknownMethod
-        # return Hash["text" => "Huh? Sorry #{@username}, *#{@moduleName}* does not have a method called *#{@methodName}*."]
+        # return "Huh? Sorry #{@username}, *#{@moduleName}* does not have a method called *#{@methodName}*."
     end
 
     def hello
 
-        return Hash["text" => "Hello #{@username}, nice to see you."]
+        return "Hello #{@username}, nice to see you."
 
     end
 
     def xoka
 
-        return Hash["text" => "Xoka #{@username}, nice to see you."]
+        return "Xoka #{@username}, nice to see you."
 
     end
 
     def hey
 
-        return Hash["text" => "hey #{@username}."]
+        return "hey #{@username}."
 
     end
 
     def hi
 
-        return Hash["text" => "hi #{@username}!"]
+        return "hi #{@username}!"
 
     end
 
     def sorry
 
-        return Hash["text" => "Don't worry about it *#{@username}*."]
+        return "Don't worry about it *#{@username}*."
 
     end
 
     def where
 
-        return Hash["text" => "You are in *#{@channel}*."]
+        return "You are in *#{@channel}*."
 
     end
 
     def say
 
-        if @username == "slackbot" then return Hash["text" => "Stop messing with me..."] end
+        if @username == "slackbot" then return "Stop messing with me..." end
 
         cleanMessage = @message.sub("say ", "").strip()
 
@@ -69,36 +69,36 @@ class Answer
             channel = parts[1].strip()
             cleanMessage = parts[0].strip()
 
-            return Hash["text" => cleanMessage, "channel" => "##{channel}"]
+            return cleanMessage, "channel" => "##{channel}"
         else
-            return Hash["text" => cleanMessage]
+            return cleanMessage
         end
 
-        return Hash["text" => @message.sub("say ","")]
+        return @message.sub("say ","")
 
     end
 
     def rules
 
-        return Hash["text" => "Rule #1: You must find yourself a monochromatic avatar.\nRule #2: I, *Ludivine*, am above the law.\n"]
+        return "Rule #1: You must find yourself a monochromatic avatar.\nRule #2: I, *Ludivine*, am above the law.\n"
 
     end
 
     def forget
 
-        return Hash["text" => "Ludivine never forgets."]
+        return "Ludivine never forgets."
 
     end
 
     def bye
 
-        return Hash["text" => "See you around "+@username+"."]
+        return "See you around "+@username+"."
 
     end
 
     def cya
 
-        return Hash["text" => "Bye bye "+@username+"!"]
+        return "Bye bye "+@username+"!"
 
     end
 
