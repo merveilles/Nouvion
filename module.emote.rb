@@ -36,7 +36,9 @@ class Answer
     end
 
     def flip
-        return Hash["text" => "(╯°□°）╯︵ ┻━┻ *"+@message.sub("emote flip","").capitalize+"*"]
+        message = @message.sub("emote flip", "").strip
+
+        return Hash["text" => "(╯°□°）╯︵ ┻━┻" + if message.length > 0 then " *#{message}*" else "" end]
     end
 
 end
