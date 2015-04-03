@@ -18,7 +18,7 @@ class Answer
     # whitespace for us, so even if someone calls
     # `"ludivine dc           "` (note the extra stuff),
     # this will still catch on.
-    if command.length == 0 or command.first == 'help'
+    if command.length == 0 or command =~ /^help/
       return {'text' => 'A partial implementation of GNU’s `dc` ' +
       'reverse-polish arbitrary-precision stack-based command-line ' +
       'calculator. Doesn’t support strings, macros, negative number ' +
