@@ -11,7 +11,7 @@ class Answer
         val1 = @message.split(" ")[1].to_i
         val2 = @message.split(" ")[2].to_i
 
-        return Hash["text" => "My calc module requires a method from this list:\n`add` `subtract` `multiply` `divide`."]
+        return "My calc module requires a method from this list:\n`add` `subtract` `multiply` `divide`."
 
     end
 
@@ -22,7 +22,7 @@ class Answer
 
         sum = (val1 + val2).to_s
 
-        return Hash["text" => "The sum of #{val1} and #{val2}, is #{sum}."]
+        return "The sum of #{val1} and #{val2}, is #{sum}."
 
     end
 
@@ -33,7 +33,7 @@ class Answer
 
         difference = (val1 - val2).to_s
 
-        return Hash["text" => "The difference of #{val2} subtracted from #{val1}, is #{difference}."]
+        return "The difference of #{val2} subtracted from #{val1}, is #{difference}."
 
     end
 
@@ -44,7 +44,7 @@ class Answer
 
         product = (val1 * val2).to_s
 
-        return Hash["text" => "The product of #{val1} and #{val2}, is #{product}."]
+        return "The product of #{val1} and #{val2}, is #{product}."
 
     end
 
@@ -55,7 +55,7 @@ class Answer
 
         dividend = (val1.to_f / val2.to_f).to_s
 
-        return Hash["text" => "The dividend of #{val1} divided by #{val2}, is #{dividend}."]
+        return "The dividend of #{val1} divided by #{val2}, is #{dividend}."
 
     end
 

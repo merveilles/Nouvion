@@ -16,15 +16,15 @@ class Answer
         term = termSplit[2]
         
         if value.include?("http")
-            return Hash["text" => "I cannot remember URLs."]
+            return "I cannot remember URLs."
         end
         
         if name != "" && value != "" && term != ""
             @memory.save(@username, name, value)
-            return Hash["text" => "I will remember that *#{name}*" + term + "*#{value}*."]
+            return "I will remember that *#{name}*" + term + "*#{value}*."
         end
         
-        return Hash["text" => "What do you want me to remember #{@username}?"]
+        return "What do you want me to remember #{@username}?"
 
     end
     

@@ -17,10 +17,10 @@ class Answer
 			cleanMessage = parts[0].strip()
 			sayInChannel("#"+channel,cleanMessage)
 		else
-			return Hash["text" => cleanMessage]
+			return cleanMessage
 		end
 
-		return Hash["text" => cleanMessage]
+		return cleanMessage
 	end
 
 end

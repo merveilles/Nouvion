@@ -11,10 +11,10 @@ class Answer
 
         thoughts.each do |known|
             if known[1] != username then next end
-            return Hash["text" => "*"+username+"* is "+known[2]+"."]
+            return "*"+username+"* is "+known[2]+"."
         end
 
-        return Hash["text" => "I do not know *#{username}*."]
+        return "I do not know *#{username}*."
 
     end
 
@@ -25,10 +25,10 @@ class Answer
 
         thoughts.each do |known|
             if known[1] != @username then next end
-            return Hash["text" => "*You* are "+known[2]+"."]
+            return "*You* are "+known[2]+"."
         end
 
-        return Hash["text" => "I do not know you."]
+        return "I do not know you."
 
     end
 

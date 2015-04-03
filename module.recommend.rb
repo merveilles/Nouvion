@@ -23,10 +23,10 @@ class Answer
         thoughts.each do |known|
             if !known[2].include?(topic) then next end
 
-            return Hash["text" => "How about *#{known[1]}*, <@#{target}>?"]
+            return "How about *#{known[1]}*, <@#{target}>?"
         end
 
-        return Hash["text" => "<@#{@username}>: What is *#{topic}*?"]
+        return "<@#{@username}>: What is *#{topic}*?"
 
     end
 

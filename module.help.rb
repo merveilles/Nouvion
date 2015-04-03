@@ -7,13 +7,13 @@ class Answer
 
     def help
 
-        return Hash["text" => "I am bot created in *Ruby* by the Merveilles community, in the <#the-artificial-lounge>. You can ask me for <help> or improve my responses by creating pull requests on Github: https://github.com/merveilles/ludivine"]
+        return "I am bot created in *Ruby* by the Merveilles community, in the <#the-artificial-lounge>. You can ask me for <help> or improve my responses by creating pull requests on Github: https://github.com/merveilles/ludivine"
 
     end
 
     def channels
 
-        return Hash["text" => "<#the-studio> Audio Channel\n<#the-observatory> Visual Channel\n<#the-atheneum> Code Channel\n<#the-workshop> Project Channel"]
+        return "<#the-studio> Audio Channel\n<#the-observatory> Visual Channel\n<#the-atheneum> Code Channel\n<#the-workshop> Project Channel"
 
     end
 
@@ -27,7 +27,7 @@ class Answer
             visible_modules += "`" + name.sub("module.", "").sub(".rb", "")+ "` "
         end
 
-        return Hash["text" => "My current active modules are:\n#{visible_modules.rstrip}."]
+        return "My current active modules are:\n#{visible_modules.rstrip}."
 
     end
 
