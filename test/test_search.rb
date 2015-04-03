@@ -22,7 +22,7 @@ class TestSearch < Minitest::Test
 
         search = answer.search()
 
-        assert_equal "Is <http://www.google.com/search?q=cat%20fact&btnI|this> what you're looking for?", search["text"]
+        assert_equal "Is <http://www.google.com/search?q=cat%20fact&btnI|this> what you're looking for?", search
 
         queries = [
             "aliceffekt",
@@ -35,7 +35,7 @@ class TestSearch < Minitest::Test
 
             search = answer.search()
 
-            assert_equal "Is <http://www.google.com/search?q=#{url_encode(query)}&btnI|this> what you're looking for?", search["text"]
+            assert_equal "Is <http://www.google.com/search?q=#{url_encode(query)}&btnI|this> what you're looking for?", search
         end
 
     end
@@ -46,7 +46,7 @@ class TestSearch < Minitest::Test
 
         google = answer.google()
 
-        assert_equal "http://www.google.com/search?q=cat%20fact&btnI", google["text"]
+        assert_equal "http://www.google.com/search?q=cat%20fact&btnI", google
 
     end
 
@@ -56,7 +56,7 @@ class TestSearch < Minitest::Test
 
         duckduckgo = answer.duckduckgo()
 
-        assert_equal "https://duckduckgo.com/?q=!ducky+cat%20fact+%s", duckduckgo["text"]
+        assert_equal "https://duckduckgo.com/?q=!ducky+cat%20fact+%s", duckduckgo
 
     end
 

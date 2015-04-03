@@ -4,7 +4,7 @@
 class Answer
 
   def cat
-      return facts
+      return fact
   end
 
     def fact

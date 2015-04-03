@@ -22,8 +22,7 @@ class TestColor < Minitest::Test
 
         color = answer.color()
 
-        assert_equal true, (color.instance_of? Hash)
-        assert_equal true, (color["text"].instance_of? String)
+        assert_equal true, (color.instance_of? String)
 
     end
 
@@ -33,8 +32,7 @@ class TestColor < Minitest::Test
 
         random = answer.random()
 
-        assert_equal true, (random.instance_of? Hash)
-        assert_equal true, (random["text"].instance_of? String)
+        assert_equal true, (random.instance_of? String)
 
     end
 
@@ -44,8 +42,7 @@ class TestColor < Minitest::Test
 
         today = answer.today()
 
-        assert_equal true, (today.instance_of? Hash)
-        assert_equal true, (today["text"].instance_of? String)
+        assert_equal true, (today.instance_of? String)
 
     end
 
@@ -55,8 +52,7 @@ class TestColor < Minitest::Test
 
         aura = answer.aura()
 
-        assert_equal true, (aura.instance_of? Hash)
-        assert_equal true, (aura["text"].instance_of? String)
+        assert_equal true, (aura.instance_of? String)
 
     end
 

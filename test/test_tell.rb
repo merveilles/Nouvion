@@ -22,7 +22,7 @@ class TestTell < Minitest::Test
 
         tell = answer.tell()
 
-        assert_equal "I don't know what to tell you.", tell["text"]
+        assert_equal "I don't know what to tell you.", tell
 
         messages = [
             "tell me something dark",
@@ -35,8 +35,7 @@ class TestTell < Minitest::Test
 
             tell = answer.tell()
 
-            assert_equal true, (tell.instance_of? Hash)
-            assert_equal true, (tell["text"].instance_of? String)
+            assert_equal true, (tell.instance_of? String)
         end
 
     end

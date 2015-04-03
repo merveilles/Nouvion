@@ -38,14 +38,14 @@ class Answer
     def flip
         message = @message.sub("emote flip", "").strip
 
-        return "(╯°□°）╯︵ ┻━┻" + if message.length > 0 then " *#{message}*" else "" end
+        return ("(╯°□°）╯︵ ┻━┻" + if message.length > 0 then " *#{message}*" else "" end)
     end
 
     def shrug
 
         message = @message.sub("emote shrug", "").strip
 
-        return if message.length > 0 then "*#{message}* " else "" end + "¯\\_(ツ)_/¯"
+        return (if message.length > 0 then "*#{message}* " else "" end + "¯\\_(ツ)_/¯")
 
     end
 

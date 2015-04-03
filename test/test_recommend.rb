@@ -31,8 +31,7 @@ class TestRecommend < Minitest::Test
 
             recommend = answer.recommend()
 
-            assert_equal true, (recommend.instance_of? Hash)
-            assert_equal true, (recommend["text"].instance_of? String)
+            assert_equal true, (recommend.instance_of? String)
         end
 
     end

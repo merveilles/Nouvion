@@ -20,7 +20,7 @@ class TestAnswer < Minitest::Test
 
         hello = answer.hello()
 
-        assert_equal "Hello maxdeviant, nice to see you.", hello["text"]
+        assert_equal "Hello maxdeviant, nice to see you.", hello
 
     end
 
@@ -30,7 +30,7 @@ class TestAnswer < Minitest::Test
 
         xoka = answer.xoka()
 
-        assert_equal "Xoka maxdeviant, nice to see you.", xoka["text"]
+        assert_equal "Xoka maxdeviant, nice to see you.", xoka
 
     end
 
@@ -40,7 +40,7 @@ class TestAnswer < Minitest::Test
 
         hey = answer.hey()
 
-        assert_equal "hey maxdeviant.", hey["text"]
+        assert_equal "hey maxdeviant.", hey
 
     end
 
@@ -50,7 +50,7 @@ class TestAnswer < Minitest::Test
 
         hi = answer.hi()
 
-        assert_equal "hi maxdeviant!", hi["text"]
+        assert_equal "hi maxdeviant!", hi
 
     end
 
@@ -60,7 +60,7 @@ class TestAnswer < Minitest::Test
 
         sorry = answer.sorry()
 
-        assert_equal "Don't worry about it *maxdeviant*.", sorry["text"]
+        assert_equal "Don't worry about it *maxdeviant*.", sorry
 
     end
 
@@ -70,7 +70,7 @@ class TestAnswer < Minitest::Test
 
         where = answer.where()
 
-        assert_equal "You are in *theartificiallounge*.", where["text"]
+        assert_equal "You are in *theartificiallounge*.", where
 
     end
 
@@ -80,7 +80,7 @@ class TestAnswer < Minitest::Test
 
         rules = answer.rules()
 
-        assert_equal "Rule #1: You must find yourself a monochromatic avatar.\nRule #2: I, *Ludivine*, am above the law.\n", rules["text"]
+        assert_equal "Rule #1: You must find yourself a monochromatic avatar.\nRule #2: I, *Ludivine*, am above the law.\n", rules
 
     end
 

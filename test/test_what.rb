@@ -22,8 +22,7 @@ class TestWhat < Minitest::Test
 
         time = answer.time()
 
-        assert_equal true, (time.instance_of? Hash)
-        assert_equal true, (time["text"].instance_of? String)
+        assert_equal true, (time.instance_of? String)
 
     end
 
@@ -33,8 +32,7 @@ class TestWhat < Minitest::Test
 
         day = answer.day()
 
-        assert_equal true, (day.instance_of? Hash)
-        assert_equal true, (day["text"].instance_of? String)
+        assert_equal true, (day.instance_of? String)
 
     end
 
@@ -44,8 +42,7 @@ class TestWhat < Minitest::Test
 
         month = answer.month()
 
-        assert_equal true, (month.instance_of? Hash)
-        assert_equal true, (month["text"].instance_of? String)
+        assert_equal true, (month.instance_of? String)
 
     end
 
@@ -55,8 +52,7 @@ class TestWhat < Minitest::Test
 
         is = answer.is()
 
-        assert_equal true, (is.instance_of? Hash)
-        assert_equal true, (is["text"].instance_of? String)
+        assert_equal true, (is.instance_of? String)
 
     end
 

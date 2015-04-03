@@ -22,15 +22,13 @@ class TestRoll < Minitest::Test
 
         dice = answer.dice()
 
-        assert_equal true, (dice.instance_of? Hash)
-        assert_equal true, (dice["text"].instance_of? String)
+        assert_equal true, (dice.instance_of? String)
 
         answer = Answer.new("roll", "dice", "maxdeviant", "roll dice", "theartificiallounge")
 
         dice = answer.dice()
 
-        assert_equal true, (dice.instance_of? Hash)
-        assert_equal true, (dice["text"].instance_of? String)
+        assert_equal true, (dice.instance_of? String)
 
     end
 
@@ -40,7 +38,7 @@ class TestRoll < Minitest::Test
 
         barrel = answer.barrel()
 
-        assert_equal "*does a barrel roll*", barrel["text"]
+        assert_equal "*does a barrel roll*", barrel
 
     end
 
@@ -50,7 +48,7 @@ class TestRoll < Minitest::Test
 
         cigarette = answer.cigarette()
 
-        assert_equal "Sorry, I don't smoke.", cigarette["text"]
+        assert_equal "Sorry, I don't smoke.", cigarette
 
     end
 
@@ -60,7 +58,7 @@ class TestRoll < Minitest::Test
 
         katamari = answer.katamari()
 
-        assert_equal "na na   na na na na na na na", katamari["text"]
+        assert_equal "na na   na na na na na na na", katamari
 
     end
 

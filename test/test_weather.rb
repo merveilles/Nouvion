@@ -24,9 +24,8 @@ class TestWeather < Minitest::Test
 
         weather = answer.weather()
 
-        assert_equal true, (weather.instance_of? Hash)
-        assert_equal true, (weather["text"].instance_of? String)
-        assert_equal "Enter a city name to get current weather conditions from OpenWeather API.\nExample usage: ```ludivine weather in vancouver```", weather["text"]
+        assert_equal true, (weather.instance_of? String)
+        assert_equal "Enter a city name to get current weather conditions from OpenWeather API.\nExample usage: ```ludivine weather in vancouver```", weather
 
     end
 
@@ -37,8 +36,7 @@ class TestWeather < Minitest::Test
 
         weather = answer.in()
 
-        assert_equal true, (weather.instance_of? Hash)
-        assert_equal true, (weather["text"].instance_of? String)
+        assert_equal true, (weather.instance_of? String)
 
     end
 
