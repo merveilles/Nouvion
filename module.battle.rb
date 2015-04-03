@@ -1,113 +1,117 @@
 class Answer
 
-	def battle
+    def battle
 
-		return "Choose a user for me to `attack` `heal` or `raise` - or request to see the `scores`."]	
+        return "Choose a user for me to `attack` `heal` or `raise` - or request to see the `scores`."]
 
-	end
+    end
 
-	def scores
+    def scores
 
-		@memory.connect()
-		thoughts = @memory.load("health ")
+        @memory.connect()
+        thoughts = @memory.load("health ")
 
-		scores = ""
-		thoughts.each do |known|
-			if known[0] != "ludivine" then next end
-			if known[1].split(" ")[0] != "health" then next end
-			if known[2].to_i < 1
-				scores += "*"+known[1].sub("health","")+"* _dead_\n"
-			else
-				scores += "*"+known[1].sub("health","")+"* "+known[2]+"hp\n"
-			end
-			
-		end
-		return "Your scores are:\n#{scores}"
+        scores = ""
+        thoughts.each do |known|
+            if known[0] != "ludivine" then next end
+            if known[1].split(" ")[0] != "health" then next end
+            if known[2].to_i < 1
+                scores += "*"+known[1].sub("health","")+"* _dead_\n"
+            else
+                scores += "*"+known[1].sub("health","")+"* "+known[2]+"hp\n"
+            end
 
-	end
+        end
+        return "Your scores are:\n#{scores}"
 
-	def attack
+    end
 
-		target = @message.sub("attack","").split(" ")[1]
+    def attack
 
-		if target == "ludivine" then target = @username end
+        target = @message.sub("attack","").split(" ")[1]
+        damage = 1
 
-		# get HP
+        if target == "ludivine"
+            target = @username
+            damage = 10
+        end
 
-		@memory.connect()
-		thoughts = @memory.load("health ")
+        # get HP
 
-		thoughts.each do |known|
-			if known[0] != "ludivine" then next end
-			if known[1] != "health "+target then next end
+        @memory.connect()
+        thoughts = @memory.load("health ")
 
-			if known[2].to_i < 1 then return "*#{target}* is dead.." end
+        thoughts.each do |known|
+            if known[0] != "ludivine" then next end
+            if known[1] != "health "+target then next end
 
-			@memory.save("ludivine","health #{target}",(known[2].to_i - 1).to_s)
+            if known[2].to_i < 1 then return "*#{target}* is dead.." end
 
-			if (known[2].to_i - 1) < 1 
-				return "I killed *#{target}*!"
-			else
-				return "I am attacking *#{target}* down to *"+((known[2].to_i - 1).to_s)+"hp*!"
-			end
-			
+            @memory.save("ludivine","health #{target}",(known[2].to_i - damage).to_s)
 
-		end
+            if (known[2].to_i - damage) < 1
+                return "I killed *#{target}*!"
+            else
+                return "I am attacking *#{target}* down to *"+((known[2].to_i - damage).to_s)+"hp*!"
+            end
 
-		# New player
 
-		@memory.save("ludivine","health #{target}","10")
-		return "A new pet, *#{target}* joins my arena."
+        end
 
-	end
+        # New player
 
-	def heal
+        @memory.save("ludivine","health #{target}","10")
+        return "A new pet, *#{target}* joins my arena."
 
-		target = @message.sub("heal","").split(" ")[1]
+    end
 
-		# get HP
+    def heal
 
-		@memory.connect()
-		thoughts = @memory.load("health ")
+        target = @message.sub("heal","").split(" ")[1]
 
-		thoughts.each do |known|
-			if known[0] != "ludivine" then next end
-			if known[1] != "health "+target then next end
+        # get HP
 
-			if known[2].to_i > 15 then return "*#{target}*'s health is full.." end
-			if known[2].to_i < 1  then return "*#{target}* is dead.." end
+        @memory.connect()
+        thoughts = @memory.load("health ")
 
-			@memory.save("ludivine","health *#{target}*",(known[2].to_i + 1).to_s)
-			return "I healed *#{target}* up to *"+((known[2].to_i + 1).to_s)+"hp*!"
+        thoughts.each do |known|
+            if known[0] != "ludivine" then next end
+            if known[1] != "health "+target then next end
 
-		end
+            if known[2].to_i > 15 then return "*#{target}*'s health is full.." end
+            if known[2].to_i < 1  then return "*#{target}* is dead.." end
 
-		return "I don't have a pet named *#{target}*."
+            @memory.save("ludivine","health *#{target}*",(known[2].to_i + 1).to_s)
+            return "I healed *#{target}* up to *"+((known[2].to_i + 1).to_s)+"hp*!"
 
-	end
+        end
 
-	def raise
+        return "I don't have a pet named *#{target}*."
 
-		target = @message.sub("raise","").split(" ")[1]
+    end
 
-		# get HP
+    def raise
 
-		@memory.connect()
-		thoughts = @memory.load("health ")
+        target = @message.sub("raise","").split(" ")[1]
 
-		thoughts.each do |known|
-			if known[0] != "ludivine" then next end
-			if known[1] != "health "+target then next end
+        # get HP
 
-			if known[2].to_i != 0 then return "*#{target}* is not dead.." end
+        @memory.connect()
+        thoughts = @memory.load("health ")
 
-			@memory.save("ludivine","health *#{target}*","5")
-			return "I raised *#{target}* back to life with *5hp*!"
+        thoughts.each do |known|
+            if known[0] != "ludivine" then next end
+            if known[1] != "health "+target then next end
 
-		end
+            if known[2].to_i != 0 then return "*#{target}* is not dead.." end
 
-		return "I don't have a pet named *#{target}*."
+            @memory.save("ludivine","health *#{target}*","5")
+            return "I raised *#{target}* back to life with *5hp*!"
 
-	end
+        end
+
+        return "I don't have a pet named *#{target}*."
+
+    end
 
 end
