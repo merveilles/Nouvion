@@ -41,4 +41,12 @@ class Answer
         return Hash["text" => "(╯°□°）╯︵ ┻━┻" + if message.length > 0 then " *#{message}*" else "" end]
     end
 
+    def shrug
+
+        message = @message.sub("emote shrug", "").strip
+
+        return Hash["text" => if message.length > 0 then " *#{message}*" else "" end + "¯\\_(ツ)_/¯"]
+
+    end
+
 end
