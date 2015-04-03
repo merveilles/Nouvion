@@ -49,4 +49,24 @@ class Answer
 
     end
 
+    def donger
+
+        message = @message.sub("emote donger", "").strip
+
+        message = if message.length > 0 then message else "raise your dongers" end
+
+        return Hash["text" => "ヽ༼ຈل͜ຈ༽ﾉ #{message} ヽ༼ຈل͜ຈ༽ﾉ"]
+
+    end
+
+    def molly
+
+        message = @message.sub("emote molly", "").strip
+
+        message = if message.length > 0 then message.upcase else "MOLLY" end
+
+        return Hash["text" => "༼ つ ◕_◕ ༽つ #{message} ༼ つ ◕_◕ ༽つ"]
+
+    end
+
 end
