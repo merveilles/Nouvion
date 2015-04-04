@@ -46,6 +46,46 @@ class TestDc < Minitest::Test
         assert_equal '9.0', dc_answer('3 2^n')
     end
 
+    def test_dc_divmod
+        assert_equal "4.0\n0.8\n", dc_answer('4 5~f')
+    end
+
+    def test_dc_expmod
+        assert_equal '43.0', dc_answer('87 23 44|n')
+    end
+
+    def test_dc_add_alias
+        assert_equal '42.0', dc_answer('12 20 5 5AAAn')
+    end
+
+    def test_dc_sub_alias
+        assert_equal '10.0', dc_answer('15 5 0RRn')
+    end
+
+    def test_dc_mult_alias
+        assert_equal '33.0', dc_answer('11 3Mn')
+    end
+
+    def test_dc_div_alias
+        assert_equal '4.0', dc_answer('3 120 10DrDn')
+    end
+
+    def test_dc_mod_alias
+        assert_equal '0.0', dc_answer('27 3Un')
+    end
+
+    def test_dc_pow_alias
+        assert_equal '9.0', dc_answer('3 2En')
+    end
+
+    def test_dc_divmod_alias
+        assert_equal "4.0\n0.8\n", dc_answer('4 5Tf')
+    end
+
+    def test_dc_expmod_alias
+        assert_equal '43.0', dc_answer('87 23 44Qn')
+    end
+
     def test_dc_sqrt
         assert_equal '4.0', dc_answer('16vn')
     end
@@ -80,14 +120,6 @@ class TestDc < Minitest::Test
 
     def test_dc_stacklength
         assert_equal '3.0', dc_answer('923 274 12.4zn')
-    end
-
-    def test_dc_divmod
-        assert_equal "4.0\n0.8\n", dc_answer('4 5~f')
-    end
-
-    def test_dc_expmod
-        assert_equal '43.0', dc_answer('87 23 44|n')
     end
 
     def test_dc_register
