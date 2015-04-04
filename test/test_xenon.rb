@@ -30,7 +30,7 @@ class MemoryTest < Memory
 
 end
 
-answer = Answer.new("xenon", "give", "jean", "xenon give aliceffekt 5", "theartificiallounge",MemoryTest.new())
+answer = Answer.new("xenon", "give", "jean", "xenon give aliceffekt -5", "theartificiallounge",MemoryTest.new())
 
 # Output the result
 puts answer.give()

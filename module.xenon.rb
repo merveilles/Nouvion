@@ -41,6 +41,7 @@ class Answer
 
         gift = @message.sub("give","").split(" ")[2]
         if gift.to_i.to_s != gift then return "Please specify a correct amount of xenons." end
+        giftValue = gift.to_i.abs
 
         accountsXenons = ["",""] # accountsXenons[0] for sender xenons, accountsXenons[1] for receiver xenons
         @memory.connect()
@@ -54,11 +55,11 @@ class Answer
 
         if accountsXenons[0] == "" then return "#{@username}, you don't have an account thus can't give money." end
         if accountsXenons[1] == "" then return "#{target} doesn't have an account to send money on." end
-        if accountsXenons[0].to_i - gift.to_i < 0 then return "#{@username}, you don't have enough xenons on your account." end
+        if accountsXenons[0].to_i - giftValue < 0 then return "#{@username}, you don't have enough xenons on your account." end
 
-        @memory.save("ludivine","wallet #{target}",(accountsXenons[1].to_i + gift.to_i).to_s)
-        @memory.save("ludivine","wallet #{@username}",(accountsXenons[0].to_i - gift.to_i).to_s)
-        return "Transfert successful.\nCurrent #{@username} account: "+ (accountsXenons[0].to_i - gift.to_i).to_s+" xenons.\nCurrent #{target} account: "+ (accountsXenons[1].to_i + gift.to_i).to_s+" xenons."
+        @memory.save("ludivine","wallet #{target}",(accountsXenons[1].to_i + giftValue).to_s)
+        @memory.save("ludivine","wallet #{@username}",(accountsXenons[0].to_i - giftValue).to_s)
+        return "Transfert successful.\nCurrent #{@username} account: "+ (accountsXenons[0].to_i - giftValue).to_s+" xenons.\nCurrent #{target} account: "+ (accountsXenons[1].to_i + giftValue).to_s+" xenons."
 
     end
 
