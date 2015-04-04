@@ -15,6 +15,9 @@ class Answer
         ret = "I don't know this artist, sorry"
 
         url = "http://lyrics.wikia.com/api.php?func=getSong&artist=#{artist}&fmt=json"
+
+        url = URI.escape(url)
+
         response = Net::HTTP.get_response(URI.parse(url))
         data = JSON.parse(response.body)
 
@@ -24,6 +27,7 @@ class Answer
             rndSong = rndAlbum["songs"].shuffle[0]
 
             url = "http://lyrics.wikia.com/api.php?func=getSong&artist=#{artist}&song=#{rndSong}&fmt=text"
+            url = URI.escape(url)
             response = Net::HTTP.get_response(URI.parse(url))
 
             ret = response.body
