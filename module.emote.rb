@@ -36,9 +36,23 @@ class Answer
     end
 
     def flip
+        
+        @memory.connect()
+        flipped = @memory.load("flipped") 
+        
+        if flipped == "yes" then 
+          emoticon = "┬─┬ ノ(°-°ノ)"
+          flipped = "no"
+        else
+          emoticon = "(╯°□°）╯︵ ┻━┻"
+          flipped = "yes"
+        end
+        
+        @memory.save("ludivine", "flipped", flipped)
+        
         message = @message.sub("emote flip", "").strip
 
-        return ("(╯°□°）╯︵ ┻━┻" + if message.length > 0 then " *#{message}*" else "" end)
+        return (emoticon + if message.length > 0 then " *#{message}*" else "" end)
     end
 
     def shrug
