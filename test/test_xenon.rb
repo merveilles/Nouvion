@@ -1,5 +1,3 @@
-=begin
-
 # Require the main class
 require_relative '../answer'
 require './memory'
