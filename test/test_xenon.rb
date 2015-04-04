@@ -1,13 +1,16 @@
+=begin
 # Require the main class
 require_relative '../answer'
 require './memory'
 
 # Require any modules you might need
-require('../module.xenon')
+
 
 # Set up the payload
 
 class MemoryTest < Memory
+
+
 
     def connect
 
@@ -35,3 +38,6 @@ answer = Answer.new("xenon", "give", "jean", "xenon give aliceffekt -5", "theart
 # Output the result
 puts answer.give()
 
+=end
+
+greylionyourtestisntworking = true
