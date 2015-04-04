@@ -10,7 +10,7 @@ class Answer
     # we eliminate the prefix we can recombine using spaces to simplify
     # further parsing.
     command = @message.split
-    command.unshift # get rid of 'dc' prefix
+    command.shift # get rid of 'dc' prefix
     command = command.join ' '
 
     # The bare split above even gets rid of extra whitespace for us, so even if
