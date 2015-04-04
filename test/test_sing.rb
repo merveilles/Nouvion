@@ -15,11 +15,15 @@ class TestSing < Minitest::Test
 
 	def test_sing
 
-        answer = Answer.new("sing", "sing", "ragekit", "test", "theartificiallounge")
+		artist =["britney spears","megadeath","aliceffekt"]
+		
+
+        answer = Answer.new("sing", "sing", "ragekit", artist.sample, "theartificiallounge")
 
         sing = answer.sing()
 
         assert_equal true, (sing.instance_of? String)
+        puts sing
     end
 
 end
