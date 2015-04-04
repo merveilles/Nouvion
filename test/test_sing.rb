@@ -23,7 +23,7 @@ class TestSing < Minitest::Test
         sing = answer.sing()
 
         assert_equal true, (sing.instance_of? String)
-        puts sing
+        #puts sing
     end
 
 end
