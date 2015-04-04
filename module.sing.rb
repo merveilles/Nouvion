@@ -20,8 +20,8 @@ class Answer
 
         if !data["albums"].empty?
 
-            rndAlbum = data["albums"].sample
-            rndSong = rndAlbum["songs"].sample
+            rndAlbum = data["albums"].shuffle[0]
+            rndSong = rndAlbum["songs"].shuffle[0]
 
             url = "http://lyrics.wikia.com/api.php?func=getSong&artist=#{artist}&song=#{rndSong}&fmt=text"
             response = Net::HTTP.get_response(URI.parse(url))
