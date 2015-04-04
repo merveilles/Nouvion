@@ -44,36 +44,44 @@ class TestEmote < Minitest::Test
 
     def test_flip
       
+        # mock memory
         memory = FlipMemoryTest.new()
-        answer = Answer.new("emote", "flip", "strstr", "emote flip", "theartificiallounge", memory)
         
+        # flip once...
+        answer = Answer.new("emote", "flip", "strstr", "emote flip", "theartificiallounge", memory)
         emote1 = answer.flip()
+        assert_equal true, answer.flippingEmojis.include?(emote1)
 
+        # unflip
         answer = Answer.new("emote", "flip", "strstr", "emote flip", "theartificiallounge", memory)
-        
         emote2 = answer.flip()
+        assert_equal true, answer.unflippingEmojis.include?(emote2)
         
-        assert_equal false, emote1 == emote2
-        
+        # flip again
         answer = Answer.new("emote", "flip", "strstr", "emote flip", "theartificiallounge",memory)
-        
         emote3 = answer.flip()
+        assert_equal true, answer.flippingEmojis.include?(emote3)
         
-        assert_equal true, emote1 == emote3
+        # and confirm unflip
+        answer = Answer.new("emote", "flip", "strstr", "emote flip", "theartificiallounge",memory)
+        emote4 = answer.flip()
+        assert_equal true, answer.unflippingEmojis.include?(emote4)
     end
 end
 
-class FlipMemoryTest < Memory # i'm not entirely sure how to mock the memory component of live...
-
-    @flipped = "no"
+class FlipMemoryTest < Memory 
+  
+    def initialize
+      @mem = [["ludivine", "table flipped", "no"], ["ludivine", "other thing", "potato"]]
+    end
 
     def load(query)
 
-        return @flipped
+        return @mem
 
     end
     
     def save(owner, key, value)
-        @flipped = value
+        @mem[0][2] = value
     end
 end

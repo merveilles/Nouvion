@@ -34,6 +34,9 @@ class Answer
         return text
 
     end
+    
+    attr_reader :flippingEmojis
+    attr_reader :unflippingEmojis
 
     def flip
         
@@ -47,11 +50,13 @@ class Answer
             flipState = state[2]
         end
         
+        @flippingEmojis = ["(ﾉ °□°)ﾉ︵ ┻─┻" , "(ノ ゜Д゜)ノ ︵ ┻━┻", "(ﾉಥ益ಥ）ﾉ﻿ ┻━┻", "(╯'□')╯︵ ┻━┻"]
+        @unflippingEmojis = ["┬─┬﻿ ノ(゜-゜ノ)"]
         if flipState == "yes" 
-          emoticon = "┬─┬ ノ(°-°ノ)"
+          emoji = @unflippingEmojis.shuffle[0]
           flipState = "no"
         else
-          emoticon = "(╯°□°）╯︵ ┻━┻"
+          emoji = @flippingEmojis.shuffle[0]
           flipState = "yes"
         end
         
@@ -59,7 +64,7 @@ class Answer
         
         message = @message.sub("emote flip", "").strip
 
-        return (emoticon + if message.length > 0 then " *#{message}*" else "" end)
+        return (emoji + if message.length > 0 then " *#{message}*" else "" end)
     end
 
     def shrug
