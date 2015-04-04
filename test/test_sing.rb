@@ -18,7 +18,7 @@ class TestSing < Minitest::Test
 		artist =["britney spears","megadeath","aliceffekt"]
 		
 
-        answer = Answer.new("sing", "sing", "ragekit", artist.sample, "theartificiallounge")
+        answer = Answer.new("sing", "sing", "ragekit", "sing " + artist.sample, "theartificiallounge")
 
         sing = answer.sing()
 

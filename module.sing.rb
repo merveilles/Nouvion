@@ -9,8 +9,9 @@ class Answer
     # Available: moduleName,methodName,username,message
 
     def sing
-        artist = @message.lstrip.rstrip
-
+        artist = @message.split(" ")
+        artist.delete("sing")
+        artist = artist.join(" ").strip
         ret = "I don't know this artist, sorry"
 
         url = "http://lyrics.wikia.com/api.php?func=getSong&artist=#{artist}&fmt=json"
@@ -31,7 +32,7 @@ class Answer
                 ret = "I'm sorry i don't know how to sing it"
             else
                 ret = ":notes: " + ret
-                ret = ret.gsub("\n"," :notes: \n :notes:")
+                ret = ret.gsub("\n"," :notes: \n :notes: ")
                 ret = ret + " :notes:"
             end
         end
