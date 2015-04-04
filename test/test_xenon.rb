@@ -4,7 +4,7 @@ require './memory'
 
 # Require any modules you might need
 require('../module.xenon')
-
+require('../module.color')
 # Set up the payload
 
 class MemoryTest < Memory
@@ -30,8 +30,9 @@ class MemoryTest < Memory
 
 end
 
-answer = Answer.new("xenon", "give", "jean", "xenon give aliceffekt -5", "theartificiallounge",MemoryTest.new())
+answer = Answer.new("color", "date", "jean", "color date", "theartificiallounge",MemoryTest.new())
 
 # Output the result
-puts answer.give()
+puts answer.slot()
+
 
