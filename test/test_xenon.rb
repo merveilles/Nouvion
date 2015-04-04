@@ -1,13 +1,17 @@
+=begin
+
 # Require the main class
-require '../answer'
+require_relative '../answer'
 require './memory'
 
 # Require any modules you might need
 require('../module.xenon')
-require('../module.color')
+
 # Set up the payload
 
 class MemoryTest < Memory
+
+
 
     def connect
 
@@ -34,5 +38,4 @@ answer = Answer.new("color", "date", "jean", "color date", "theartificiallounge"
 
 # Output the result
 puts answer.slot()
-
 
