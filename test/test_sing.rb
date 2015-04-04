@@ -15,7 +15,7 @@ class TestSing < Minitest::Test
 
 	def test_sing
 
-		artist =["britney spears","megadeath","aliceffekt"]
+		artist =["britney spears"]
 		
 
         answer = Answer.new("sing", "sing", "ragekit", "sing " + artist.sample, "theartificiallounge")
