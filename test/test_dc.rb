@@ -81,4 +81,20 @@ class TestDc < Minitest::Test
     def test_dc_expmod
         assert_equal '43.0', dc_answer('87 23 44|n')
     end
+
+    def test_dc_register
+        assert_equal '5.0', dc_answer('3 5s§cl§n')
+    end
+
+    def test_dc_register_emoji
+        assert_equal '5.0', dc_answer('3 5s😋cl😋n')
+    end
+
+    def test_dc_registerstack
+        assert_equal "3.0\n5.0\n", dc_answer('3 5S§S§cL§L§f')
+    end
+
+    def test_dc_registerstack_emoji
+        assert_equal "3.0\n5.0\n", dc_answer('3 5S😋S😋cL😋L😋f')
+    end
 end
