@@ -9,8 +9,9 @@ class Answer
     # Available: moduleName,methodName,username,message
 
     def sing
-        artist = @message.lstrip.rstrip
-
+        artist = @message.split(" ")
+        artist.delete("sing")
+        artist = artist.join(" ")
         ret = "I don't know this artist, sorry"
 
         url = "http://lyrics.wikia.com/api.php?func=getSong&artist=#{artist}&fmt=json"
