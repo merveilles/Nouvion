@@ -10,10 +10,18 @@ require_relative '../answer'
 require_relative '../module.dc'
 
 def dc_answer(op)
-    Answer.new('dc', 'dc', 'aliceffekt', op, 'theartificiallounge').dc
+    Answer.new('dc', 'dc', 'aliceffekt', "dc #{op}", 'theartificiallounge').dc
 end
 
 class TestDc < Minitest::Test
+    def test_dc_noop
+        assert_match /^A partial/, dc_answer('')
+    end
+
+    def test_dc_help
+        assert_match /^A partial/, dc_answer('help')
+    end
+
     def test_dc_add
         assert_equal '42.0', dc_answer('12 20 5 5+++n')
     end
