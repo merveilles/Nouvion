@@ -42,4 +42,38 @@ class TestEmote < Minitest::Test
 
     end
 
+    def test_flip
+      
+        memory = FlipMemoryTest.new()
+        answer = Answer.new("emote", "flip", "strstr", "emote flip", "theartificiallounge", memory)
+        
+        emote1 = answer.flip()
+
+        answer = Answer.new("emote", "flip", "strstr", "emote flip", "theartificiallounge", memory)
+        
+        emote2 = answer.flip()
+        
+        assert_equal false, emote1 == emote2
+        
+        answer = Answer.new("emote", "flip", "strstr", "emote flip", "theartificiallounge",memory)
+        
+        emote3 = answer.flip()
+        
+        assert_equal true, emote1 == emote3
+    end
+end
+
+class FlipMemoryTest < Memory # i'm not entirely sure how to mock the memory component of live...
+
+    @flipped = "no"
+
+    def load(query)
+
+        return @flipped
+
+    end
+    
+    def save(owner, key, value)
+        @flipped = value
+    end
 end
