@@ -15,15 +15,17 @@ class TestSing < Minitest::Test
 
 	def test_sing
 
-		artist =["britney spears"]
+		artist =["julien clerc","","lol"]
 		
+		artist.each do|n|
+  
 
-        answer = Answer.new("sing", "sing", "ragekit", "sing " + artist.sample, "theartificiallounge")
+	        answer = Answer.new("sing", "sing", "ragekit", "sing " + n, "theartificiallounge")
 
-        sing = answer.sing()
+	        sing = answer.sing()
 
-        assert_equal true, (sing.instance_of? String)
-        puts sing
+	        assert_equal true, (sing.instance_of? String)
+    	end
     end
 
 end
