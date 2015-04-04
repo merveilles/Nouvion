@@ -50,7 +50,7 @@ class Answer
             flipState = state[2]
         end
         
-        @flippingEmojis = ["(ﾉ °□°)ﾉ︵ ┻─┻" , "(ノ ゜Д゜)ノ ︵ ┻━┻", "(ﾉಥ益ಥ）ﾉ﻿ ┻━┻", "(╯'□')╯︵ ┻━┻"]
+        @flippingEmojis = ["(ﾉ °□°)ﾉ︵ ┻─┻" ] #, "(ノ ゜Д゜)ノ ︵ ┻━┻", "(ﾉಥ益ಥ）ﾉ﻿ ┻━┻", "(╯'□')╯︵ ┻━┻"]
         @unflippingEmojis = ["┬─┬﻿ ノ(゜-゜ノ)"]
         if flipState == "yes" 
           emoji = @unflippingEmojis.shuffle[0]
