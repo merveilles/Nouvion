@@ -38,17 +38,24 @@ class Answer
     def flip
         
         @memory.connect()
-        flipped = @memory.load("flipped") 
-        
-        if flipped == "yes" then 
-          emoticon = "┬─┬ ノ(°-°ノ)"
-          flipped = "no"
-        else
-          emoticon = "(╯°□°）╯︵ ┻━┻"
-          flipped = "yes"
+        flipStates = @memory.load("table flipped") 
+
+        flipState = "no"
+        flipStates.each do |state|
+            if state[0] != "ludivine" then next end
+            if state[1] != "table flipped" then next end
+            flipState = state[2]
         end
         
-        @memory.save("ludivine", "flipped", flipped)
+        if flipState == "yes" 
+          emoticon = "┬─┬ ノ(°-°ノ)"
+          flipState = "no"
+        else
+          emoticon = "(╯°□°）╯︵ ┻━┻"
+          flipState = "yes"
+        end
+        
+        @memory.save("ludivine", "table flipped", flipState)
         
         message = @message.sub("emote flip", "").strip
 
