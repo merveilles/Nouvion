@@ -1,5 +1,5 @@
 # Require the main class
-require '../answer'
+require_relative '../answer'
 require './memory'
 
 # Require any modules you might need
