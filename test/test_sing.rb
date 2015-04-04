@@ -10,10 +10,10 @@ require_relative '../answer'
 class TestSing < Minitest::Test
 
 	def setup
-	    require_relative '../module.weather'
+	    require_relative '../module.sing'
 	end
 
-	def test_weather
+	def test_sing
 
         answer = Answer.new("sing", "sing", "ragekit", "test", "theartificiallounge")
 
