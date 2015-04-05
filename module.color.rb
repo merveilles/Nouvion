@@ -1260,7 +1260,7 @@ class Answer
         userSeed = 0
 
         @username.each_char.with_index do |k,index|
-            userSeed += k[0].ord*index*(time.month-3).modulo(12)
+            userSeed += k[0].ord*index*((time.month-4).modulo(12)+1)
         end
 
         srand userSeed
@@ -1298,7 +1298,7 @@ class Answer
 
         time = Time.new
         colorsCollectionInstance = colorsCollection
-        seeds = [time.day * time.year, time.month * time.year, time.year * time.year]
+        seeds = [time.day * time.year*32, time.month * time.year, time.year * time.year]
         links = ["", "", ""]
 
         for i in 0..2
