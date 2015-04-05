@@ -15,7 +15,7 @@ class TestSing < Minitest::Test
 
 	def test_sing
 
-		artist =["julien clerc","","lol"]
+		artist =["julien clerc","","lol","toxic by britney spears"]
 		
 		artist.each do|n|
   
