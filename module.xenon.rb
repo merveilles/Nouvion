@@ -2,7 +2,7 @@ class Answer
 
     def xenon
 
-        return "If you own an 'account', you can `give` money to another user - or request to see the `wallets`."
+        return "If you own an `account`, you can `give` money to another user, or use the `slot` machine. You can also request to see the `wallets`."
 
     end
 
