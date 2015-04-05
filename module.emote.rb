@@ -5,9 +5,6 @@ class Answer
 
     # Available: moduleName,methodName,username,message
 
-    #for flipping text
-    T = [[65, 5572], [66, 5626], [67, 390], [68, 5601], [69, 398], [70, 8498], [71, 8513], [72, 72], [73, 73], [74, 5259], [75, 20012], [76, 8514], [77, 87], [78, 78], [79, 79], [80, 1280], [81, 908], [82, 7450], [83, 83], [84, 8869], [85, 1352], [86, 923], [87, 77], [88, 88], [89, 8516], [90, 90], [97, 592], [98, 113], [99, 596], [100, 112], [101, 601], [102, 607], [103, 595], [104, 613], [105, 7433], [106, 638], [107, 670], [108, 108], [109, 623], [110, 117], [111, 111], [112, 100], [113, 98], [114, 633], [115, 115], [116, 647], [117, 110], [118, 652], [119, 653], [120, 120], [121, 654], [122, 122], [48, 48], [49, 8642], [50, 423], [51, 949], [52, 5421], [53, 53], [54, 57], [55, 76], [56, 56], [57, 54], [46, 729], [44, 8216], [45, 45], [58, 58], [59, 1563], [33, 161], [63, 191], [38, 8523], [40, 41], [41, 40], [60, 62], [62, 60], [91, 93], [93, 91], [95, 8254], [8254, 95], [123, 125], [125, 123], [8756, 8757], [8757, 8756]]
-
     def emote
 
         return smile
@@ -37,24 +34,37 @@ class Answer
         return text
 
     end
+    
+    attr_reader :flippingEmojis
+    attr_reader :unflippingEmojis
 
     def flip
-        message = @message.sub("emote flip", "").strip
-        ret = "(╯°□°）╯︵ ┻━┻"
+        
+        @memory.connect()
+        flipStates = @memory.load("table flipped") 
 
-        if message.length >0 
-
-            flipped_message = []
-
-            message.each_char do |chr|
-                code = T.assoc(chr.ord)
-                flipped_message << code ? code[1].chr('UTF-8') : chr
-            end
-            flipped_message = flipped_message.join.reverse
-            ret += flipped_message        
+        flipState = "no"
+        flipStates.each do |state|
+            if state[0] != "ludivine" then next end
+            if state[1] != "table flipped" then next end
+            flipState = state[2]
         end
+        
+        @flippingEmojis = ["(ﾉ °□°)ﾉ︵ ┻─┻" , "(ノ ゜Д゜)ノ ︵ ┻━┻" , "(ﾉಥ益ಥ）ﾉ﻿ ┻━┻" , "(╯'□')╯︵ ┻━┻"]
+        @unflippingEmojis = ["┬─┬﻿ ノ(゜-゜ノ)"]
+        if flipState == "yes" 
+          emoji = @unflippingEmojis.shuffle[0]
+          flipState = "no"
+        else
+          emoji = @flippingEmojis.shuffle[0]
+          flipState = "yes"
+        end
+        
+        @memory.save("ludivine", "table flipped", flipState)
+        
+        message = @message.sub("emote flip", "").strip
 
-        ret
+        return (emoji + if message.length > 0 then " *#{message}*" else "" end)
     end
 
     def shrug
