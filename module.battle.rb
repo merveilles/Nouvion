@@ -115,6 +115,7 @@ class Answer
             if (hp) < 1
                 return "#{battle_message[current_profession]}, killing them!"
             else
+                return "#{battle_message[current_profession]}, down to *"+hp.to_s+"hp*!"
             end
 
 
