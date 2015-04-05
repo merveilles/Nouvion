@@ -9,6 +9,11 @@ class Answer
     # Available: moduleName,methodName,username,message
 
     def sing
+
+        if @message.strip == "sing"
+            return help
+        end
+
         artist = @message.split(" ")
         artist.delete("sing")
 
@@ -20,8 +25,6 @@ class Answer
             by_index = argv.find_index "by"
             song = argv[0...by_index].join(" ")
             artist = argv[by_index+1...argv.length].join(" ")
-            puts artist
-            puts song
 
             url = "http://lyrics.wikia.com/api.php?func=getSong&artist=#{artist}&song=#{song}&fmt=text"
             url = URI.escape(url)
@@ -66,6 +69,12 @@ class Answer
 
         return ret
 
+    end
+
+
+    def help
+
+        return "Make me sing a random artist song by calling `ludivine sing artist` or a specific one with `ludivine sing song by artist`"
     end
 
 end

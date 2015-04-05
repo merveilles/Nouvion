@@ -23,7 +23,6 @@ class TestSing < Minitest::Test
 	        answer = Answer.new("sing", "sing", "ragekit", "sing " + n, "theartificiallounge")
 
 	        sing = answer.sing()
-
 	        assert_equal true, (sing.instance_of? String)
     	end
     end
