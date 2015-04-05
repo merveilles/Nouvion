@@ -29,28 +29,35 @@ class Answer
     def profession
         all_professions = [ "peasant", "fighter", "rogue", "mage" ]
 
-        new_profession = @message.sub("profession","").split(" ")[1]
-        
-        if !all_professions.includes?(new_profession) then
-           return "You need to select a proper profession among these: " + all_professions
-        end
-        
         current_profession = all_professions[0]
         
         @memory.connect()
       
         thoughts = @memory.load("profession")
-                
+
         thoughts.each do |known|
           if known[0] != @username then next end
           if known[1] != "profession" then next end
           if known[2] != nil
             current_profession = known[2]
+            break
           end
+        end
+
+        params = @message.sub("battle profession","").split(" ") # i'm seeing all kinds of problems if a user has a name which is a resevered word. 
+
+        if params.length == 0 then
+            return "Your current profession is #{current_profession}" 
+        else
+            new_profession = params[0]
+        end
+        
+        if !all_professions.include?(new_profession) then
+            return "You need to select a proper profession among these: #{all_professions}"
         end
         
         if current_profession == new_profession then
-           return "#{@username}, you are already a " + new_profession
+           return "#{@username}, you already are a #{new_profession}" 
         end
         
         @memory.save(@username, "profession", new_profession)

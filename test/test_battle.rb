@@ -6,7 +6,7 @@ Coveralls.wear!
 
 require 'minitest/autorun'
 require 'memory'
-require_relative '../battle'
+require_relative '../answer'
 
 class TestBattle < Minitest::Test
 
@@ -18,12 +18,53 @@ class TestBattle < Minitest::Test
 
     def test_battle_profession
 
-        answer = Answer.new("battle", "battle", "strstr", "battle profession", "theartificiallounge")
+        mem = BattleMemoryTest.new();
+        
+        answer = Answer.new("battle", "profession", "strstr", "battle profession", "theartificiallounge", mem)
+        emote = answer.profession()
+        #puts emote #todo : assert that the messages are correct by exposing their result somehow
 
-        emote = answer.emote()
+        answer = Answer.new("battle", "profession", "strstr", "battle profession rogue", "theartificiallounge", mem)
+        emote = answer.profession()
+        #puts emote
+        
+        answer = Answer.new("battle", "profession", "strstr", "battle profession", "theartificiallounge", mem)
+        emote = answer.profession()
+        #puts emote
 
-        assert_equal true, (emote.instance_of? String)
+        answer = Answer.new("battle", "profession", "strstr", "battle profession rogue", "theartificiallounge", mem)
+        emote = answer.profession()
+        #puts emote
+
+        answer = Answer.new("battle", "profession", "strstr", "battle profession potato", "theartificiallounge", mem)
+        emote = answer.profession()
+        #puts emote
+
+        assert_equal true, true
 
     end
 
+end
+
+class BattleMemoryTest < Memory 
+  
+    def initialize
+      @mem = [["ludivine", "potato", "no"], 
+              ["strstr", "profession", "mage"],
+              ["orange", "seeds", "yes"]]
+    end
+
+    def load(query)
+
+        return @mem
+
+    end
+    
+    def save(owner, key, value)
+        if owner == "strstr" then
+           @mem[1][1] = key
+           @mem[1][2] = value
+        end
+        
+    end
 end
