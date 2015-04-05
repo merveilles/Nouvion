@@ -105,14 +105,16 @@ class Answer
             if known[0] != "ludivine" then next end
             if known[1] != "health "+target then next end
 
-            if known[2].to_i < 1 then return "*#{target}* is dead.." end
+            hp = known[2].to_i
+            if hp < 1 then return "*#{target}* is dead.." end
 
-            @memory.save("ludivine","health #{target}",(known[2].to_i - damage).to_s)
+            hp -= damage
 
-            if (known[2].to_i) < 1
+            @memory.save("ludivine","health #{target}",hp.to_s)
+
+            if (hp) < 1
                 return "#{battle_message[current_profession]}, killing them!"
             else
-                return "#{battle_message[current_profession]}, down to *"+((known[2].to_i).to_s)+"hp*!"
             end
 
 
