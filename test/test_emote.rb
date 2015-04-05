@@ -32,6 +32,12 @@ class TestEmote < Minitest::Test
 
     end
 
+    def test_emote_flip
+
+        answer = Answer.new("emote", "flip", "ragekit", "emote flip test", "theartificiallounge")
+
+    end
+
     def test_cat_fact
 
         answer = Answer.new("cat", "fact", "maxdeviant", "cat fact", "theartificiallounge")
