@@ -66,7 +66,8 @@ class Answer
     end
 
     def attack
-
+        all_professions = [ "peasant", "fighter", "rogue", "mage" ] # TODO : move these common AND replicated constants to a private implementation class, hidden from Answer interface
+        
         target = @message.sub("attack","").split(" ")[1]
         damage = 1
 
@@ -75,9 +76,29 @@ class Answer
             damage = 10
         end
 
+        # i'm not a fan or rebuilding this hash table every invokation...  
+        battle_message = { "peasant" => "#{@username} throws a rock at *#{target}*", 
+                           "fighter" => "#{@username} swings their sword at *#{target}*", 
+                           "rogue" => "#{@username} blends with the shadows and backstabs *#{target}*",
+                           "mage" => "#{@username} casts a fireball at *#{target}*" }
+
         # get HP
 
         @memory.connect()
+        
+        current_profession = all_professions[0]
+        
+        thoughts = @memory.load("profession")
+
+        thoughts.each do |known|
+          if known[0] != @username then next end
+          if known[1] != "profession" then next end
+          if known[2] != nil
+            current_profession = known[2]
+            break
+          end
+        end
+        
         thoughts = @memory.load("health ")
 
         thoughts.each do |known|
@@ -88,10 +109,10 @@ class Answer
 
             @memory.save("ludivine","health #{target}",(known[2].to_i - damage).to_s)
 
-            if (known[2].to_i - damage) < 1
-                return "I killed *#{target}*!"
+            if (known[2].to_i) < 1
+                return "#{battle_message[current_profession]}, killing them!"
             else
-                return "I am attacking *#{target}* down to *"+((known[2].to_i - damage).to_s)+"hp*!"
+                return "#{battle_message[current_profession]}, down to *"+((known[2].to_i).to_s)+"hp*!"
             end
 
 

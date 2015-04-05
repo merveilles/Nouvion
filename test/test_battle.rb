@@ -40,18 +40,35 @@ class TestBattle < Minitest::Test
         emote = answer.profession()
         #puts emote
 
-        assert_equal true, true
+
+    end
+
+    def test_battle_attack
+        mem = BattleMemoryTest.new();
+        
+        answer = Answer.new("battle", "attack", "strstr", "battle attack potato", "theartificiallounge", mem)
+        emote = answer.attack()
+        #puts emote # manual validation for now until I expose the battle messages
+        
+        answer = Answer.new("battle", "profession", "strstr", "battle profession rogue", "theartificiallounge", mem)
+        emote = answer.profession()
+        #puts emote
+        
+        answer = Answer.new("battle", "attack", "strstr", "battle attack potato", "theartificiallounge", mem)
+        emote = answer.attack()
+        #puts emote
 
     end
 
 end
 
 class BattleMemoryTest < Memory 
-  
+    attr_reader :mem
     def initialize
       @mem = [["ludivine", "potato", "no"], 
               ["strstr", "profession", "mage"],
-              ["orange", "seeds", "yes"]]
+              ["orange", "seeds", "yes"],
+              ["ludivine", "health potato", "2"]]
     end
 
     def load(query)
@@ -61,10 +78,17 @@ class BattleMemoryTest < Memory
     end
     
     def save(owner, key, value)
+      
         if owner == "strstr" then
            @mem[1][1] = key
            @mem[1][2] = value
+           return
         end
         
+        if owner == "ludivine" && key == "health potato" then
+           @mem[3][2] = value
+           return
+        end
+
     end
 end
