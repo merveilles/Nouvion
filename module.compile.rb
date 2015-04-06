@@ -26,11 +26,22 @@ class Answer
 	    	return "I don't know what *"+query+"* is."
 	    end
 
+        totalPercents = 0
+        otherVotes = 0
     	graph = ""
     	votes.sort_by {|_key, value| value}.reverse.each do |value,count|
     		percent = ((count.to_f/votesSum.to_f)*100).to_i
+            if percent < 10
+                otherVotes += 1
+                next
+            end
+            totalPercents += percent
     		graph += progressBar(percent)+" *"+value+"* has "+count.to_s+" votes, for "+percent.to_s+"%\n"
     	end
+
+        if totalPercents > 0
+           graph += "And *"+otherVotes.to_s+" misc votes*, for "+(100-totalPercents).to_s+"%..\n" 
+        end
 
     	return "The result for "+query+" is: \n"+graph
 
@@ -52,8 +63,10 @@ class Answer
     		space += 1
     	end
 
+        if graph.strip == ""
+            graph += "__________"
+        end
+
     	return "`"+graph+"`"
 
-    end
-
-end
+    e
