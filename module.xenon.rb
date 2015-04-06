@@ -90,9 +90,7 @@ class Answer
         end
         if accountXenons == "" then return "#{@username}, you don't have an `account` thus can't play slot machine." end
         if accountXenons.to_i - price < 0 then return "#{@username}, you don't have enough xenons on your account, using a slot machine costs 1xen." end
-
-        @memory.save("ludivine","wallet #{@username}",(accountXenons.to_i-price).to_s)
-        
+   
         listIcons =
         [
             # [0]:name, [1]:probability (% for each wheel), [2]:gain
@@ -111,15 +109,17 @@ class Answer
 
         resultsIndexes = [listIndexes.shuffle[0],listIndexes.shuffle[0],listIndexes.shuffle[0]]
         gain = 0
-        plural =""
+        result =""
         if(resultsIndexes[0] == resultsIndexes[1] && resultsIndexes[1] == resultsIndexes[2])
             gain = listIcons[resultsIndexes[0]][2]
-            if gain>1 then plural ="s" end
+            result += "#{@username}, you win "+gain.to_s+"xens!\n" 
         end
+        if gain == 0 then result = "#{@username}, you don't win any xenon. Try again!\n" end
+        result += "You have currently "+(accountXenons.to_i+gain-price).to_s+"xens on your account."
 
-        @memory.save("ludivine","wallet #{@username}",(accountXenons.to_i+gain).to_s)
+        @memory.save("ludivine","wallet #{@username}",(accountXenons.to_i+gain-price).to_s)
         @memory.save("ludivine","bank ",(bankAccount.to_i-gain).to_s)
-        return listIcons[resultsIndexes[0]][0]+" - "+listIcons[resultsIndexes[1]][0]+" - "+listIcons[resultsIndexes[2]][0]+"\nYou win "+gain.to_s+"xen"+plural+"."
+        return "You put 1xen in the slot machine...\n"+listIcons[resultsIndexes[0]][0]+" - "+listIcons[resultsIndexes[1]][0]+" - "+listIcons[resultsIndexes[2]][0]+"\n"+result
     end
 
     
