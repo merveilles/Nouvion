@@ -39,7 +39,7 @@ class Answer
     		graph += progressBar(percent)+" *"+value+"* has "+count.to_s+" votes, for "+percent.to_s+"%\n"
     	end
 
-        if totalPercents > 0
+        if totalPercents > 3
            graph += "And *"+otherVotes.to_s+" misc votes*, for "+(100-totalPercents).to_s+"%..\n" 
         end
 
@@ -69,4 +69,6 @@ class Answer
 
     	return "`"+graph+"`"
 
-    e
+    end
+
+end
