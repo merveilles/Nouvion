@@ -47,9 +47,9 @@ class ListMemoryTest < Memory
     def load(topic)
 
         return [
-            [ "ludivine", "t-shirt", ["shirt"] ],
-            [ "ludivine", "ardbeg", ["scotch"] ],
-            [ "ludivine", "glenmorangie", ["scotch"] ],
+            [ "ludivine", "t-shirt", "shirt" ],
+            [ "ludivine", "ardbeg", "scotch" ],
+            [ "ludivine", "glenmorangie", "scotch" ],
         ]
 
     end
