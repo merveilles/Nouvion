@@ -102,4 +102,9 @@ class Answer
 
     end
 
+    def announce
+
+        sayInChannel("#the-lobby","*"+@username+"* wants your attention in <#"+@channel+">.")
+    end
+
 end
