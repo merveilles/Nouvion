@@ -45,33 +45,42 @@ class Answer
         query = @message.sub("what is", "").strip
         thoughts = @memory.load(query).shuffle
 
-        # Any message
+        # No answer
+        if thoughts.length < 1 
+	        return "I don't know what *"+query+"* is, but you can teach me about it \bby typing `remember that "+query+" is ` followed by a short definition."
+        end
 
-        if thoughts.length < 1 then return "I don't know" end
+        keyAnswer = []
+        valueAnswer = []
 
-        # Look for a message by the user
-
+        # Find a a key answer
         thoughts.each do |known|
-            if known[0] != @username then next end
-
-            return "*" + known[1] + "* is *" + known[2].sub("my", "your").strip + "*."
+            if known[1] == query then keyAnswer = known end
+            if known[2] == query then valueAnswer = known end
         end
 
-        # Look for any message
+        # Key Answer return
+        if keyAnswer[1]
 
-        if @message.include?("twitter") && thoughts.length > 0
-            username = thoughts[0][2]
+        	deepThoughts = @memory.load(keyAnswer[2]).shuffle
+        	deepAnswer = ""
+        	deepThoughts.each do |deepKnown|
+        		if deepKnown[1] == keyAnswer[2] then deepAnswer = deepKnown[2] end
+        	end
 
-            return "*#{thoughts[0][1]}* is <https://twitter.com/#{username}|@#{username}>."
+        	if deepAnswer != ""
+        		return "*" + keyAnswer[1] + "* is *" + keyAnswer[2] + "*, "+deepAnswer+"."
+        	else
+        		return "*" + keyAnswer[1] + "* is *" + keyAnswer[2] + "*."
+        	end
         end
 
-        if thoughts.length > 1
-            return "*#{thoughts[0][1]}* is *#{thoughts[0][2]}* and *#{thoughts[1][2]}*."
-        elsif thoughts.length > 0
-            return "*#{thoughts[0][1]}* is *#{thoughts[0][2]}*."
+        # Value Answer return
+        if valueAnswer[1]
+        	return "I don't know what *" + query + "* is. Is it like *"+valueAnswer[1]+"*?"
         end
 
-        return "I don't know.."
+        return ".."
 
     end
 
