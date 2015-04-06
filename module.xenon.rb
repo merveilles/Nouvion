@@ -72,19 +72,19 @@ class Answer
         thoughts = @memory.load("wallet ")
         thoughts.each do |known|
             if known[0] != "ludivine" then next end
-            if known[1] == "wallet "+@username 
-                accountXenons = known[2] 
-                break 
+            if known[1] == "wallet "+@username
+                accountXenons = known[2]
+                break
             end
         end
         if accountXenons == "" then return "#{@username}, you don't have an account thus can't play slot machine." end
         if accountXenons.to_i - price < 0 then return "#{@username}, you don't have enough xenons on your account, using a slot machine costs 2 xenons." end
 
-        listIcons = 
+        listIcons =
         [
             # [0]:name, [1]:amount in array, [2]:gain
             [":cherries:",5,1],
-            ["green_apple:",4,2],
+            [":green_apple:",4,2],
             [":tangerine:",3,4],
             [":grapes:",2,10],
             [":pizza:",1,50]
