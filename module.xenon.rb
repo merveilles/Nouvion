@@ -6,18 +6,29 @@ class Answer
 
     end
 
+    def bankAccount
+        @memory.connect()
+        thoughts = @memory.load("bank ")
+        thoughts.each do |known|
+            if known[0] != "ludivine" then next end
+            if known[1] == "bank " then return known[2] end
+        end
+        return "1000"
+    end
+
     def account
 
         @memory.connect()
         thoughts = @memory.load("wallet ")
-
+        
         thoughts.each do |known|
             if known[0] != "ludivine" then next end
-            if known[1] == "wallet "+@username then return "#{@username}, you have currently "+known[2]+ " xenons on your account." end
+            if known[1] == "wallet "+@username then return "#{@username}, you have currently "+known[2]+ "xens on your account." end   
         end
 
         @memory.save("ludivine","wallet #{@username}","10")
-        return "#{@username} subscribes an account with a credit of 10 xenons."
+        @memory.save("ludivine","bank ",(bankAccount.to_i-10).to_s)
+        return "#{@username} subscribes an account with a credit of 10xens."
 
     end
 
@@ -54,8 +65,8 @@ class Answer
             if accountsXenons[0] !="" && accountsXenons[1] !="" then break end
         end
 
-        if accountsXenons[0] == "" then return "#{@username}, you don't have an account thus can't give money." end
-        if accountsXenons[1] == "" then return "#{target} doesn't have an account to send xenons on." end
+        if accountsXenons[0] == "" then return "#{@username}, you don't have an `account` thus can't give money." end
+        if accountsXenons[1] == "" then return "#{target} doesn't have an `account` to send xenons on." end
         if accountsXenons[0].to_i - giftValue < 0 then return "#{@username}, you don't have enough xenons on your account." end
 
         @memory.save("ludivine","wallet #{target}",(accountsXenons[1].to_i + giftValue).to_s)
@@ -65,7 +76,7 @@ class Answer
     end
 
     def slot
-        price = 2
+        price = 1
 
         accountXenons = ""
         @memory.connect()
@@ -77,17 +88,17 @@ class Answer
                 break
             end
         end
-        if accountXenons == "" then return "#{@username}, you don't have an account thus can't play slot machine." end
-        if accountXenons.to_i - price < 0 then return "#{@username}, you don't have enough xenons on your account, using a slot machine costs 2 xenons." end
+        if accountXenons == "" then return "#{@username}, you don't have an `account` thus can't play slot machine." end
+        if accountXenons.to_i - price < 0 then return "#{@username}, you don't have enough xenons on your `account`, using a slot machine costs 1xen." end
 
         listIcons =
         [
-            # [0]:name, [1]:amount in array, [2]:gain
-            [":cherries:",5,1],
-            [":green_apple:",4,2],
-            [":tangerine:",3,4],
-            [":grapes:",2,10],
-            [":pizza:",1,50]
+            # [0]:name, [1]:probability (% for each wheel), [2]:gain
+            [":cherries:",52,2],
+            [":green_apple:",25,10],
+            [":grapes:",14,50],
+            [":pizza:",9,150],
+
         ]
         listIndexes = []
         listIcons.each.with_index do |k,index|
@@ -98,11 +109,19 @@ class Answer
 
         resultsIndexes = [listIndexes.shuffle[0],listIndexes.shuffle[0],listIndexes.shuffle[0]]
         gain = 0
+        plural =""
         if(resultsIndexes[0] == resultsIndexes[1] && resultsIndexes[1] == resultsIndexes[2])
             gain = listIcons[resultsIndexes[0]][2]
+            if gain>1 then plural ="s" end
         end
 
-        return listIcons[resultsIndexes[0]][0]+" - "+listIcons[resultsIndexes[1]][0]+" - "+listIcons[resultsIndexes[2]][0]+"\nYou win "+gain.to_s+"xen. But this machine doesn't give money yet..."
+        @memory.save("ludivine","wallet #{@username}",(accountXenons.to_i+gain).to_s)
+        @memory.save("ludivine","bank ",(bankAccount.to_i-gain).to_s)
+        return listIcons[resultsIndexes[0]][0]+" - "+listIcons[resultsIndexes[1]][0]+" - "+listIcons[resultsIndexes[2]][0]+"\nYou win "+gain.to_s+"xen"+plural+"."
     end
+
+    
+
+    
 
 end
