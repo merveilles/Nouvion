@@ -14,16 +14,6 @@ class TestAnswer < Minitest::Test
 
     end
 
-    def test_answer_hello
-
-        answer = Answer.new("answer", "hello", "maxdeviant", "hello", "theartificiallounge")
-
-        hello = answer.hello()
-
-        assert_equal "Hello maxdeviant, nice to see you.", hello
-
-    end
-
     def test_answer_hey
 
         answer = Answer.new("answer", "hey", "maxdeviant", "hey", "theartificiallounge")
