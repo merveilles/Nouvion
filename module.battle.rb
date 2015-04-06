@@ -46,23 +46,28 @@ class Answer
 
         params = @message.sub("battle profession","").split(" ") # i'm seeing all kinds of problems if a user has a name which is a resevered word. 
 
-        if params.length == 0 then
-            return "Your current profession is #{current_profession}" 
+        if params.length == 0
+            return "Your current profession is *#{current_profession}*." 
         else
             new_profession = params[0]
         end
         
-        if !all_professions.include?(new_profession) then
-            return "You need to select a proper profession among these: #{all_professions}"
+        if !all_professions.include?(new_profession)
+
+            professionsString = ""
+            all_professions.each do |profession|
+                professionsString += "`"+profession+"` "
+            end
+            return "You need to select a proper profession among these:.\n"+professionsString
         end
         
-        if current_profession == new_profession then
-           return "#{@username}, you already are a #{new_profession}" 
+        if current_profession == new_profession
+           return "#{@username}, you already are a *#{new_profession}*." 
         end
         
         @memory.save(@username, "profession", new_profession)
         
-        return "#{@username} has changed profession from #{current_profession} to #{new_profession}"
+        return "#{@username} has changed profession from *#{current_profession}* to *#{new_profession}*."
     end
 
     def attack
