@@ -89,8 +89,10 @@ class Answer
             end
         end
         if accountXenons == "" then return "#{@username}, you don't have an `account` thus can't play slot machine." end
-        if accountXenons.to_i - price < 0 then return "#{@username}, you don't have enough xenons on your `account`, using a slot machine costs 1xen." end
+        if accountXenons.to_i - price < 0 then return "#{@username}, you don't have enough xenons on your account, using a slot machine costs 1xen." end
 
+        @memory.save("ludivine","wallet #{@username}",(accountXenons.to_i-price).to_s)
+        
         listIcons =
         [
             # [0]:name, [1]:probability (% for each wheel), [2]:gain
