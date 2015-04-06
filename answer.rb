@@ -28,12 +28,6 @@ class Answer
 
     end
 
-    def xoka
-
-        return "Xoka #{@username}, nice to see you."
-
-    end
-
     def hey
 
         return "hey #{@username}."
