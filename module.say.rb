@@ -7,7 +7,7 @@ require 'json'
 class Answer
 
 	def say
-		if @username == "slackbot" then return Hash["text" => "Stop messing with me..."] end
+		if @username == "slackbot" then return  "Stop messing with me..." end
 
 		cleanMessage = @message.sub("say ", "").strip()
 
