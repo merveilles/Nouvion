@@ -8,12 +8,5 @@ class Answer
         thoughts = @memory.traumae(query)
 
         thoughts.each do |known|
-        	if known[2] != query then next end
-        	return "In <http://wiki.xxiivv.com/traumae|Traumae>, *#{query}* can be translated as _"+known[1]+"_."
-        end
-
-		return "Translate something"
-
-	end
-
-end
+        	if known[2] == query then return "In <http://wiki.xxiivv.com/traumae|Traumae>, *#{query}* can be translated as _"+known[1]+"_." end
+        	if known[1] == query then return "In English, the <http://w
