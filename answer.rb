@@ -22,12 +22,6 @@ class Answer
         # return "Huh? Sorry #{@username}, *#{@moduleName}* does not have a method called *#{@methodName}*."
     end
 
-    def hello
-
-        return "Hello #{@username}, nice to see you."
-
-    end
-
     def hey
 
         return "hey #{@username}."
@@ -81,12 +75,6 @@ class Answer
     def forget
 
         return "Ludivine never forgets."
-
-    end
-
-    def bye
-
-        return "See you around "+@username+"."
 
     end
 
