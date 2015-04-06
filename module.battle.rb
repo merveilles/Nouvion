@@ -4,7 +4,8 @@ class Answer
         "peasant" => "throws a rock at",
         "fighter" => "swings their sword at",
         "rogue" => "blends with the shadows and backstabs",
-        "mage" => "casts a fireball at"
+        "mage" => "casts a fireball at",
+        "necromancer" => "sics a ghoul on"
     }
 
     def battle
