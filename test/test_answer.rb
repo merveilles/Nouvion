@@ -24,16 +24,6 @@ class TestAnswer < Minitest::Test
 
     end
 
-    def test_answer_xoka
-
-        answer = Answer.new("answer", "xoka", "maxdeviant", "xoka", "theartificiallounge")
-
-        xoka = answer.xoka()
-
-        assert_equal "Xoka maxdeviant, nice to see you.", xoka
-
-    end
-
     def test_answer_hey
 
         answer = Answer.new("answer", "hey", "maxdeviant", "hey", "theartificiallounge")
