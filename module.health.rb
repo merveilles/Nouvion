@@ -10,7 +10,7 @@ class Answer
         @memory.connect()
         thoughts = @memory.load("health #{@username}")
 
-        health = thoughts[2]
+        health = thoughts[2].to_i
 
         if health < 1
             return "@#{@username}: You are _dead_."
