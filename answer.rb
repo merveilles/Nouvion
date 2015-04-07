@@ -68,7 +68,12 @@ class Answer
 
     def rules
 
-        return "Rule #1: You must find yourself a monochromatic avatar.\nRule #2: I, *Ludivine*, am above the law.\n"
+        rules = [
+            "Rule #1: You must find yourself a monochromatic avatar.",
+            "Rule #2: I, *Ludivine*, am above the law."
+        ]
+
+        return rules.join("\n")
 
     end
 
