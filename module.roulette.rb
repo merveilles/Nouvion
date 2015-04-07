@@ -17,7 +17,7 @@ class Answer
         cylinder_pos = @memory.load("roulette position")[2].to_i
         cylinder_pos ||= 0
       
-        chambers = {0 => 0, 1 => 0, 2 =>, 3 => 0, 4 => 0, 5 => 0}
+        chambers = {0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0}
         # load the chambers from the db
         gun_chambers.each do |part|
             if part[1] != nil then
@@ -83,6 +83,8 @@ class Answer
                 @memory.save("ludivine", "roulette position", (cylinder_pos + 1) % 6)
                 @memory.save("ludivine", "roulette bullets", gun_bullets - 1)
                 return "*BANG!*"
+            end
             return "No bullet."
+        end
     end
 end
