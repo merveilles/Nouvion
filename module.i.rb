@@ -18,6 +18,15 @@ class Answer
         response = " "+response+" "
         response = response.sub(" i "," do you ").strip
 
+        # Suggestion
+
+        thoughts = @memory.load(@message.downcase).shuffle
+
+        thoughts.each do |known|
+            if known[0] == "ludivine" then next end
+            return "Why "+response+"? Is it because of "+known[2]+"?"
+        end
+
         return "Why "+response+"?"
 
     end
