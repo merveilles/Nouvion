@@ -15,12 +15,12 @@ class Answer
 
       def nice_things(name)
             return [
-                "**High fives #{name}**",
-                "**High fives**",
-                ":xoka: #{name} **high fives**",
-                "Looking sharp, #{name}. **high fives**",
-                "You're one classy bitch, #{name}. **high fives**",
-                "Keep it real, #{name}. **high fives**"
+                "*High fives #{name}*",
+                "*High fives*",
+                ":xoka: #{name} *high fives*",
+                "Looking sharp, #{name}. *high fives*",
+                "You're one classy bitch, #{name}. *high fives*",
+                "Keep it real, #{name}. *high fives*"
             ].shuffle[0]
       end
 

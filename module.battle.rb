@@ -1,5 +1,13 @@
 class Answer
 
+    @@professions = {
+        "peasant" => "throws a rock at",
+        "fighter" => "swings their sword at",
+        "rogue" => "blends with the shadows and backstabs",
+        "mage" => "casts a fireball at",
+        "necromancer" => "sics a ghoul on"
+    }
+
     def battle
 
         return "Choose a user for me to `attack` `heal` or `raise` - or request to see the `scores`."
@@ -25,14 +33,14 @@ class Answer
         return "Your scores are:\n#{scores}"
 
     end
-    
+
     def profession
-        all_professions = [ "peasant", "fighter", "rogue", "mage" ]
+        all_professions = @@professions.keys
 
         current_profession = all_professions[0]
-        
+
         @memory.connect()
-      
+
         thoughts = @memory.load("profession")
 
         thoughts.each do |known|
@@ -44,30 +52,34 @@ class Answer
           end
         end
 
-        params = @message.sub("battle profession","").split(" ") # i'm seeing all kinds of problems if a user has a name which is a resevered word. 
-
-        if params.length == 0 then
-            return "Your current profession is #{current_profession}" 
+        params = @message.sub("battle profession","").split(" ") # i'm seeing all kinds of problems if a user has a name which is a resevered word.
+        if params.length == 0
+            return "Your current profession is *#{current_profession}*."
         else
             new_profession = params[0]
         end
-        
-        if !all_professions.include?(new_profession) then
-            return "You need to select a proper profession among these: #{all_professions}"
+
+        if !all_professions.include?(new_profession)
+
+            professionsString = ""
+            all_professions.each do |profession|
+                professionsString += "`"+profession+"` "
+            end
+            return "You need to select a proper profession among these:.\n"+professionsString
         end
-        
-        if current_profession == new_profession then
-           return "#{@username}, you already are a #{new_profession}" 
+
+        if current_profession == new_profession
+           return "#{@username}, you already are a *#{new_profession}*."
         end
-        
+
         @memory.save(@username, "profession", new_profession)
-        
-        return "#{@username} has changed profession from #{current_profession} to #{new_profession}"
+
+        return "#{@username} has changed profession from *#{current_profession}* to *#{new_profession}*."
     end
 
     def attack
-        all_professions = [ "peasant", "fighter", "rogue", "mage" ] # TODO : move these common AND replicated constants to a private implementation class, hidden from Answer interface
-        
+        all_professions = @@professions.keys
+
         target = @message.sub("attack","").split(" ")[1]
         damage = 1
 
@@ -76,18 +88,12 @@ class Answer
             damage = 10
         end
 
-        # i'm not a fan or rebuilding this hash table every invokation...  
-        battle_message = { "peasant" => "#{@username} throws a rock at *#{target}*", 
-                           "fighter" => "#{@username} swings their sword at *#{target}*", 
-                           "rogue" => "#{@username} blends with the shadows and backstabs *#{target}*",
-                           "mage" => "#{@username} casts a fireball at *#{target}*" }
-
         # get HP
 
         @memory.connect()
-        
+
         current_profession = all_professions[0]
-        
+
         thoughts = @memory.load("profession")
 
         thoughts.each do |known|
@@ -98,7 +104,9 @@ class Answer
             break
           end
         end
-        
+
+        battle_message = "#{@username} #{@@professions[current_profession]} *#{target}*"
+
         thoughts = @memory.load("health ")
 
         thoughts.each do |known|
@@ -113,9 +121,9 @@ class Answer
             @memory.save("ludivine","health #{target}",hp.to_s)
 
             if (hp) < 1
-                return "#{battle_message[current_profession]}, killing them!"
+                return "#{battle_message}, killing them!"
             else
-                return "#{battle_message[current_profession]}, down to *"+hp.to_s+"hp*!"
+                return "#{battle_message}, down to *"+hp.to_s+"hp*!"
             end
 
 
