@@ -21,7 +21,7 @@ class Answer
 
         if chamber.to_i > 0 then return "There is already a bullet in the revolver." end
         @memory.save("ludivine","roulette chamber","100000".split("").shuffle.join)
-        return "You put a bullet in the revolver."
+        return "You put a bullet in the revolver. :japanese_ogre:"
 
     end
 
@@ -38,7 +38,7 @@ class Answer
         end
 
         @memory.save("ludivine","roulette chamber",chamber.split("").shuffle.join)
-        return "#{@username} spins the cylinder."
+        return "#{@username} spins the cylinder. :return:"
 
     end
 
@@ -83,14 +83,14 @@ class Answer
         @memory.save("ludivine","roulette chamber",chamber)
 
         if chamberValue == "1"
-            return "You pull the trigger, the gun goes.. *POW*!\nYou shot yourself in the face and died.."
+            return "You pull the trigger, the gun goes.. *POW*! :finnadie::collision::gun:\nYou shot yourself in the face and died.."
         end
 
         if chamber.to_i == 0
-            return "You pull the trigger, the gun goes.. *click*!\nThe gun is empty, you should `load` it."
+            return "You pull the trigger, the gun goes.. *click*! :relaxed:\nThe gun is empty, you should `load` it."
         end
 
-        return "You pull the trigger, the gun goes.. *click*!\nYou survived."
+        return "You pull the trigger, the gun goes.. *click*! :godmode:\nYou survived."
 
     end
 end
