@@ -83,6 +83,7 @@ class Answer
         @memory.save("ludivine","roulette chamber",chamber)
 
         if chamberValue == "1"
+            @memory.save("ludivine", "health #{@username}", 0.to_s)
             return "You pull the trigger, the gun goes.. *POW*! :finnadie::collision::gun:\nYou shot yourself in the face and died.."
         end
 
