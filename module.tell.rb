@@ -11,11 +11,6 @@ class Answer
             return "#{dark_array}."
         end
 
-        if @message.include?("rules") or @message.include?("manifesto")
-            manifesto = "https://merveilles.slack.com/files/maxdeviant/F046SD1PN/Rules"
-            return manifesto
-        end
-
         return "I don't know what to tell you."
 
     end
