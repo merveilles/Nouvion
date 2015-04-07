@@ -1,5 +1,5 @@
 class Answer
-  
+
     @@professions = {
         "peasant" => "throws a rock at",
         "fighter" => "swings their sword at",
@@ -7,7 +7,7 @@ class Answer
         "mage" => "casts a fireball at",
         "necromancer" => "sics a ghoul on"
     }
-  
+
     def battle
 
         return "Choose a user for me to `attack` `heal` & `raise` or request to see the `scores`.\nYou *must* be in <#ze-arena> to attack other players."
@@ -16,27 +16,27 @@ class Answer
 
     def profession
         p = @message.sub("battle profession","").split(" ") # i'm seeing all kinds of problems if a user has a name which is a resevered word.
-        
-        combatant = Combatant.new(@username, @memory) 
-       
+
+        combatant = Combatant.new(@username, @memory)
+
         if p.length == 0 then
             return "Your current profession is *#{combatant.profession}*."
         end
-        
+
         return combatant.change_profession(p[0])
     end
 
     def attack
 
-        if @channel != "zearena" then return "Please take your fight into <#ze-arena>." end
+        if @channel != "#ze-arena" then return "Please take your fight into <#ze-arena>." end
 
         p = @message.sub("battle attack","").split(" ")
-        
+
         if p.length == 0 then
             return "You have to select a target"
         end
-                
-        targetname = @message.sub("attack","").split(" ")[1] 
+
+        targetname = @message.sub("attack","").split(" ")[1]
         damage = 1
 
         #todo : validate target is actually somebody that exists in merveilles
@@ -45,10 +45,10 @@ class Answer
             targetname = @username
             damage = 10
         end
-        
+
         attacker = Combatant.new(@username, @memory)
         target = Combatant.new(targetname, @memory)
-        
+
         return attacker.attack(target, damage)
 
     end
@@ -56,7 +56,7 @@ class Answer
     def heal
 
         targetname = @message.sub("heal","").split(" ")[1]
-        
+
         target = Combatant.new(targetname, @memory)
         return target.heal(1)
 
@@ -116,16 +116,16 @@ end
 # TODO : MOVE THIS CLASS TO A UTILITY MODULE
 ############################
 class MemoryObject
-    
+
     attr_reader :name
-    
+
     def initialize(name, memory)
         @name = name
         @memory = memory
-        
+
         @memory.connect()
     end
-    
+
     def load_from_memory(attribute, default_value = nil)
         thoughts = @memory.load(attribute + " ")
 
@@ -135,7 +135,7 @@ class MemoryObject
 
             return known[2]
         end
-        
+
         @memory.save("ludivine", "#{@name} #{@attribute}", default_value.to_s) # add missing values to users that get instantiated as combatants
         return default_value.to_s
     end
@@ -157,19 +157,19 @@ class Combatant < MemoryObject
         "mage" => "casts a fireball at",
         "necromancer" => "sics a ghoul on"
     }
-    
+
     attr_reader :profession
-    attr_reader :health  
-    
+    attr_reader :health
+
     def initialize(name, memory)
         super(name, memory)
-        
+
         @health = load_from_memory("health", 10).to_i
         @profession = load_from_memory("profession", @@all_professions[0])
     end
-    
+
     def attack(target, damage) # call this on the attacker, with target as argument
-        
+
         battle_message = @@all_professions[@profession]
 
         if target.health < 1 then
@@ -184,14 +184,14 @@ class Combatant < MemoryObject
             return "#{@name} #{battle_message} #{target.name}, down to *"+target.health.to_s+"hp*!"
         end
     end
-    
+
     def heal(amount)
         if @health >= 15 then
             return "*#{@name}*'s health is already full."
         elsif @health < 1 then
             return "*#{@name}* is dead."
         end
-        
+
         @health += amount
         if @health > 15 then
             @health = 15
@@ -200,28 +200,28 @@ class Combatant < MemoryObject
 
         return "I healed *#{@name}* up to *"+@health.to_s+"hp*!"
     end
-    
+
     def damage(amount)
         if @health - amount > 0 then
           @health -= amount
         else
           @health = 0
         end
-        
+
         save_to_memory("health", @health)
     end
-    
+
     def raise
         if @health > 0 then
             return "*#{@name}* is not dead."
         end
-        
+
         @health = 5
         save_to_memory("health", @health) #again with the two-calls
-        
+
         return "I raised *#{@name}* back to life with *5hp*!"
     end
-  
+
     def change_profession(new_profession)
         all_professions = @@all_professions.keys
 
