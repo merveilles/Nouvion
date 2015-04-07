@@ -27,7 +27,6 @@ class Answer
     end
 
     def attack
-        params = @message.sub("battle profession","").split(" ")
         
         if params.length == 0 then
             return "You have to select a target"
