@@ -22,18 +22,6 @@ class Answer
         # return "Huh? Sorry #{@username}, *#{@moduleName}* does not have a method called *#{@methodName}*."
     end
 
-    def hello
-
-        return "Hello #{@username}, nice to see you."
-
-    end
-
-    def xoka
-
-        return "Xoka #{@username}, nice to see you."
-
-    end
-
     def hey
 
         return "hey #{@username}."
@@ -80,19 +68,18 @@ class Answer
 
     def rules
 
-        return "Rule #1: You must find yourself a monochromatic avatar.\nRule #2: I, *Ludivine*, am above the law.\n"
+        rules = [
+            "Rule #1: You must find yourself a monochromatic avatar.",
+            "Rule #2: I, *Ludivine*, am above the law."
+        ]
+
+        return rules.join("\n")
 
     end
 
     def forget
 
         return "Ludivine never forgets."
-
-    end
-
-    def bye
-
-        return "See you around "+@username+"."
 
     end
 

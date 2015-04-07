@@ -14,26 +14,6 @@ class TestAnswer < Minitest::Test
 
     end
 
-    def test_answer_hello
-
-        answer = Answer.new("answer", "hello", "maxdeviant", "hello", "theartificiallounge")
-
-        hello = answer.hello()
-
-        assert_equal "Hello maxdeviant, nice to see you.", hello
-
-    end
-
-    def test_answer_xoka
-
-        answer = Answer.new("answer", "xoka", "maxdeviant", "xoka", "theartificiallounge")
-
-        xoka = answer.xoka()
-
-        assert_equal "Xoka maxdeviant, nice to see you.", xoka
-
-    end
-
     def test_answer_hey
 
         answer = Answer.new("answer", "hey", "maxdeviant", "hey", "theartificiallounge")
@@ -80,7 +60,7 @@ class TestAnswer < Minitest::Test
 
         rules = answer.rules()
 
-        assert_equal "Rule #1: You must find yourself a monochromatic avatar.\nRule #2: I, *Ludivine*, am above the law.\n", rules
+        assert_equal true, (rules.instance_of? String)
 
     end
 
