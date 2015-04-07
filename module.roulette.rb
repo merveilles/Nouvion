@@ -9,7 +9,8 @@ class Answer
     # bullet in each position
     # amt. of bullets in revolver
     def roulette
-            return "A game of russian roulette. Actions: roulette load 1..6 bullets, roulette spin, roulette pull."
+        return "A game of russian roulette. Actions: roulette load 1..6 bullets, roulette spin, roulette pull."
+    end
 
     def load
         action = @message.gsub("roulette", "").strip
@@ -38,8 +39,7 @@ class Answer
             end
         end
 
-
-        bullets = parts[2].to_i 
+        bullets = parts[1].to_i 
         if bullets == 0 then 
             return "You need bullets to load a revolver.."
         elsif bullets > 6 then
@@ -70,7 +70,7 @@ class Answer
         if new_bullets >= 6 then
             response << " It is fully loaded."
         end
-        @memory.save("ludivine", "roulette chamber-#{chamber}", "1")
+        @memory.save("ludivine", "roulette position", cylinder_pos.to_s)
         @memory.save("ludivine", "roulette bullets", bullets.to_s)
         return response
     end
