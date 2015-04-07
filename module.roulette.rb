@@ -16,28 +16,18 @@ class Answer
         @memory.connect()
         action = @message.gsub("roulette", "").strip
         parts = action.split(" ")
-        gun_bullets = @memory.load("roulette bullets")
-        if gun_bullets != nil and gun_bullets[2] != nil then
-            gun_bullets = gun_bullets[2].to_i
-        else gun_bullets = 0 end
-        gun_chambers = @memory.load("roulette chamber-")
-        cylinder_pos = @memory.load("roulette position")
-        if cylinder_pos != nil and cylinder_pos[2] != nil then
-            cylinder_pos = cylinder_pos[2].to_i
-        else cylinder_pos = 0 end
-      
+
+        details = @memory.load("roulette ")
+        gun_bullets = 0
+        cylinder_pos = 0
         chambers = {0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0}
-        # load the chambers from the db
-        gun_chambers.each do |part|
-            if part[1] != nil then
-                # get the chamber number
-                chamber = part[1].split("-")[1].to_i
-                if part[2] != nil then
-                    chambers[chamber] = part[2].to_i
-                else 
-                    chambers[chamber] = 0
-                end
+        details.each do |known|
+            if known[1].include? "bullets" then puts gun_bullets = known[2].to_i end
+            if known[1].include? "chamber" then 
+                chamber = known[1].split("-")[1].to_i
+                chambers[chamber] = known[2].to_i
             end
+            if known[1].include? "position" then puts cylinder_pos = known[2].to_i end
         end
 
         bullets = parts[1].to_i 
@@ -52,9 +42,30 @@ class Answer
         end
 
         new_bullets = bullets + gun_bullets
-        if new_bullets > 6 then new_bullets = 6 end
-        # save new bullet amount
+        thrown_bullets = 0
+        if new_bullets > 6 then 
+            thrown_bullets = new_bullets - 6
+            new_bullets = 6 
+        end
+        # save new amount of bullets
         @memory.save("ludivine", "roulette bullets", new_bullets.to_s)
+
+        # format the response
+        response = "#{@username} loads #{bullets-thrown_bullets} bullets into the revolver"
+        # only one bullet => change the text to reflect
+        if bullets - thrown_bullets == 1 then
+            response.gsub!("bullets", "bullet")
+        end
+
+        # add nice detail
+        if thrown_bullets > 0 then
+            response << ", and throws away #{thrown_bullets}"
+        end
+
+        response << "."
+        if new_bullets >= 6 then
+            response << " It is fully loaded."
+        end
 
         6.times do
             # chamber already has a bullet; go to the next one
@@ -67,12 +78,7 @@ class Answer
             if bullets == 0 then break end
         end
 
-        response = "You load #{bullets} bullets into the revolver."
-        if new_bullets >= 6 then
-            response << " It is fully loaded."
-        end
         @memory.save("ludivine", "roulette position", cylinder_pos.to_s)
-        @memory.save("ludivine", "roulette bullets", bullets.to_s)
         return response
     end
 
@@ -81,39 +87,37 @@ class Answer
         # randomize position of cylinder
         new_pos = rand(6)
         @memory.save("ludivine", "roulette position", new_pos.to_s)
-        return "You spin the cylinder."
+        return "#{@username} spins the cylinder."
     end
 
     def pull
         @memory.connect()
-        gun_chambers = @memory.load("roulette chamber-")
-        cylinder_pos = @memory.load("roulette position")
-        if cylinder_pos != nil and cylinder_pos[2] != nil then
-            cylinder_pos = cylinder_pos[2].to_i
-        else cylinder_pos = 0 end
-      
+        details = @memory.load("roulette ")
+        gun_bullets = 0
+        cylinder_pos = 0
         chambers = {0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0}
-        # load the chambers from the db
-        gun_chambers.each do |part|
-            if part[1] != nil then
+        details.each do |known|
+            if known[1].include? "bullets" then puts gun_bullets = known[2].to_i end
+            if known[1].include? "chamber" then 
                 # get the chamber number
-                chamber = part[1].split("-")[1].to_i
-                if part[2] != nil then
-                    chambers[chamber] = part[2].to_i
-                else 
-                    chambers[chamber] = 0
-                end
+                chamber = known[1].split("-")[1].to_i
+                # fill it up (with nothingness or with a bullet)
+                chambers[chamber] = known[2].to_i
             end
+            if known[1].include? "position" then puts cylinder_pos = known[2].to_i end
         end
 
+        # 6.times do |time| puts time.to_s + ":" + chambers[time].to_s end
+
+        response = "#{@username} pulls the trigger..."
         # check if bullet in chamber
         if chambers[cylinder_pos] == 1 then
             # fire the chamber and increment to the next
-            @memory.save("ludivine", "roulette chamber-#{chamber}", "0")
+            @memory.save("ludivine", "roulette chamber-#{cylinder_pos}", "0")
             @memory.save("ludivine", "roulette position", ((cylinder_pos + 1) % 6).to_s)
             @memory.save("ludivine", "roulette bullets", (gun_bullets - 1).to_s)
-            return "*BANG!*"
+            return response << " *BANG* #{@username} shot themselves."
         end
-        return "No bullet."
+        return response << " *Click* Nothing."
     end
 end
