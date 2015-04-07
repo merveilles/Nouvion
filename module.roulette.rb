@@ -1,135 +1,96 @@
 #!/bin/env ruby
 # encoding: utf-8
 
-# load
-# spin
-# pull trigger
 class Answer
-    # cylinder position
-    # bullet in each position
-    # amt. of bullets in revolver
+
     def roulette
-        return "A game of russian roulette. Actions: roulette load 1..6 bullets, roulette spin, roulette pull."
+        return "A game of russian roulette.\n`load` `spin` `pull`"
     end
 
     def load
+
+        chamber = ""
+
         @memory.connect()
-        action = @message.gsub("roulette", "").strip
-        parts = action.split(" ")
-
-        details = @memory.load("roulette ")
-        gun_bullets = 0
-        cylinder_pos = 0
-        chambers = {0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0}
-        details.each do |known|
-            if known[1].include? "bullets" then gun_bullets = known[2].to_i end
-            if known[1].include? "chamber" then 
-                chamber = known[1].split("-")[1].to_i
-                chambers[chamber] = known[2].to_i
-            end
-            if known[1].include? "position" then cylinder_pos = known[2].to_i end
+        thoughts = @memory.load("roulette chamber")
+        thoughts.each do |known|
+            if known[0] != "ludivine" then next end
+            if known[1] != "roulette chamber" then next end
+            chamber = known[2]
         end
 
-        bullets = parts[1].to_i 
-        if bullets == 0 then 
-            return "You need bullets to load a revolver.."
-        elsif bullets > 6 then
-            return "The revolver has 6 chambers, not #{bullets}.."
-        elsif bullets < 0 then
-            return ".."
-        elsif gun_bullets == 6 then
-            return "The revolver is already fully loaded."
-        end
+        if chamber.to_i > 0 then return "There is already a bullet in the revolver." end
+        @memory.save("ludivine","roulette chamber","100000".split("").shuffle.join)
+        return "You put a bullet in the revolver."
 
-        new_bullets = bullets + gun_bullets
-        thrown_bullets = 0
-        if new_bullets > 6 then 
-            thrown_bullets = new_bullets - 6
-            new_bullets = 6 
-        end
-        # save new amount of bullets
-        @memory.save("ludivine", "roulette bullets", new_bullets.to_s)
-
-        # format the response
-        response = "#{@username} loads #{bullets-thrown_bullets} bullets into the revolver"
-        # only one bullet => change the text to reflect
-        if bullets - thrown_bullets == 1 then
-            response.gsub!("bullets", "bullet")
-        end
-
-        # add nice detail
-        if thrown_bullets > 0 then
-            response << ", and throws away #{thrown_bullets}"
-        end
-
-        response << "."
-        if new_bullets >= 6 then
-            response << " It is fully loaded."
-        end
-
-        6.times do
-            # chamber already has a bullet; go to the next one
-            if chambers[cylinder_pos] == 1 then next end
-            # load a bullet
-            @memory.save("ludivine", "roulette chamber-#{cylinder_pos}", "1")
-            cylinder_pos = (cylinder_pos + 1) % 6
-            bullets = bullets - 1
-            # we're out of bullets
-            if bullets == 0 then break end
-        end
-
-        @memory.save("ludivine", "roulette position", cylinder_pos.to_s)
-        return response
     end
 
     def spin
+
+        chamber = ""
+
         @memory.connect()
-        # randomize position of cylinder
-        new_pos = rand(6)
-        @memory.save("ludivine", "roulette position", new_pos.to_s)
+        thoughts = @memory.load("roulette chamber")
+        thoughts.each do |known|
+            if known[0] != "ludivine" then next end
+            if known[1] != "roulette chamber" then next end
+            chamber = known[2]
+        end
+
+        @memory.save("ludivine","roulette chamber",chamber.split("").shuffle.join)
         return "#{@username} spins the cylinder."
+
     end
 
     def bullets
-        gun_bullets = 0
-        details = @memory.load("roulette ")
-        details.each do |known|
-            if known[1].include? "bullets" then gun_bullets = known[2].to_i; break end
-        end
-        if gun_bullets == 1 then
-            return "The revolver has 1 bullet."
-        else
-            return "The revolver has #{gun_bullets} bullets."
-        end
-    end
-    def pull
+
+        chamber = ""
+
         @memory.connect()
-        details = @memory.load("roulette ")
-        gun_bullets = 0
-        cylinder_pos = 0
-        chambers = {0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0}
-        details.each do |known|
-            if known[1].include? "bullets" then gun_bullets = known[2].to_i end
-            if known[1].include? "chamber" then 
-                # get the chamber number
-                chamber = known[1].split("-")[1].to_i
-                # fill it up (with nothingness or with a bullet)
-                chambers[chamber] = known[2].to_i
-            end
-            if known[1].include? "position" then cylinder_pos = known[2].to_i end
+        thoughts = @memory.load("roulette chamber")
+        thoughts.each do |known|
+            if known[0] != "ludivine" then next end
+            if known[1] != "roulette chamber" then next end
+            chamber = known[2]
         end
 
-        # 6.times do |time| puts time.to_s + ":" + chambers[time].to_s end
-
-        response = "#{@username} pulls the trigger..."
-        # check if bullet in chamber
-        if chambers[cylinder_pos] == 1 then
-            # fire the chamber and increment to the next
-            @memory.save("ludivine", "roulette chamber-#{cylinder_pos}", "0")
-            @memory.save("ludivine", "roulette position", ((cylinder_pos + 1) % 6).to_s)
-            @memory.save("ludivine", "roulette bullets", (gun_bullets - 1).to_s)
-            return response << " *BANG* #{@username} shot themselves."
+        if chamber.index('1') > -1
+            return "The bullet is in the *chamber #"+chamber.index('1').to_s+"*."
+        else
+            return "There are no bullets in the gun's chamber."
         end
-        return response << " *Click* Nothing."
+
+    end
+
+    def pull
+
+        chamber = ""
+
+        @memory.connect()
+        thoughts = @memory.load("roulette chamber")
+        thoughts.each do |known|
+            if known[0] != "ludivine" then next end
+            if known[1] != "roulette chamber" then next end
+            chamber = known[2]
+        end
+
+        chamberValue = chamber[0,1]
+
+        # Update Chamber
+
+        chamber[0] = ""
+        chamber = chamber+"0"
+        @memory.save("ludivine","roulette chamber",chamber)
+
+        if chamberValue == "1"
+            return "You pull the trigger, the gun goes.. *POW*!\nYou shot yourself in the face and died.."
+        end
+
+        if chamber.to_i == 0
+            return "You pull the trigger, the gun goes.. *click*!\nThe gun is empty, you should `load` it."
+        end
+
+        return "You pull the trigger, the gun goes.. *click*!\nYou survived."
+
     end
 end
