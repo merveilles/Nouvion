@@ -170,7 +170,7 @@ class Combatant < MemoryObject
         battle_message = @@all_professions[@profession]
 
         if target.health < 1 then
-          return "*#{target}* is already dead."
+          return "*#{target.name}* is already dead."
         end
 
         target.damage(damage)
