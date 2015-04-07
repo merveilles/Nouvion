@@ -10,12 +10,16 @@ class Answer
     # amt. of bullets in revolver
     def roulette
         action = @message.gsub("roulette", "").strip
-
-        gun_bullets = @memory.load("roulette bullets")[2].to_i
-        gun_bullets ||= 0
+        @memory.connect()
+        gun_bullets = @memory.load("roulette bullets")
+        if gun_bullets != nil and gun_bullets[2] != nil then
+            gun_bullets = gun_bullets[2].to_i
+        else gun_bullets = 0 end
         gun_chambers = @memory.load("roulette chamber-")
-        cylinder_pos = @memory.load("roulette position")[2].to_i
-        cylinder_pos ||= 0
+        cylinder_pos = @memory.load("roulette position")
+        if cylinder_pos != nil and cylinder_pos[2] != nil then
+            cylinder_pos = cylinder_pos[2].to_i
+        else cylinder_pos = 0 end
       
         chambers = {0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0}
         # load the chambers from the db
@@ -50,7 +54,7 @@ class Answer
             new_bullets = bullets + gun_bullets
             if new_bullets > 6 then new_bullets = 6 end
             # save new bullet amount
-            @memory.save("ludivine", "roulette bullets", new_bullets)
+            @memory.save("ludivine", "roulette bullets", new_bullets.to_s)
 
             6.times do
                 # chamber already has a bullet; go to the next one
@@ -68,20 +72,20 @@ class Answer
                 response << " It is fully loaded."
             end
             @memory.save("ludivine", "roulette chamber-#{chamber}", "1")
-            @memory.save("ludivine", "roulette bullets", bullets)
+            @memory.save("ludivine", "roulette bullets", bullets.to_s)
             return response
         elsif action.include? "spin"
             # randomize position of cylinder
             new_pos = rand(6)
-            @memory.save("ludivine", "roulette position", new_pos)
+            @memory.save("ludivine", "roulette position", new_pos.to_s)
             return "You spin the cylinder."
         elsif action.include? "pull"
             # check if bullet in chamber
             if chambers[cylinder_pos] == 1 then
                 # fire the chamber and increment to the next
                 @memory.save("ludivine", "roulette chamber-#{chamber}", "0")
-                @memory.save("ludivine", "roulette position", (cylinder_pos + 1) % 6)
-                @memory.save("ludivine", "roulette bullets", gun_bullets - 1)
+                @memory.save("ludivine", "roulette position", ((cylinder_pos + 1) % 6).to_s)
+                @memory.save("ludivine", "roulette bullets", (gun_bullets - 1).to_s)
                 return "*BANG!*"
             end
             return "No bullet."
