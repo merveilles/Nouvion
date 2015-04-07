@@ -22,12 +22,12 @@ class Answer
         cylinder_pos = 0
         chambers = {0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0}
         details.each do |known|
-            if known[1].include? "bullets" then puts gun_bullets = known[2].to_i end
+            if known[1].include? "bullets" then gun_bullets = known[2].to_i end
             if known[1].include? "chamber" then 
                 chamber = known[1].split("-")[1].to_i
                 chambers[chamber] = known[2].to_i
             end
-            if known[1].include? "position" then puts cylinder_pos = known[2].to_i end
+            if known[1].include? "position" then cylinder_pos = known[2].to_i end
         end
 
         bullets = parts[1].to_i 
@@ -90,6 +90,18 @@ class Answer
         return "#{@username} spins the cylinder."
     end
 
+    def bullets
+        gun_bullets = 0
+        details = @memory.load("roulette ")
+        details.each do |known|
+            if known[1].include? "bullets" then gun_bullets = known[2].to_i; break end
+        end
+        if gun_bullets == 1 then
+            return "The revolver has 1 bullet."
+        else
+            return "The revolver has #{gun_bullets} bullets."
+        end
+    end
     def pull
         @memory.connect()
         details = @memory.load("roulette ")
@@ -97,14 +109,14 @@ class Answer
         cylinder_pos = 0
         chambers = {0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0}
         details.each do |known|
-            if known[1].include? "bullets" then puts gun_bullets = known[2].to_i end
+            if known[1].include? "bullets" then gun_bullets = known[2].to_i end
             if known[1].include? "chamber" then 
                 # get the chamber number
                 chamber = known[1].split("-")[1].to_i
                 # fill it up (with nothingness or with a bullet)
                 chambers[chamber] = known[2].to_i
             end
-            if known[1].include? "position" then puts cylinder_pos = known[2].to_i end
+            if known[1].include? "position" then cylinder_pos = known[2].to_i end
         end
 
         # 6.times do |time| puts time.to_s + ":" + chambers[time].to_s end
