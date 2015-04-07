@@ -10,7 +10,7 @@ class Answer
   
     def battle
 
-        return "Choose a user for me to `attack` `heal` or `raise` - or request to see the `scores`."
+        return "Choose a user for me to `attack` `heal` & `raise` or request to see the `scores`.\nYou *must* be in <#ze-arena> to attack other players."
 
     end
 
@@ -27,6 +27,9 @@ class Answer
     end
 
     def attack
+
+        if @channel != "zearena" then return "Please take your fight into <#ze-arena>." end
+
         p = @message.sub("battle attack","").split(" ")
         
         if p.length == 0 then
