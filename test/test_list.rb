@@ -20,7 +20,7 @@ class TestList < Minitest::Test
 
         answer = Answer.new("list", "list", "maxdeviant", "shirt", "theartificiallounge", ListMemoryTest.new())
         list = answer.list()
-        assert_equal "I know 1 kind of *shirt* : _t-shirt_.", list
+        assert_equal "The only *shirt* I know is _t-shirt_.", list
 
     end
 
@@ -40,11 +40,27 @@ class TestList < Minitest::Test
 
     end    
 
+    def test_list_duplicates
+
+        answer = Answer.new("list", "list", "maxdeviant", "duptest", "theartificiallounge", ListMemoryTest.new())
+        list = answer.list()
+        assert_equal "I know 2 kinds of *duptest* : _a_, _b_.", list
+
+    end        
+
+    def test_list_all
+
+        answer = Answer.new("list", "all", "maxdeviant", "list all", "theartificiallounge", ListMemoryTest.new())
+        list = answer.all()
+        assert_equal "There are 2 listable topics : _scotch_, _duptest_.", list
+
+    end          
+
     def test_list_help
 
         answer = Answer.new("list", "list", "maxdeviant", "", "theartificiallounge", ListMemoryTest.new())
         list = answer.list()
-        assert_equal "List does a reverse query on my memory. (e.g. _ludivine list single malt_)", list
+        assert_equal "List does a reverse query on my memory with the format :\n`ludivine list single malt`", list
 
     end        
 
@@ -58,6 +74,9 @@ class ListMemoryTest < Memory
             [ "ludivine", "t-shirt", "shirt" ],
             [ "ludivine", "ardbeg", "scotch" ],
             [ "ludivine", "glenmorangie", "scotch" ],
+            [ "ludivine", "a", "duptest" ],
+            [ "ludivine", "a", "duptest" ],
+            [ "ludivine", "b", "duptest" ],
         ]
 
     end
