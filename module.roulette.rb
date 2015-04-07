@@ -9,9 +9,11 @@ class Answer
     # bullet in each position
     # amt. of bullets in revolver
     def roulette
-            return "A game of russian roulette. Actions: roulette load 1..6 bullets, roulette spin, roulette pull."
+        return "A game of russian roulette. Actions: roulette load 1..6 bullets, roulette spin, roulette pull."
+    end
 
     def load
+        @memory.connect()
         action = @message.gsub("roulette", "").strip
         parts = action.split(" ")
         gun_bullets = @memory.load("roulette bullets")
@@ -37,7 +39,6 @@ class Answer
                 end
             end
         end
-
 
         bullets = parts[2].to_i 
         if bullets == 0 then 
@@ -76,6 +77,7 @@ class Answer
     end
 
     def spin
+        @memory.connect()
         # randomize position of cylinder
         new_pos = rand(6)
         @memory.save("ludivine", "roulette position", new_pos.to_s)
@@ -83,6 +85,7 @@ class Answer
     end
 
     def pull
+        @memory.connect()
         gun_chambers = @memory.load("roulette chamber-")
         cylinder_pos = @memory.load("roulette position")
         if cylinder_pos != nil and cylinder_pos[2] != nil then
