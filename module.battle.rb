@@ -15,24 +15,25 @@ class Answer
     end
 
     def profession
-        params = @message.sub("battle profession","").split(" ") # i'm seeing all kinds of problems if a user has a name which is a resevered word.
+        p = @message.sub("battle profession","").split(" ") # i'm seeing all kinds of problems if a user has a name which is a resevered word.
         
         combatant = Combatant.new(@username, @memory) 
        
-        if params.length == 0 then
+        if p.length == 0 then
             return "Your current profession is *#{combatant.profession}*."
         end
         
-        return combatant.change_profession(params[0])
+        return combatant.change_profession(p[0])
     end
 
     def attack
+        p = @message.sub("battle attack","").split(" ")
         
-        if params.length == 0 then
+        if p.length == 0 then
             return "You have to select a target"
         end
                 
-        targetname = @message.sub("attack","").split(" ")[1]
+        targetname = @message.sub("attack","").split(" ")[1] 
         damage = 1
 
         #todo : validate target is actually somebody that exists in merveilles
