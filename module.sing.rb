@@ -19,7 +19,7 @@ class Answer
 
         ret = "I don't know this artist, sorry"
 
-        if artist.include? "sandstorm" || artist.include? "darude"
+        if (artist.include? "sandstorm") || (artist.include? "darude")
             return ":notes: DU DU DU DU DU"
         end
 
