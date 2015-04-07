@@ -36,4 +36,50 @@ class TestWho < Minitest::Test
 
     end
 
+    def test_who_told
+
+        answer = Answer.new("who", "told", "maxdeviant", "who told you that apple is red", "theartificiallounge", WhoMemoryTest.new())
+        assert_equal "*chocobo* told me that _apple_ is _red_.", answer.told()
+
+    end
+
+    def test_who_said
+
+        answer = Answer.new("who", "said", "maxdeviant", "who said that apple is red", "theartificiallounge", WhoMemoryTest.new())
+        assert_equal "*chocobo* said that _apple_ is _red_.", answer.said()
+
+    end    
+
+    def test_who_said_two
+
+        answer = Answer.new("who", "said", "maxdeviant", "who said that potato is good", "theartificiallounge", WhoMemoryTest.new())
+        assert_equal "*renaud*, *maxdeviant* said that _potato_ is _good_.", answer.said()
+
+    end        
+
+    def test_who_said_nobody
+
+        answer = Answer.new("who", "said", "maxdeviant", "who said that car is blue", "theartificiallounge", WhoMemoryTest.new())
+        assert_equal "Nobody said that.", answer.said()
+
+    end        
+
+
+end
+
+class WhoMemoryTest < Memory
+
+    def load(topic)
+
+        return [
+            [ "renaud", "potato", "good" ],
+            [ "aliceffekt", "potato", "bad" ],
+            [ "maxdeviant", "potato", "good" ],
+            [ "chocobo", "apple", "red" ],
+            [ "asmi", "apple", "orangered" ],
+            [ "chie", "meat", "delicious" ],
+        ]
+
+    end
+
 end
