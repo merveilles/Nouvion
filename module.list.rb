@@ -7,7 +7,7 @@ class Answer
 
         topic = @message.gsub("list", "").strip
         if topic == "" then
-            return "List does a reverse query on my memory with the format :\n`ludivine list single malt`"
+            return "List does a reverse query on my memory with the format :\n`ludivine list single malt`\nYou may also query which topics can be listed with `list all`."
         end
 
         @memory.connect()
@@ -31,7 +31,7 @@ class Answer
 
         @memory.connect()
         thoughts = @memory.load("")
-        
+
         matches = thoughts
             .select.with_index { |x,i| thoughts.index.with_index { |y,j| y[2] == x[2] && j != i } != nil }
             .map { |x| x[2] }
