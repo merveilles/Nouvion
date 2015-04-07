@@ -26,7 +26,7 @@ class TestBattle < Minitest::Test
 
         answer = Answer.new("battle", "profession", "strstr", "battle profession rogue", "theartificiallounge", mem)
         battle = answer.profession()
-        # puts battle
+        #puts battle
 
         answer = Answer.new("battle", "profession", "strstr", "battle profession", "theartificiallounge", mem)
         battle = answer.profession()
@@ -52,13 +52,21 @@ class TestBattle < Minitest::Test
 
         answer = Answer.new("battle", "profession", "strstr", "battle profession rogue", "theartificiallounge", mem)
         battle = answer.profession()
-        # puts battle
+        #puts battle
 
         answer = Answer.new("battle", "attack", "strstr", "battle attack potato", "theartificiallounge", mem)
         battle = answer.attack()
-        # puts battle
+        #puts battle
 
+        answer = Answer.new("battle", "raise", "strstr", "battle raise strstr", "theartificiallounge", mem)
+        battle = answer.raise()
+        #puts battle
+        
+        answer = Answer.new("battle", "raise", "strstr", "battle raise potato", "theartificiallounge", mem)
+        battle = answer.raise()
+        #puts battle
     end
+
 
 end
 
@@ -66,7 +74,8 @@ class BattleMemoryTest < Memory
     attr_reader :mem
     def initialize
       @mem = [["ludivine", "potato", "no"],
-              ["strstr", "profession", "mage"],
+              ["ludivine", "profession strstr", "mage"],
+              ["ludivine", "health strstr", "7"],
               ["orange", "seeds", "yes"],
               ["ludivine", "health potato", "2"]]
     end
@@ -78,15 +87,13 @@ class BattleMemoryTest < Memory
     end
 
     def save(owner, key, value)
-
-        if owner == "strstr" then
-           @mem[1][1] = key
+        if key == "profession strstr" then
            @mem[1][2] = value
            return
         end
 
         if owner == "ludivine" && key == "health potato" then
-           @mem[3][2] = value
+           @mem[4][2] = value
            return
         end
 
