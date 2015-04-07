@@ -60,7 +60,7 @@ class TestList < Minitest::Test
 
         answer = Answer.new("list", "list", "maxdeviant", "", "theartificiallounge", ListMemoryTest.new())
         list = answer.list()
-        assert_equal "List does a reverse query on my memory with the format :\n`ludivine list single malt`", list
+        assert_equal "List does a reverse query on my memory with the format :\n`ludivine list single malt`\nYou may also query which topics can be listed with `list all`.", list
 
     end        
 
