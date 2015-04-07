@@ -24,11 +24,7 @@ class Answer
 
         thoughts.each do |known|
             if known[0] == "ludivine" then next end
-            return "Why "+response+"? Is it because of "+known[2]+"?"
+            return "Why "+response+"? Is it because of "+nlpResponse(known[2])+"?"
         end
 
         return "Why "+response+"?"
-
-    end
-
-end

@@ -21,10 +21,23 @@ class Answer
         
         if name != "" && value != "" && term != ""
             @memory.save(@username, name, value)
-            return "I will remember that *#{name}*" + term + "*#{value}*."
+            return "I will remember that *"+nlpResponse(name)+"*" + term + "*#{value}*."
         end
         
         return "What do you want me to remember #{@username}?"
+
+    end
+
+    def nlpResponse words
+
+        words = " "+words+" "
+        words = words.sub(" my "," _your_ ")
+        words = words.sub(" me "," _you_ ")
+        words = words.sub(" your "," _my_ ")
+        words = words.sub(" you "," _me_ ")
+        words = words.gsub("_","")
+
+        return words.strip
 
     end
     
