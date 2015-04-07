@@ -28,3 +28,7 @@ class Answer
         end
 
         return "Why "+response+"?"
+
+    end
+
+end
