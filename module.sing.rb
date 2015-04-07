@@ -19,6 +19,10 @@ class Answer
 
         ret = "I don't know this artist, sorry"
 
+        if (artist.include? "aliceffekt")
+            return ":notes: _instrumental_"
+        end
+
         if (artist.include? "sandstorm") || (artist.include? "darude")
             return ":notes: DU DU DU DU DU"
         end
