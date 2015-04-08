@@ -19,6 +19,14 @@ class Answer
 
         ret = "I don't know this artist, sorry"
 
+        if (artist.include? "aliceffekt")
+            return ":notes: _instrumental_"
+        end
+
+        if (artist.include? "sandstorm") || (artist.include? "darude")
+            return ":notes: DU DU DU DU DU"
+        end
+
         if artist.include? "by"
             argv = artist
 
@@ -34,7 +42,7 @@ class Answer
             if ret == "We don't currently have a license for these lyrics. Please try again in a few days!"
                 ret = "I'm sorry i don't know how to sing it"
             else
-                ret= ret.each_line.reject{|x| x.strip == ""}[0...4].collect { |x| ":notes: " + x }.join             
+                ret= ret.each_line.reject{|x| x.strip == ""}[0...4].collect { |x| ":notes: " + x }.join
             end
 
             return ret
@@ -62,7 +70,7 @@ class Answer
                 if ret == "We don't currently have a license for these lyrics. Please try again in a few days!"
                     ret = "I'm sorry i don't know how to sing it"
                 else
-                    ret= ret.each_line.reject{|x| x.strip == ""}[0...4].collect { |x| ":notes: " + x }.join             
+                    ret= ret.each_line.reject{|x| x.strip == ""}[0...4].collect { |x| ":notes: " + x }.join
                 end
             end
         end
