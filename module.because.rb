@@ -1,25 +1,25 @@
 class Answer
 
-	def because
+    def because
 
-		@memory.connect()
-		thoughts = @memory.load("last query "+@username).shuffle[0]
+        @memory.connect()
+        thoughts = @memory.load("last query "+@username).shuffle[0]
 
-		if thoughts[2].to_s.strip == "" then return "mhm?" end
+        if thoughts[2].to_s.strip == "" then return "mhm?" end
 
-		# Strip message
+        # Strip message
 
-		storeKey = thoughts[2]
-		storeValue = @message.sub("because of","").sub("because","")
+        storeKey = thoughts[2]
+        storeValue = @message.sub("because of","").sub("because","")
 
-		# Erase last message
+        # Erase last message
 
-		@memory.save(@username,storeKey,storeValue)
-		@memory.save("ludivine","last query "+@username,"")
+        @memory.save(@username,storeKey,storeValue)
+        @memory.save("ludivine","last query "+@username,"")
 
-		return "So, "+nlpResponse(storeKey)+" because of "+nlpResponse(storeValue)+".."
+        return "So, "+nlpResponse(storeKey)+" because of "+nlpResponse(storeValue)+".."
 
-	end
+    end
 
     def nlpResponse words
 
@@ -34,4 +34,6 @@ class Answer
 
         return words.strip
 
-    
+    end
+
+end
