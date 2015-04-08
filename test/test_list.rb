@@ -51,9 +51,7 @@ class TestList < Minitest::Test
 end
 
 class ListMemoryTest < Memory
-
     def connect
-
         #@data = [
         #  ['ludivine', 't-shirt', 'shirt'],
         #  ['ludivine', 'ardbeg', 'scotch'],
@@ -71,7 +69,6 @@ class ListMemoryTest < Memory
         save('ludivine', 'a', 'duptest')
         save('ludivine', 'a', 'duptest')
         save('ludivine', 'b', 'duptest')
-
     end
 
     def load(_topic)
@@ -85,12 +82,11 @@ class ListMemoryTest < Memory
 
         lastRow = @data.index { |row| row[0] == username && row[1] == key }
 
-        if lastRow != nil 
+        if lastRow != nil
             @data[lastRow][2] = value
         else
             @data.push([ username, key, value ])
         end
 
-    end    
-
+    end
 end
