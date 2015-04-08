@@ -28,6 +28,7 @@ class Answer
             "The goat laughs \"BAAAHHHHHHHHHHAHAHA\" as you are forced to leap from the goat tower",
             "The scroll from the elder goat states there is a passage way with a green star engraved. You might become rich if you can find this passage.",
             "The poster reads: \"There is no futBAAAAAAHHHHure but what we mBAAAAHHHHHHHHke for ouBAAAAAAHHHHHHHHHHHHHrselves.\""
+            "You are ambushed by a troupe of hobgoats. Although they are small, they are very ugly and their coordinated acrobatics intimidate you.",
         ]
 
         return "@#{@username}: #{tower.shuffle[0]}"
