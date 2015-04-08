@@ -1,32 +1,32 @@
 class Answer
-    # Available: moduleName,methodName,username,message
 
-    def time
-        time = Time.new.strftime('%H:%M:%S')
-        "The XXIIVV server time is #{time}"
+    def what
+
+        if @message.include?("color")
+            includeModule("color")
+            if @message.include?("aura")  then return aura  end
+            if @message.include?("today") then return today end
+        end
+
+        if @message.include?("time") || @message.include?("day")
+            includeModule("time")
+            if @message.include?("time")  then return time end
+            if @message.include?("day")  then return day end
+        end
+
+        return lookup
+
     end
 
-    def day
-        day = Time.new.strftime('%B %d, %Y')
-        "We are the #{day}."
-    end
+    def lookup
 
-    def month
-        desamber = %w(Monuary Dotuary Trisuary Tetruary Pentuary Hexuary Septamber Octamber Enneamber Desamber Undesamber Dodesamber)
-
-        month = desamber[Time.now.month - 1]
-
-        "The XXIIVV Month is #{month}"
-    end
-
-    def is
-        @memory.connect
-        query = @message.sub('what is', '').strip
+        @memory.connect()
+        query = @message.sub("what is", "").strip
         thoughts = @memory.load(query).shuffle
 
         # No answer
-        if thoughts.length < 1
-	        return "I don't know what *" + query + "* is, but you can teach me about it \bby typing `remember that " + query + ' is ` followed by a short definition.'
+        if thoughts.length < 1 
+	        return "I don't know what *"+query+"* is, but you can teach me about it \bby typing `remember that "+query+" is ` followed by a short definition."
         end
 
         keyAnswer = []
@@ -42,23 +42,25 @@ class Answer
         if keyAnswer[1]
 
         	deepThoughts = @memory.load(keyAnswer[2]).shuffle
-        	deepAnswer = ''
+        	deepAnswer = ""
         	deepThoughts.each do |deepKnown|
         		if deepKnown[1] == keyAnswer[2] then deepAnswer = deepKnown[2] end
         	end
 
-        	if deepAnswer != ''
-        		return '*' + keyAnswer[1] + '* is *' + keyAnswer[2] + '*, ' + deepAnswer + '.'
+        	if deepAnswer != ""
+        		return "*" + keyAnswer[1] + "* is *" + keyAnswer[2] + "*, "+deepAnswer+"."
         	else
-        		return '*' + keyAnswer[1] + '* is *' + keyAnswer[2] + '*.'
+        		return "*" + keyAnswer[1] + "* is *" + keyAnswer[2] + "*."
         	end
         end
 
         # Value Answer return
         if valueAnswer[1]
-        	return "I don't know what *" + query + '* is. Is it like *' + valueAnswer[1] + '*?'
+        	return "I don't know what *" + query + "* is. Is it like *"+valueAnswer[1]+"*?"
         end
 
-        '..'
+        return ".."
+
     end
+    
 end
