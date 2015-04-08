@@ -51,14 +51,46 @@ class TestList < Minitest::Test
 end
 
 class ListMemoryTest < Memory
-    def load(_topic)
-        [
-          ['ludivine', 't-shirt', 'shirt'],
-          %w(ludivine ardbeg scotch),
-          %w(ludivine glenmorangie scotch),
-          %w(ludivine a duptest),
-          %w(ludivine a duptest),
-          %w(ludivine b duptest),
-        ]
+
+    def connect
+
+        #@data = [
+        #  ['ludivine', 't-shirt', 'shirt'],
+        #  ['ludivine', 'ardbeg', 'scotch'],
+        #  ['ludivine', 'glenmorangie', 'scotch'],
+        #  ['ludivine', 'a', 'duptest'],
+        #  ['ludivine', 'a', 'duptest'],
+        #  ['ludivine', 'b', 'duptest']
+        #]
+
+        @data = Array.new
+
+        save('ludivine', 't-shirt', 'shirt')
+        save('ludivine', 'ardbeg', 'scotch')
+        save('ludivine', 'glenmorangie', 'scotch')
+        save('ludivine', 'a', 'duptest')
+        save('ludivine', 'a', 'duptest')
+        save('ludivine', 'b', 'duptest')
+
     end
+
+    def load(_topic)
+
+        if _topic.strip() == "" then return @data end
+        return @data.select { |row| row.include?(_topic) }
+
+    end
+
+    def save(username, key, value)
+
+        lastRow = @data.index { |row| row[0] == username && row[1] == key }
+
+        if lastRow != nil 
+            @data[lastRow][2] = value
+        else
+            @data.push([ username, key, value ])
+        end
+
+    end    
+
 end
