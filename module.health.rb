@@ -2,10 +2,8 @@
 # encoding: utf-8
 
 class Answer
-
     def health
-
-        @memory.connect()
+        @memory.connect
         thoughts = @memory.load("health #{@username}")
 
         health = thoughts[0][2].to_i
@@ -15,20 +13,18 @@ class Answer
         else
             return "@#{@username}: You currently have #{health} health."
         end
-
     end
 
     def all
+        @memory.connect
+        thoughts = @memory.load('health ')
 
-        @memory.connect()
-        thoughts = @memory.load("health ")
-
-        standings = ""
+        standings = ''
         thoughts.each do |known|
-            if known[0] != "ludivine" then next end
-            if known[1].split(" ")[0] != "health" then next end
+            if known[0] != 'ludivine' then next end
+            if known[1].split(' ')[0] != 'health' then next end
 
-            username = known[1].sub("health", "").strip
+            username = known[1].sub('health', '').strip
             health = known[2].to_i
 
             if health < 1
@@ -39,8 +35,6 @@ class Answer
 
         end
 
-        return "Current health standings:\n#{standings}"
-
+        "Current health standings:\n#{standings}"
     end
-
 end

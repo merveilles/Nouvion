@@ -33,12 +33,12 @@ top one, `c` to clear the stack.
 `3.14159 493 1937 3/rd***p` gives us a uselessly precise
 `493005438.80722333333358785343597`.
 '.gsub("\n\n", '§').gsub("\n", '').gsub('§', "\n\n")
-# ^ Remove all linebreaks except those in paragraphs. Ok, there's probably an
-# easier and more efficient way to do it but I can't think just now. FIXME
+      # ^ Remove all linebreaks except those in paragraphs. Ok, there's probably an
+      # easier and more efficient way to do it but I can't think just now. FIXME
     end
 
     _dc = Dc.new
-    
+
     # These hold some state for the parser. Register is set when parsing a
     # register command, fix and frac are set when parsing a number. Fix is
     # what's to the left of the decimal point, frac what’s to the right.
@@ -72,7 +72,7 @@ top one, `c` to clear the stack.
           # so BigDecimal creates the value properly.
           frac ||= '0'
           _dc.push BigDecimal.new "#{fix}.#{frac}"
-          
+
           # Reset the state of the parser and carry on.
           fix = nil
           frac = nil
@@ -84,10 +84,10 @@ top one, `c` to clear the stack.
           # so we probably support a whole lot more registers.
           address = c[0].ord
           _dc.send "_#{register}".to_sym, address
-          
+
           # Reset the state of the parser and iterate forth.
           register = nil
-        elsif %w[s l S L].include? c
+        elsif %w(s l S L).include? c
           # These are the four register commands. Set state and iterate forth.
           register = c
         elsif _dc.respond_to? "_#{c}"
@@ -168,7 +168,7 @@ class Dc
   define_method '_^' do
     a = @stack.pop
     b = @stack.pop
-    @stack.push(b ** a)
+    @stack.push(b**a)
   end
   alias_method :_E, :'_^'
 
@@ -176,7 +176,7 @@ class Dc
     a = @stack.pop
     b = @stack.pop
     c = @stack.pop
-    @stack.push((c ** b) % a)
+    @stack.push((c**b) % a)
   end
   alias_method :_Q, :'_|'
 

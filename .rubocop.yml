@@ -1,0 +1,13 @@
+# This is the configuration used to check the rubocop source code.
+
+inherit_from:
+  - .rubocop_todo.yml
+
+AllCops:
+  Include:
+    - '**/Rakefile'
+  Exclude:
+    - 'vendor/**/*'
+
+Style/IndentationWidth:
+  Enabled: False

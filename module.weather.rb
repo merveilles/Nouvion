@@ -5,16 +5,12 @@ require 'net/http'
 require 'json'
 
 class Answer
-
-    def weather 
-
-        return "Enter a city name to get current weather conditions from OpenWeather API.\nExample usage: ```ludivine weather in vancouver```"
-
+    def weather
+        "Enter a city name to get current weather conditions from OpenWeather API.\nExample usage: ```ludivine weather in vancouver```"
     end
 
     def in # get weather for a city
-
-        cityname = @message.split(" ")[2].lstrip.rstrip
+        cityname = @message.split(' ')[2].lstrip.rstrip
 
         url = "http://api.openweathermap.org/data/2.5/weather?mode=json&units=metric&q=#{cityname}"
         response = Net::HTTP.get_response(URI.parse(url))
@@ -24,7 +20,7 @@ class Answer
             if data['cod'] = 404
                 return "I couldn't find weather information for a place called \"#{cityname}\", sorry."
             else
-                raise "API error"
+                fail 'API error'
             end
         end
 
@@ -33,9 +29,5 @@ class Answer
     rescue
 
         return "I couldn't get weather information for #{cityname}."
-
     end
-
-
-
 end

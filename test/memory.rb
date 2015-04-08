@@ -1,11 +1,8 @@
 class Memory
-
     def connect
-
     end
 
-    def load(username)
-        return []
+    def load(_username)
+        []
     end
-
 end

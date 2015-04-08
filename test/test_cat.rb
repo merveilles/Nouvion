@@ -9,31 +9,23 @@ require 'memory'
 require_relative '../answer'
 
 class TestCat < Minitest::Test
-
     def setup
-
         require_relative '../module.cat'
-
     end
 
     def test_cat_cat
+        answer = Answer.new('cat', 'cat', 'maxdeviant', 'cat', 'theartificiallounge')
 
-        answer = Answer.new("cat", "cat", "maxdeviant", "cat", "theartificiallounge")
-
-        fact = answer.cat()
+        fact = answer.cat
 
         assert_equal true, (fact.instance_of? String)
-
     end
 
     def test_cat_fact
+        answer = Answer.new('cat', 'fact', 'maxdeviant', 'cat fact', 'theartificiallounge')
 
-        answer = Answer.new("cat", "fact", "maxdeviant", "cat fact", "theartificiallounge")
-
-        fact = answer.fact()
+        fact = answer.fact
 
         assert_equal true, (fact.instance_of? String)
-
     end
-
 end

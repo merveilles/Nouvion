@@ -9,41 +9,31 @@ require 'memory'
 require_relative '../answer'
 
 class TestGoat < Minitest::Test
-
     def setup
-
         require_relative '../module.goat'
-
     end
 
     def test_goat_goat
+        answer = Answer.new('goat', 'goat', 'maxdeviant', 'goat', 'theartificiallounge')
 
-        answer = Answer.new("goat", "goat", "maxdeviant", "goat", "theartificiallounge")
+        goat = answer.goat
 
-        goat = answer.goat()
-
-        assert_equal "What about goats?", goat
-
+        assert_equal 'What about goats?', goat
     end
 
     def test_goat_tower
+        answer = Answer.new('goat', 'tower', 'maxdeviant', 'goat tower', 'theartificiallounge')
 
-        answer = Answer.new("goat", "tower", "maxdeviant", "goat tower", "theartificiallounge")
-
-        tower = answer.tower()
+        tower = answer.tower
 
         assert_equal true, (tower.instance_of? String)
-
     end
 
     def test_goat_thrower
+        answer = Answer.new('goat', 'thrower', 'maxdeviant', 'goat thrower', 'theartificiallounge')
 
-        answer = Answer.new("goat", "thrower", "maxdeviant", "goat thrower", "theartificiallounge")
-
-        thrower = answer.thrower()
+        thrower = answer.thrower
 
         assert_equal true, (thrower.instance_of? String)
-
     end
-
 end

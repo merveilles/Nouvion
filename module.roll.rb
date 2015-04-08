@@ -2,15 +2,13 @@
 # encoding: utf-8
 
 class Answer
-
     # Available: moduleName,methodName,username,message
 
     def dice
+        diceValue = @message.split(' ')[3].to_i
 
-        diceValue = @message.split(" ")[3].to_i
-
-        if diceValue > 100000000000
-            return "Mhm, grow up."
+        if diceValue > 100_000_000_000
+            return 'Mhm, grow up.'
         end
 
         if diceValue > 0
@@ -21,26 +19,18 @@ class Answer
 
         roll = rand(6) + 1
 
-        return "Rolling a 6 sided dice, the result is #{roll}."
-
+        "Rolling a 6 sided dice, the result is #{roll}."
     end
 
     def barrel
-
-        return "*does a barrel roll*"
-
+        '*does a barrel roll*'
     end
 
     def cigarette
-
-        return "Sorry, I don't smoke."
-
+        "Sorry, I don't smoke."
     end
 
     def katamari
-
-        return "na na   na na na na na na na"
-
+        'na na   na na na na na na na'
     end
-
 end

@@ -5,52 +5,48 @@ require 'net/http'
 require 'json'
 
 class Answer
-
-    def define 
-
-    	splits = @message.sub("define","").strip.split(" ")
+    def define
+    	splits = @message.sub('define', '').strip.split(' ')
 
     	if splits.length == 0
     		return "Tell me a word and I'll try to define it."
         elsif splits.length > 1
-            return "Huh, I only define one word at a time.."
+            return 'Huh, I only define one word at a time..'
     	end
 
     	word = splits[0]
 
     	url = "http://api.wordnik.com:80/v4/word.json/#{word}/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=true&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
-        response = Net::HTTP.get_response(URI.parse(url))
-        data = JSON.parse(response.body)
+     response = Net::HTTP.get_response(URI.parse(url))
+     data = JSON.parse(response.body)
 
-        if response.code != "200"
-            if response.code == "404"
-                return "My memory is hazy, sorry."
-            else
-                raise "API error"
-            end
-        end
+     if response.code != '200'
+         if response.code == '404'
+             return 'My memory is hazy, sorry.'
+         else
+             fail 'API error'
+         end
+     end
 
-        if data[0]
-            return "*#{word}* is a #{data[0]['partOfSpeech']} that means '#{data[0]['text'].strip}'."
-        end
+     if data[0]
+         return "*#{word}* is a #{data[0]['partOfSpeech']} that means '#{data[0]['text'].strip}'."
+     end
 
-        # Check in memory
+     # Check in memory
 
-        username = @message.split(" ")[1].strip
+     username = @message.split(' ')[1].strip
 
-        @memory.connect()
-        thoughts = @memory.load(username).shuffle
+     @memory.connect
+     thoughts = @memory.load(username).shuffle
 
-        thoughts.each do |known|
-            if known[1] != username then next end
-            return "*"+username+"* is "+known[2]+"."
-        end
+     thoughts.each do |known|
+         if known[1] != username then next end
+         return '*' + username + '* is ' + known[2] + '.'
+     end
 
-        return "I do not know what *#{word}* is, sorry."
-
+     "I do not know what *#{word}* is, sorry."
     end
 
-    #def remember # remember the definition it found
-    #end
-
+  # def remember # remember the definition it found
+  # end
 end

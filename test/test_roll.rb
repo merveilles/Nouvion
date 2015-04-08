@@ -9,57 +9,45 @@ require 'memory'
 require_relative '../answer'
 
 class TestRoll < Minitest::Test
-
     def setup
-
         require_relative '../module.roll'
-
     end
 
     def test_roll_dice
+        answer = Answer.new('roll', 'dice', 'maxdeviant', 'roll dice 20', 'theartificiallounge')
 
-        answer = Answer.new("roll", "dice", "maxdeviant", "roll dice 20", "theartificiallounge")
-
-        dice = answer.dice()
-
-        assert_equal true, (dice.instance_of? String)
-
-        answer = Answer.new("roll", "dice", "maxdeviant", "roll dice", "theartificiallounge")
-
-        dice = answer.dice()
+        dice = answer.dice
 
         assert_equal true, (dice.instance_of? String)
 
+        answer = Answer.new('roll', 'dice', 'maxdeviant', 'roll dice', 'theartificiallounge')
+
+        dice = answer.dice
+
+        assert_equal true, (dice.instance_of? String)
     end
 
     def test_roll_barrel
+        answer = Answer.new('roll', 'barrel', 'maxdeviant', 'roll barrel ', 'theartificiallounge')
 
-        answer = Answer.new("roll", "barrel", "maxdeviant", "roll barrel ", "theartificiallounge")
+        barrel = answer.barrel
 
-        barrel = answer.barrel()
-
-        assert_equal "*does a barrel roll*", barrel
-
+        assert_equal '*does a barrel roll*', barrel
     end
 
     def test_roll_cigarette
+        answer = Answer.new('roll', 'cigarette', 'maxdeviant', 'roll cigarette ', 'theartificiallounge')
 
-        answer = Answer.new("roll", "cigarette", "maxdeviant", "roll cigarette ", "theartificiallounge")
-
-        cigarette = answer.cigarette()
+        cigarette = answer.cigarette
 
         assert_equal "Sorry, I don't smoke.", cigarette
-
     end
 
     def test_roll_katamari
+        answer = Answer.new('roll', 'katamari', 'maxdeviant', 'roll katamari ', 'theartificiallounge')
 
-        answer = Answer.new("roll", "katamari", "maxdeviant", "roll katamari ", "theartificiallounge")
+        katamari = answer.katamari
 
-        katamari = answer.katamari()
-
-        assert_equal "na na   na na na na na na na", katamari
-
+        assert_equal 'na na   na na na na na na na', katamari
     end
-
 end

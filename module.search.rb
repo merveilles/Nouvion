@@ -1,48 +1,43 @@
 #!/bin/env ruby
 # encoding: utf-8
 
-require "erb"
+require 'erb'
 include ERB::Util
 
 class Answer
-
     def getTerm(msg)
-        terms = msg.split(" ")
+        terms = msg.split(' ')
 
         if terms.length > 2
-            term = terms.drop(2).join(" ")
+            term = terms.drop(2).join(' ')
         end
 
-        term = term != nil ? term.lstrip.rstrip : 'cat fact'
+        term = !term.nil? ? term.lstrip.rstrip : 'cat fact'
         term = url_encode(term)
 
-        return term
+        term
     end
 
     def search
-
-        terms = @message.split(" ")
+        terms = @message.split(' ')
 
         if terms.length > 1
-            term = terms.drop(1).join(" ")
+            term = terms.drop(1).join(' ')
         end
 
-        term = term != nil ? term.lstrip.rstrip : 'cat fact'
+        term = !term.nil? ? term.lstrip.rstrip : 'cat fact'
         term = url_encode(term)
 
-        return "Is <http://www.google.com/search?q=#{term}&btnI|this> what you're looking for?"
+        "Is <http://www.google.com/search?q=#{term}&btnI|this> what you're looking for?"
     end
 
     def google
-
         term = getTerm(@message)
-        return "http://www.google.com/search?q=#{term}&btnI"
+        "http://www.google.com/search?q=#{term}&btnI"
     end
 
     def duckduckgo
-
         term = getTerm(@message)
-        return "https://duckduckgo.com/?q=!ducky+#{term}+%s"
+        "https://duckduckgo.com/?q=!ducky+#{term}+%s"
     end
-
 end
