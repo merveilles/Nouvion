@@ -3,19 +3,17 @@
 
 class Answer
 
-    # Available: moduleName,methodName,username,message
-
     def health
 
         @memory.connect()
         thoughts = @memory.load("health #{@username}")
 
-        health = thoughts[2].to_i
+        health = thoughts[0][2].to_i
 
         if health < 1
             return "@#{@username}: You are _dead_."
         else
-            return "@#{@username}: You currently have #{health}hp."
+            return "@#{@username}: You currently have #{health} health."
         end
 
     end
@@ -29,10 +27,14 @@ class Answer
         thoughts.each do |known|
             if known[0] != "ludivine" then next end
             if known[1].split(" ")[0] != "health" then next end
-            if known[2].to_i < 1
-                standings += "*" + known[1].sub("health", "") + " * _dead_\n"
+
+            username = known[1].sub("health", "").strip
+            health = known[2].to_i
+
+            if health < 1
+                standings += "*#{username}* _dead_\n"
             else
-                standings += "*" + known[1].sub("health", "") + "* " + known[2] + "hp\n"
+                standings += "*#{username}* #{health}hp\n"
             end
 
         end
