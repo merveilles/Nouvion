@@ -6,3 +6,4 @@ end
 
 require 'api/memory'
 require 'api/battle'
+require 'api/goat'
