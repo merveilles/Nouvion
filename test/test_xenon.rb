@@ -17,21 +17,25 @@ class TestXenon < Minitest::Test
     end
     
     def test_xenon_account
+
         mem = XenonMemoryTest.new()
         
         answer = Answer.new("xenon", "account", "strstr", "xenon account", "theartificiallounge", mem)
         emote = answer.account()
-        assert mem.mem[4][0] == "ludivine" && mem.mem[4][1] == "wallet strstr" && mem.mem[4][2] == "10"         
 
-        answer = Answer.new("xenon", "give", "maxdeviant", "xenon give greylion 2", "theartificiallounge", mem)
-        emote = answer.give()
-        
-        assert mem.mem[2][0] == "ludivine" && mem.mem[2][1] == "wallet maxdeviant" && mem.mem[2][2] == "3"
-        assert mem.mem[1][0] == "ludivine" && mem.mem[1][1] == "wallet greylion" && mem.mem[1][2] == "10"
+        assert_includes mem.mem, ["ludivine", "wallet strstr", "10"]
         
     end
     
     def test_xenon_give
+
+        mem = XenonMemoryTest.new()
+
+        answer = Answer.new("xenon", "give", "maxdeviant", "xenon give greylion 2", "theartificiallounge", mem)
+        emote = answer.give()
+
+        assert_includes mem.mem, ["ludivine", "wallet maxdeviant", "3"]
+        assert_includes mem.mem, ["ludivine", "wallet greylion", "10"]        
       
     end
     
