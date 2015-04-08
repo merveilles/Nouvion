@@ -48,13 +48,13 @@ class XenonMemoryTest < Memory
     end
 
     def save(stuffA, stuffB, stuffC)
-      if stuffB == 'wallet aliceffekt' then
+      if stuffB == 'wallet aliceffekt'
         @mem[0][2] = stuffC
-      elsif stuffB == 'wallet greylion' then
+      elsif stuffB == 'wallet greylion'
         @mem[1][2] = stuffC
-      elsif stuffB == 'wallet maxdeviant' then
+      elsif stuffB == 'wallet maxdeviant'
         @mem[2][2] = stuffC
-      elsif stuffB == 'wallet jean' then
+      elsif stuffB == 'wallet jean'
         @mem[3][2] = stuffC
       else
         @mem += [[stuffA, stuffB, stuffC]]
