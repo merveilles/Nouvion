@@ -51,14 +51,27 @@ class TestList < Minitest::Test
 end
 
 class ListMemoryTest < Memory
-    def load(_topic)
-        [
+
+    @data = []
+
+    def connect
+
+        @data = [
           ['ludivine', 't-shirt', 'shirt'],
-          %w(ludivine ardbeg scotch),
-          %w(ludivine glenmorangie scotch),
-          %w(ludivine a duptest),
-          %w(ludivine a duptest),
-          %w(ludivine b duptest),
+          ['ludivine', 'ardbeg', 'scotch'],
+          ['ludivine', 'glenmorangie', 'scotch'],
+          ['ludivine', 'a', 'duptest'],
+          ['ludivine', 'a', 'duptest'],
+          ['ludivine', 'b', 'duptest']
         ]
+        
     end
+
+    def load(_topic)
+
+        if _topic.strip() == "" then return @data end
+        return @data.select { |row| row.include?(_topic) }
+
+    end
+
 end
