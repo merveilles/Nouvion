@@ -1,3 +1,5 @@
+require_relative 'memory_object'
+
 class Answer
 
     def xenon
@@ -19,7 +21,7 @@ class Answer
         xenonDistribution = ""
         xenonTotal = 0
 
-        wallets = getAllMemoriesValuesOfType("wallet")
+        wallets = MemoryObject.get_all_of_type("wallet")
         wallets.each do |wallet|
             xenonDistribution += "*"+wallet[0]+"* owns "+wallet[1]+":xen:.\n"
             xenonTotal += wallet[1].to_i
@@ -58,15 +60,15 @@ class Answer
         if target[0]=="@" then target[0]="" end
 
         accountSender = MemoryObject.new(@username, @memory)    
-        accountReceiver = MemoryObject.new(@username, @memory)
+        accountReceiver = MemoryObject.new(target, @memory)
         accountsXenons = [accountSender.load_from_memory("wallet",""),accountReceiver.load_from_memory("wallet","")] # accountsXenons[0] for sender xenons, accountsXenons[1] for receiver xenons
 
         if accountsXenons[0] == "" then return "#{@username}, you don't have an `account` thus can't give xenons." end
         if accountsXenons[1] == "" then return "#{target} doesn't have an `account` to send xenons on." end
         if accountsXenons[0].to_i - giftValue < 0 then return "#{@username}, you don't have enough xenons on your account." end
 
-        accountSender.save_to_memory("wallet", (accountsXenons[0].to_i+giftValue).to_s)   
-        accountReceiver.save_to_memory("wallet", (accountsXenons[1].to_i-giftValue).to_s) 
+        accountSender.save_to_memory("wallet", (accountsXenons[0].to_i-giftValue).to_s)   
+        accountReceiver.save_to_memory("wallet", (accountsXenons[1].to_i+giftValue).to_s) 
 
         return "#{@username} gives "+gift+":xen: to "+target+".\nCurrent #{@username} account: "+ (accountsXenons[0].to_i - giftValue).to_s+":xen:.\nCurrent #{target} account: "+ (accountsXenons[1].to_i + giftValue).to_s+":xen:."
 
@@ -132,60 +134,3 @@ class Answer
     
 
 end
-
-class MemoryObject
-    
-    attr_reader :name
-    
-    def initialize(name, memory)
-        @name = name
-        @memory = memory
-        
-        @memory.connect()
-    end
-    
-    def load_from_memory(attribute, default_value = nil)
-        thoughts = @memory.load(attribute + " ")
-
-        thoughts.each do |known|
-            if known[0] != "ludivine" then next end #ludivine hosts all health
-            if known[1] != "#{attribute} #{@name}" then next end
-
-            return known[2]
-        end
-        
-        @memory.save("ludivine", "#{@name} #{@attribute}", default_value.to_s) # add missing values to users that get instantiated as combatants
-        return default_value.to_s
-    end
-
-    def save_to_memory(attribute, value)
-        @memory.save("ludivine","#{attribute} #{@name}",value.to_s)
-    end
-
-end
-
-
-def getAllMemoriesOfType(attribute)
-    listMemories= []
-    @memory.connect
-    thoughts = @memory.load("#{attribute}" + " ")
-    thoughts.each do |known|
-        if known[0] != "ludivine" then next end
-        if known[1].split(" ")[0] != "#{attribute}" then next end
-        listMemories.push(MemoryObject.new(known[1].split(" ")[1],@memory))
-    end
-    return(listMemories)
-end
-
-def getAllMemoriesValuesOfType(attribute)
-    listValues= []
-    @memory.connect
-    thoughts = @memory.load("#{attribute}" + " ")
-    thoughts.each do |known|
-        if known[0] != "ludivine" then next end
-        if known[1].split(" ")[0] != "#{attribute}" then next end
-        listValues.push([known[1].split(" ")[1],known[2].to_s])
-    end
-    return(listValues)
-end
-
