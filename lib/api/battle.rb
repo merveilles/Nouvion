@@ -1,14 +1,7 @@
 # encoding: utf-8
 
-module API
-    class Battle
+module API::Battle
 
-        def initialize
-
-        end
-
-        def attack
-            return "attack"
-        end
-    end
 end
+
+require 'api/battle/combatant'
