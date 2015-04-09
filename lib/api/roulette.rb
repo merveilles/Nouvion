@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require 'api/health'
+require "api/health"
 
 module API
     class Roulette
@@ -54,6 +54,8 @@ module API
             if @chamber[0] == 1
                 @chamber = EMPTY
 
+                save_state
+
                 @health.update(0)
 
                 return "You pull the trigger, the gun goes.. *POW*! :finnadie::collision::gun:\nYou shot yourself in the face and died.."
@@ -77,7 +79,7 @@ module API
 
             result = @memory.load("roulette chamber")
 
-            @chamber = result[0][2].split("")
+            @chamber = result[0][2].split("").map { |v| v.to_i }
         end
 
         def save_state
