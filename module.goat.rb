@@ -27,11 +27,15 @@ class Answer
             "You successfully communicate with the goat imperialist. You are financially drained after being mentally frozen by his academic wisdom.",
             "The goat laughs \"BAAAHHHHHHHHHHAHAHA\" as you are forced to leap from the goat tower",
             "The scroll from the elder goat states there is a passage way with a green star engraved. You might become rich if you can find this passage.",
-            "The poster reads: \"There is no futBAAAAAAHHHHure but what we mBAAAAHHHHHHHHke for ouBAAAAAAHHHHHHHHHHHHHrselves.\""
+            "The poster reads: \"There is no futBAAAAAAHHHHure but what we mBAAAAHHHHHHHHke for ouBAAAAAAHHHHHHHHHHHHHrselves.\"",
             "You are ambushed by a troupe of hobgoats. Although they are small, they are very ugly and their coordinated acrobatics intimidate you.",
+            "You stumble into the mead hall. The mead is delicious and hearty, with a grassy connotation on the tail. You spend a night in lively discussion with some of the most radiantly charismatic, deeply insightful goats you have ever met.",
+            "You make brief eye contact with a very beautiful goat outside of the goat tower.",
+            "You hide as a very fat, decadent goat sitting on a platform being carried by a number of lesser goats passes by you in the halls of the goat tower.",
+            "You find the goats' repository of wizard tomes."
         ]
 
-        return "@#{@username}: #{tower.shuffle[0]}"
+        return "@#{@username}: #{tower[rand(tower.length)]}"
 
     end
 
