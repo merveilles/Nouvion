@@ -20,6 +20,9 @@ class TestWager < Minitest::Test
 			array[winnerName.to_i] = pre + amount
 		end
 	end
+	def winnerPrint(war)
+		puts "winners were seen to in this order: #{war.map{|w| w[0]}.to_s}"
+	end
 	
 	def test_wager_redistribution_function_simple
 		sum = 10
@@ -28,7 +31,7 @@ class TestWager < Minitest::Test
 		winnersAccounts = Array.new(10,1)
 		distribute_sum(sum, winners, givingFunctionFor(winnersAccounts))
 		assert_equal winnersAccounts, Array.new(10,2)
-		puts "winners were seen to in this order: #{winners.to_s}"
+		winnerPrint(winners)
 	end
 	
 	def test_wager_redistribution_function_small_remainder
@@ -42,7 +45,7 @@ class TestWager < Minitest::Test
 			histogram[pay] = histogram[pay] + 1
 		end
 		assert_equal histogram, [0,0,9,1]
-		puts "winners were seen to in this order: #{winners.to_s}"
+		winnerPrint(winners)
 	end
 	
 	def test_wager_redistribution_function_larger_remainder
@@ -56,15 +59,16 @@ class TestWager < Minitest::Test
 			histogram[pay] = histogram[pay] + 1
 		end
 		assert_equal histogram, [0,0,4,6,0]
-		puts "winners were seen to in this order: #{winners.to_s}"
+		winnerPrint(winners)
 	end
 	
 	def test_wager_redistribution_function_expect_more_for_greater_in
 		sum = 20
 		winnerCount = 10
-		winners = ((0...winnerCount).map {|i| [i.to_s,nil,1]}).shuffle
+		winnersUnshuffled = ((0...winnerCount).map {|i| [i.to_s,nil,1]})
+		winnersUnshuffled[9][2] = 2
+		winners = winnersUnshuffled.shuffle
 		winnersAccounts = Array.new(10,1)
-		winners[9] = 2
 		distribute_sum(sum, winners, givingFunctionFor(winnersAccounts))
 		histogram = [0,0,0,0]
 		richestWinnar = 0
@@ -76,7 +80,7 @@ class TestWager < Minitest::Test
 			end
 		end
 		assert_equal richestWinnar, 9
-		puts "winners were seen to in this order: #{winners.to_s}"
+		winnerPrint(winners)
 	end
 	
 	#aand that's where I'll stop because mocking tests for the other functions when we don't have mock memory functions and I can just test them by using the thing once and then never thinking about it again is extremely unproductive behavior
