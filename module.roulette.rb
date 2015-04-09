@@ -48,11 +48,26 @@ class Answer
             chamber = known[2]
         end
 
-        if chamber.index('1') > -1
-            return 'The bullet is in the *chamber #' + chamber.index('1').to_s + '*.'
+        chamberValue = chamber[0, 1]
+
+        # Update Chamber
+
+        chamber[0] = ''
+        chamber = chamber + '0'
+        @memory.save('ludivine', 'roulette chamber', chamber)
+
+        message = "No cheating! :rage1:\nLudivine aims the gun at you and pulls the trigger, the gun goes.. "
+
+        if chamberValue == '1'
+            @memory.save('ludivine', "health #{@username}", 0.to_s)
+            message += "*POW*! :finnadie::collision::gun:\nLudivine shot you in the face and you died.."
+        elsif chamber.to_i == 0
+            message += "*click*! :relaxed:\nThe gun is empty, you should `load` it, but never cheat again."
         else
-            return "There are no bullets in the gun's chamber."
+            message += "*click*! :godmode:\nYou survived, but don't cheat again."
         end
+
+        return message
     end
 
     def pull
