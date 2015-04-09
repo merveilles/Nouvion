@@ -49,7 +49,7 @@ class TestRoulette < Minitest::Test
     end
 end
 
-class RouletteTestMemory < API::Memory
+class RouletteTestMemory < Memory
     attr_reader :memory
 
     def initialize

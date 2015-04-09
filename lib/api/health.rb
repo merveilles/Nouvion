@@ -1,13 +1,11 @@
 # encoding: utf-8
 
-require "api/memory"
-
 module API
     class Health
 
         def initialize(username, memory = nil)
             @username = username
-            @memory = memory == nil ? API::Memory.new() : memory
+            @memory = memory == nil ? Memory.new : memory
         end
 
         def usage

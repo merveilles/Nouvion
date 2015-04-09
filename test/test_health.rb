@@ -37,7 +37,7 @@ class TestHealth < Minitest::Test
     end
 end
 
-class HealthTestMemory < API::Memory
+class HealthTestMemory < Memory
     attr_reader :memory
 
     def initialize

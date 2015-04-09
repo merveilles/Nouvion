@@ -9,7 +9,7 @@ module API
 
         def initialize(username, memory = nil)
             @username = username
-            @memory = memory == nil ? API::Memory.new() : memory
+            @memory = memory == nil ? Memory.new : memory
 
             @health = API::Health.new(@username, @memory)
 
