@@ -6,11 +6,11 @@ class Answer
     end
 
     def getBankAccount
-        @memory.loadOrCreate('ludivine', 'bank', '3000').value
+        @memory.loadOrCreate('ludivine', 'bank', '3000')[0].value
     end
 
     def getJackpotAccount
-        @memory.loadOrCreate('ludivine', 'jackpot', '10').value
+        @memory.loadOrCreate('ludivine', 'jackpot', '10')[0].value
     end
 
     def all
@@ -33,7 +33,7 @@ class Answer
 
     def account
         userWallet = @memory.loadAttribute(@username, 'wallet')
-        if userWallet.size() != 0 then return "#{@username}, you have currently " + userWallet[0].value + ':xen: on your account.' end
+        unless userWallet.nil? then return "#{@username}, you have currently " + userWallet[0].value + ':xen: on your account.' end
 
         @memory.save('ludivine', 'bank', (getBankAccount.to_i - 10).to_s)
         @memory.saveAttribute(@username, 'wallet', '10')
@@ -50,7 +50,7 @@ class Answer
         if target[0] == '@' then target[0] = '' end
 
         # accountsXenons[0] for sender xenons, accountsXenons[1] for receiver xenons
-        accounts = [@memory.loadAttributeValue(@username, 'wallet'), @memory.loadAttributeValue(target, 'wallet')] 
+        accountsXenons = [@memory.loadAttributeValue(@username, 'wallet'), @memory.loadAttributeValue(target, 'wallet')] 
 
         if accountsXenons[0] == nil then return "#{@username}, you don't have an `account` thus can't give xenons." end
         if accountsXenons[1] == nil then return "#{target} doesn't have an `account` to send xenons on." end

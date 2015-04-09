@@ -55,7 +55,7 @@ class Memory
     def loadRelatedValue(key, relation, owner = nil)
         data = loadRelated(key, relation, owner)
 
-        unless data.nil? then return data.value end
+        unless data.nil? then return data[0].value end
         return nil
     end
 
@@ -75,8 +75,8 @@ class Memory
         data = load(key).select { |row| row[0] == owner && row[1] == key }
 
         if data.size() == 0 
-            data = [owner, key, defaultValue]
-            save(data.flatten)
+            data = [[owner, key, defaultValue]]
+            save(owner, key, defaultValue)
         end
 
         return collectThoughts(data)

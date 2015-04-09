@@ -19,7 +19,7 @@ class TestXenon < Minitest::Test
         answer = Answer.new('xenon', 'account', 'strstr', 'xenon account', 'theartificiallounge', mem)
         emote = answer.account
 
-        assert_includes mem.mem, ['ludivine', 'wallet strstr', '10']
+        assert_includes mem.data, ['ludivine', '{wallet}strstr', '10']
     end
 
     def test_xenon_give
@@ -28,36 +28,42 @@ class TestXenon < Minitest::Test
         answer = Answer.new('xenon', 'give', 'maxdeviant', 'xenon give greylion 2', 'theartificiallounge', mem)
         emote = answer.give
 
-        assert_includes mem.mem, ['ludivine', 'wallet maxdeviant', '3']
-        assert_includes mem.mem, ['ludivine', 'wallet greylion', '10']
+        assert_includes mem.data, ['ludivine', '{wallet}maxdeviant', '3']
+        assert_includes mem.data, ['ludivine', '{wallet}greylion', '10']
     end
 end
 
 class XenonMemoryTest < Memory
-    attr_reader :mem
+
+    attr_reader :data
 
     def initialize
-        @mem = [['ludivine', 'wallet aliceffekt', '10'],
-                ['ludivine', 'wallet greylion', '8'],
-                ['ludivine', 'wallet maxdeviant', '5'],
-                ['ludivine', 'wallet jean', '999']]
+
+        @data = Array.new
+
+        saveAttribute('aliceffekt', 'wallet', 10)
+        saveAttribute('greylion', 'wallet', 8)
+        saveAttribute('maxdeviant', 'wallet', 5)
+        saveAttribute('jean', 'wallet', 999)
+
     end
 
-    def load(_query)
-        @mem
+    def load(_topic)
+
+        if _topic.strip() == "" then return @data end
+        return @data.select { |row| row.include?(_topic) }
+
     end
 
-    def save(stuffA, stuffB, stuffC)
-      if stuffB == 'wallet aliceffekt'
-        @mem[0][2] = stuffC
-      elsif stuffB == 'wallet greylion'
-        @mem[1][2] = stuffC
-      elsif stuffB == 'wallet maxdeviant'
-        @mem[2][2] = stuffC
-      elsif stuffB == 'wallet jean'
-        @mem[3][2] = stuffC
-      else
-        @mem += [[stuffA, stuffB, stuffC]]
-      end
-    end
+    def save(username, key, value)
+
+        lastRow = @data.index { |row| row[0] == username && row[1] == key }
+
+        if lastRow != nil 
+            @data[lastRow][2] = value
+        else
+            @data.push([ username, key, value ])
+        end
+
+    end    
 end
