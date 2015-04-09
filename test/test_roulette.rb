@@ -12,7 +12,7 @@ class TestRoulette < Minitest::Test
     def setup
         require_relative "../module.roulette"
 
-        @memory = RouletteTestMemory.new
+        @@memory = RouletteTestMemory.new
     end
 
     def test_roulette_roulette
@@ -24,7 +24,7 @@ class TestRoulette < Minitest::Test
     end
 
     def test_roulette_load
-        answer = Answer.new("roulette", "load", "maxdeviant", "roulette load", "theartificiallounge", @memory)
+        answer = Answer.new("roulette", "load", "maxdeviant", "roulette load", "theartificiallounge", @@memory)
 
         load = answer.load
 
@@ -33,7 +33,7 @@ class TestRoulette < Minitest::Test
     end
 
     def test_roulette_spin
-        answer = Answer.new("roulette", "spin", "maxdeviant", "roulette spin", "theartificiallounge", @memory)
+        answer = Answer.new("roulette", "spin", "maxdeviant", "roulette spin", "theartificiallounge", @@memory)
 
         spin = answer.spin
 
@@ -41,7 +41,7 @@ class TestRoulette < Minitest::Test
     end
 
     def test_roulette_pull
-        answer = Answer.new("roulette", "pull", "maxdeviant", "roulette pull", "theartificiallounge", @memory)
+        answer = Answer.new("roulette", "pull", "maxdeviant", "roulette pull", "theartificiallounge", @@memory)
 
         pull = answer.pull
 

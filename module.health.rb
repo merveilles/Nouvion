@@ -1,38 +1,31 @@
-#!/bin/env ruby
 # encoding: utf-8
+
+require "api"
 
 class Answer
     def health
-        @memory.connect
-        thoughts = @memory.load("health #{@username}")
+        health = API::Health.new(@username, @memory)
 
-        health = thoughts[0][2].to_i
+        current_health = health.check
 
-        if health < 1
+        if current_health < 1
             return "@#{@username}: You are _dead_."
         else
-            return "@#{@username}: You currently have #{health} health."
+            return "@#{@username}: You currently have #{current_health} health."
         end
     end
 
     def all
-        @memory.connect
-        thoughts = @memory.load('health ')
+        health = API::Health.new(@username, @memory)
 
-        standings = ''
-        thoughts.each do |known|
-            if known[0] != 'ludivine' then next end
-            if known[1].split(' ')[0] != 'health' then next end
+        standings = ""
 
-            username = known[1].sub('health', '').strip
-            health = known[2].to_i
-
-            if health < 1
+        health.list.each do |username, hp|
+            if hp < 1
                 standings += "*#{username}* _dead_\n"
             else
-                standings += "*#{username}* #{health}hp\n"
+                standings += "*#{username}* #{hp}hp\n"
             end
-
         end
 
         "Current health standings:\n#{standings}"

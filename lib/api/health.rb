@@ -24,6 +24,16 @@ module API
             set_health(value)
         end
 
+        def list
+            health_list = {}
+
+            get_health_all.each do |row|
+                health_list[row[1].sub("health ", "")] = row[2].to_i
+            end
+
+            return health_list
+        end
+
         private
 
         def get_health
@@ -32,6 +42,14 @@ module API
             result = @memory.load("health #{@username}")
 
             return result[0][2].to_i
+        end
+
+        def get_health_all
+            @memory.connect
+
+            result = @memory.load("health ")
+
+            return result
         end
 
         def set_health(value)
