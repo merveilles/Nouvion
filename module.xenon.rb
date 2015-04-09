@@ -6,21 +6,21 @@ class Answer
     end
 
     def getBankAccount
-        @memory.loadOrCreate('ludivine', 'bank', '3000')[0].value
+        @memory.tempFixedLoadOrCreate('ludivine', 'bank', '3000')[0].value
     end
 
     def getJackpotAccount
-        @memory.loadOrCreate('ludivine', 'jackpot', '10')[0].value
+        @memory.tempFixedLoadOrCreate('ludivine', 'jackpot', '10')[0].value
     end
 
     def all
         xenonDistribution = ''
         xenonTotal = 0
 
-        wallets = @memory.loadAllAttributes('wallet')
+        wallets = @memory.tempFixedLoadAllAttributes('wallet')
         wallets.each do |wallet|
             xenonDistribution += '*' + wallet.key + '* owns ' + wallet.value + ":xen:.\n"
-            xenonTotal += wallet[1].to_i
+            xenonTotal += wallet.value.to_i
         end
 
         xenonDistribution += "\nThere are currently " + getBankAccount + ":xen: in the bank.\n"
@@ -32,12 +32,12 @@ class Answer
     end
 
     def account
-        userWallet = @memory.loadAttribute(@username, 'wallet')
-        unless userWallet.nil? then return "#{@username}, you have currently " + userWallet[0].value + ':xen: on your account.' end
+        userWallet = @memory.tempFixedLoadAttribute(@username, 'wallet')
+
+        unless userWallet.nil? then return "#{@username}, you have currently " + userWallet.value + ':xen: on your account.' end
 
         @memory.save('ludivine', 'bank', (getBankAccount.to_i - 10).to_s)
         @memory.saveAttribute(@username, 'wallet', '10')
-
         "#{@username} subscribes an account with a credit of 10:xen:."
     end
 
@@ -50,7 +50,7 @@ class Answer
         if target[0] == '@' then target[0] = '' end
 
         # accountsXenons[0] for sender xenons, accountsXenons[1] for receiver xenons
-        accountsXenons = [@memory.loadAttributeValue(@username, 'wallet'), @memory.loadAttributeValue(target, 'wallet')] 
+        accountsXenons = [@memory.tempFixedLoadAttributeValue(@username, 'wallet'), @memory.tempFixedLoadAttributeValue(target, 'wallet')] 
 
         if accountsXenons[0] == nil then return "#{@username}, you don't have an `account` thus can't give xenons." end
         if accountsXenons[1] == nil then return "#{target} doesn't have an `account` to send xenons on." end
@@ -59,13 +59,16 @@ class Answer
         @memory.saveAttribute(@username, 'wallet', (accountsXenons[0].to_i - giftValue).to_s)
         @memory.saveAttribute(target, 'wallet', (accountsXenons[1].to_i + giftValue).to_s)
 
-        "#{@username} gives " + gift + ':xen: to ' + target + ".\nCurrent #{@username} account: " + (accountsXenons[0].to_i - giftValue).to_s + ":xen:.\nCurrent #{target} account: " + (accountsXenons[1].to_i + giftValue).to_s + ':xen:.'
+        accountsXenons[0] = (accountsXenons[0].to_i-giftValue).to_s
+        accountsXenons[1] = (accountsXenons[1].to_i+giftValue).to_s
+
+        "#{@username} gives " + gift + ':xen: to ' + target + ".\nCurrent #{@username} account: " + (accountsXenons[0]).to_s + ":xen:.\nCurrent #{target} account: " + (accountsXenons[1]).to_s + ':xen:.'
     end
 
     def slot
         price = 1
 
-        currentXenons = @memory.loadAttributeValue(@username, 'wallet')
+        currentXenons = @memory.tempFixedLoadAttributeValue(@username, 'wallet')
         if currentXenons == nil then return "#{@username}, you don't have an `account` thus can't play slot machine." end
         if currentXenons.to_i - price < 0 then return "#{@username}, you don't have enough xenons on your account, using a slot machine costs 1:xen:." end
 
@@ -95,7 +98,7 @@ class Answer
     def jackpot
         price = 1
 
-        currentXenons = @memory.loadAttributeValue(@username, 'wallet')
+        currentXenons = @memory.tempFixedLoadAttributeValue(@username, 'wallet')
         if currentXenons == '' then return "#{@username}, you don't have an `account` thus can't play jackpot." end
         if currentXenons.to_i - price < 0 then return "#{@username}, you don't have enough xenons on your account, playing jackpot costs 1:xen:." end
 

@@ -73,13 +73,59 @@ class Memory
 
     def loadOrCreate(owner, key, defaultValue)
         data = load(key).select { |row| row[0] == owner && row[1] == key }
-
         if data.size() == 0 
             data = [[owner, key, defaultValue]]
             save(owner, key, defaultValue)
         end
 
         return collectThoughts(data)
+    end
+
+     def tempFixedLoadAttribute(key, attribute)
+        data = load("{#{attribute}}#{key}")
+        data = data.select { |row| row[0] == 'ludivine'}
+        data = collectThoughts(data)
+
+        data.each do |memory|
+            if memory.key == attribute+" "+key then return memory end
+        end
+
+        return nil
+    end
+
+    def tempFixedLoadAttributeValue(key, attribute)   
+        data = tempFixedLoadAttribute(key,attribute)
+        if data == nil
+            return nil 
+        else 
+            return data.value 
+        end
+    end
+
+    def tempFixedLoadOrCreate(owner, key, defaultValue)
+        data = load(key).select { |row| row[0] == owner && row[1] == key }
+
+        if data.size() == 0 
+            data = [[owner, key, defaultValue]]
+            if(data[0][1]==key) then save(owner, key, defaultValue) end
+        end
+
+        return collectThoughts(data)
+    end
+
+    def tempFixedLoadAllAttributes(relation)
+        data = load("{#{relation}}#{''}")
+        data = data.select { |row| row[0] == 'ludivine'}
+        data = collectThoughts(data)
+
+        listMemories =[]
+        data.each do |memory|
+            if memory.key.split(" ")[0] == relation 
+                 listMemories.push(memory) 
+             end
+        end
+
+        return listMemories
     end
 
 end
