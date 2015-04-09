@@ -44,10 +44,6 @@ module API
             return "#{@username} spins the cylinder. :return:"
         end
 
-        def check_bullets
-
-        end
-
         def pull_trigger
             load_state
 

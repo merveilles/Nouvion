@@ -1,21 +1,17 @@
-#!/bin/env ruby
 # encoding: utf-8
 
 class Answer
-
     def initialize(module_name, method_name, username, message, channel, memory = nil)
-
         @module_name = module_name
         @method_name = method_name
         @username    = username
         @message     = message
         @channel     = channel
-        @memory      = if memory == nil then Memory.new() else memory end
-
+        @memory      = if memory == nil then Memory.new else memory end
     end
 
     def includeModule name
-        
+
         require "modules/module.#{name}.rb"
 
     end
