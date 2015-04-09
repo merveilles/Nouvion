@@ -1,6 +1,6 @@
 class Memory
 
-    def transformData data
+    def transformData(data)
         data.map { |row|
             {
                 transformed = {
@@ -14,7 +14,7 @@ class Memory
         }
     end
 
-    def loadRelated key, relation, owner = nil
+    def loadRelated(key, relation, owner = nil)
         data = load("{#{relation}}#{key}")
 
         unless owner.nil?
@@ -27,34 +27,34 @@ class Memory
         return data
     end
 
-    def loadAllRelated relation, owner = nil
-        loadRelated '', relation, owner
+    def loadAllRelated(relation, owner = nil)
+        loadRelated('', relation, owner)
     end
 
-    def loadAttribute key, attribute
-        loadRelated key, attribute, 'ludivine'
+    def loadAttribute(key, attribute)
+        loadRelated(key, attribute, 'ludivine')
     end        
 
-    def loadAllAttributes attribute
-        loadAllRelated attribute, 'ludivine'
+    def loadAllAttributes(attribute)
+        loadAllRelated(attribute, 'ludivine')
     end    
 
-    def loadRelatedValue key, relation, owner = nil
+    def loadRelatedValue(key, relation, owner = nil)
         data = loadRelated(key, relation, owner)
 
         unless data.nil? then return data.value end
         return nil
     end
 
-    def saveRelated owner, key, relation, value
-        save owner, "{#{relation}}#{key}", value
+    def saveRelated(owner, key, relation, value)
+        save(owner, "{#{relation}}#{key}", value)
     end
 
-    def saveAttribute key, attribute, value
-        saveRelated "ludivine", key, attribute, value
+    def saveAttribute(key, attribute, value)
+        saveRelated("ludivine", key, attribute, value)
     end
 
-    def loadOrCreate owner, key, defaultValue
+    def loadOrCreate(owner, key, defaultValue)
         data = load(key).select { |row| row[0] == owner && row[1] == key }
 
         if data.size() == 0 
@@ -65,7 +65,7 @@ class Memory
         return transformData(data)
     end
 
-    def loadOrCreateAttribute key, defaultValue
-        loadOrCreate "ludivine", key, defaultValue
+    def loadOrCreateAttribute(key, defaultValue)
+        loadOrCreate("ludivine", key, defaultValue)
     end    
 end
