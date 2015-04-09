@@ -1,9 +1,11 @@
 #!/bin/env ruby
 # encoding: utf-8
 
+require 'api'
+
 class Answer
     def roulette
-        "A game of russian roulette.\n`load` `spin` `pull`"
+        return API::Roulette.usage
     end
 
     def load

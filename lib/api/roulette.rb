@@ -16,7 +16,7 @@ module API
             @chamber = EMPTY
         end
 
-        def usage
+        def self.usage
             return "A game of russian roulette.\n`load` `spin` `pull`"
         end
 
