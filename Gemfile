@@ -1,5 +1,9 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
+gem 'dotenv'
+
+gem 'goliath', '~> 1.0.4'
+gem 'faye-websocket', '~> 0.9.2'
 gem 'rake', '~> 10.4.2'
 gem 'minitest', '~> 5.5.1'
 
