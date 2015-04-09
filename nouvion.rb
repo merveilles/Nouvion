@@ -6,11 +6,12 @@ Dotenv.load
 require 'goliath'
 require 'faye/websocket'
 require 'json'
+require 'nouvion'
 require 'slack'
 
 Faye::WebSocket.load_adapter('goliath')
 
-class Nouvion < Goliath::API
+class NouvionBot < Goliath::API
     def response(env)
         rtm_start = Slack::RTM.start
 
@@ -23,14 +24,17 @@ class Nouvion < Goliath::API
         end
 
         socket.on :message do |event|
-            message = JSON.parse(event.data)
+            data = JSON.parse(event.data)
 
-            puts message
+            message =
+                case data['type']
+                when 'user_typing'
+                    Nouvion::Handlers::UserTyping.new(data)
+                else
+                    Nouvion::Handlers::Message.new(data)
+                end
 
-            case message['type']
-            when 'message'
-                puts 'I found a message!'
-            end
+            message.handle
         end
 
         socket.on :close do |event|
