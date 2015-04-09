@@ -24,7 +24,7 @@ class Answer
     end
 
     def attack
-        if @channel != '#ze-arena' then return 'Please take your fight into <#ze-arena>.' end
+        if @channel != 'ze-arena' then return 'Please take your fight into <#ze-arena>.' end
 
         p = @message.sub('battle attack', '').split(' ')
 
