@@ -1,12 +1,15 @@
 # encoding: utf-8
 
+require "api/memory"
+
 module API
     class Health
-        include API::Memory
 
         def initialize(username, memory = nil)
             @username = username
-            @memory = memory == nil ? Memory.new() : memory
+            @memory = memory == nil ? API::Memory.new() : memory
+
+            @memory.connect
         end
 
         def usage
@@ -14,23 +17,25 @@ module API
         end
 
         def check
-            health = load_memory
+            health = get_health
 
             return health
         end
 
-        private
-
-        def load_memory
-            @memory.connect
-
-            thoughts = @memory.load("health #{@username}")
-
-            return thoughts[0][2].to_i
+        def update(value)
+            set_health(value)
         end
 
-        def save_memory
+        private
 
+        def get_health
+            result = @memory.load("health #{@username}")
+
+            return result[0][2].to_i
+        end
+
+        def set_health(value)
+            @memory.save("ludivine", "health #{@username}", value)
         end
     end
 end

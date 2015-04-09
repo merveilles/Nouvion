@@ -1,11 +1,17 @@
 # encoding: utf-8
 
-module API::Memory
-    def self.save
-        return 'Saving to memory'
-    end
+module API
+    class Memory
+        def connect
+            connect
+        end
 
-    def self.load
-        return 'Loading from memory'
+        def save(owner, key, value)
+            save(owner, key, value)
+        end
+
+        def load(query)
+            load(query)
+        end
     end
 end

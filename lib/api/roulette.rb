@@ -1,15 +1,17 @@
 # encoding: utf-8
 
+require 'api/health'
+
 module API
     class Roulette
-        include API::Memory
 
         EMPTY = [0, 0, 0, 0, 0, 0]
 
         def initialize(username, memory = nil)
             @username = username
+            @memory = memory == nil ? API::Memory.new() : memory
 
-            @memory.connect()
+            @health = API::Health.new(@username, @memory)
 
             @chamber = EMPTY
         end
@@ -43,13 +45,16 @@ module API
         end
 
         def pull_trigger
+            puts @health.check
             if @chamber[0] == 1
                 @chamber = EMPTY
+
+                @health.update(0)
 
                 return "You pull the trigger, the gun goes.. *POW*! :finnadie::collision::gun:\nYou shot yourself in the face and died.."
             end
 
-            if @chamber.eql?(EMPTY) == 0
+            if @chamber.eql?(EMPTY)
                 return "You pull the trigger, the gun goes.. *click*! :relaxed:\nThe gun is empty, you should `load` it."
             end
 
