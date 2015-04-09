@@ -13,24 +13,24 @@ class TestXenon < Minitest::Test
         require_relative '../module.xenon'
     end
 
-    # def test_xenon_account
-    #     mem = XenonMemoryTest.new
+    def test_xenon_account
+        mem = XenonMemoryTest.new
 
-    #     answer = Answer.new('xenon', 'account', 'strstr', 'xenon account', 'theartificiallounge', mem)
-    #     emote = answer.account
+        answer = Answer.new('xenon', 'account', 'strstr', 'xenon account', 'theartificiallounge', mem)
+        emote = answer.account
 
-    #     assert_includes mem.mem, ['ludivine', 'wallet strstr', '10']
-    # end
+        assert_includes mem.mem, ['ludivine', 'wallet strstr', '10']
+    end
 
-    # def test_xenon_give
-    #     mem = XenonMemoryTest.new
+    def test_xenon_give
+        mem = XenonMemoryTest.new
 
-    #     answer = Answer.new('xenon', 'give', 'maxdeviant', 'xenon give greylion 2', 'theartificiallounge', mem)
-    #     emote = answer.give
+        answer = Answer.new('xenon', 'give', 'maxdeviant', 'xenon give greylion 2', 'theartificiallounge', mem)
+        emote = answer.give
 
-    #     assert_includes mem.mem, ['ludivine', 'wallet maxdeviant', '3']
-    #     assert_includes mem.mem, ['ludivine', 'wallet greylion', '10']
-    # end
+        assert_includes mem.mem, ['ludivine', 'wallet maxdeviant', '3']
+        assert_includes mem.mem, ['ludivine', 'wallet greylion', '10']
+    end
 end
 
 class XenonMemoryTest < Memory

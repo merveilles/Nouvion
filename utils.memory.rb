@@ -1,17 +1,30 @@
+class Thought
+
+    attr_accessor :owner
+    attr_accessor :key
+    attr_accessor :relation
+    attr_accessor :value
+
+end
+
 class Memory
 
-    def transformData(data)
-        data.map { |row|
-            {
-                transformed = {
-                    "owner" => row[0],
-                    "relation" => row[1].scan(/\{([^\)]+)\}/).to_s,
-                    "value" => row[2]
-                }
-                transformed.key = row[1].sub("{"+transformed.relation+"}","")
-                return transformed
-            }
-        }
+    def collectThoughts(data)
+        thoughts = []
+        relationExtractor = /\{([^\)]+)\}/
+
+        data.each do |row|
+            thought = Thought.new 
+
+            thought.owner = row[0]
+            thought.relation = row[1].scan(relationExtractor).to_s
+            thought.value = row[2]
+            thought.key = row[1].sub("{"+thought.relation+"}","")
+
+            thoughts.push(thought)
+        end
+
+        return thoughts
     end
 
     def loadRelated(key, relation, owner = nil)
@@ -21,22 +34,22 @@ class Memory
             data = data.select { |row| row[0] == owner }
         end        
 
-        data = transformData(data)
+        data = collectThoughts(data)
 
         if data.size() == 0 then return nil end
         return data
     end
 
     def loadAllRelated(relation, owner = nil)
-        loadRelated('', relation, owner)
+        return loadRelated('', relation, owner)
     end
 
     def loadAttribute(key, attribute)
-        loadRelated(key, attribute, 'ludivine')
+        return loadRelated(key, attribute, 'ludivine')
     end        
 
     def loadAllAttributes(attribute)
-        loadAllRelated(attribute, 'ludivine')
+        return loadAllRelated(attribute, 'ludivine')
     end    
 
     def loadRelatedValue(key, relation, owner = nil)
@@ -46,12 +59,16 @@ class Memory
         return nil
     end
 
+    def loadAttributeValue(key, attribute)
+        return loadRelatedValue(key, attribute, 'ludivine')
+    end    
+
     def saveRelated(owner, key, relation, value)
-        save(owner, "{#{relation}}#{key}", value)
+        return save(owner, "{#{relation}}#{key}", value)
     end
 
     def saveAttribute(key, attribute, value)
-        saveRelated("ludivine", key, attribute, value)
+        return saveRelated("ludivine", key, attribute, value)
     end
 
     def loadOrCreate(owner, key, defaultValue)
@@ -62,10 +79,7 @@ class Memory
             save(data.flatten)
         end
 
-        return transformData(data)
+        return collectThoughts(data)
     end
 
-    def loadOrCreateAttribute(key, defaultValue)
-        loadOrCreate("ludivine", key, defaultValue)
-    end    
 end
