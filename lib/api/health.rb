@@ -8,8 +8,6 @@ module API
         def initialize(username, memory = nil)
             @username = username
             @memory = memory == nil ? API::Memory.new() : memory
-
-            @memory.connect
         end
 
         def usage
@@ -29,12 +27,16 @@ module API
         private
 
         def get_health
+            @memory.connect
+
             result = @memory.load("health #{@username}")
 
             return result[0][2].to_i
         end
 
         def set_health(value)
+            @memory.connect
+
             @memory.save("ludivine", "health #{@username}", value)
         end
     end

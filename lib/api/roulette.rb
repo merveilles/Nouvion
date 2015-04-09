@@ -21,21 +21,25 @@ module API
         end
 
         def load_revolver
+            load_state
+
             if @chamber.include?(1)
                 return "@#{@username}: There is already a bullet in the revolver."
             end
 
             @chamber = [1, 0, 0, 0, 0, 0].shuffle
 
-            save_memory
+            save_state
 
             return "@#{@username}: You put a bullet in the revolver. :japanese_ogre:"
         end
 
         def spin_cylinder
+            load_state
+
             @chamber.shuffle!
 
-            save_memory
+            save_state
 
             return "#{@username} spins the cylinder. :return:"
         end
@@ -45,7 +49,8 @@ module API
         end
 
         def pull_trigger
-            puts @health.check
+            load_state
+
             if @chamber[0] == 1
                 @chamber = EMPTY
 
@@ -60,17 +65,25 @@ module API
 
             @chamber.rotate!
 
+            save_state
+
             return "You pull the trigger, the gun goes.. *click*! :godmode:\nYou survived."
         end
 
         private
 
-        def load_memory
+        def load_state
+            @memory.connect
 
+            result = @memory.load("roulette chamber")
+
+            @chamber = result[0][2].split("")
         end
 
-        def save_memory
+        def save_state
+            @memory.connect
 
+            @memory.save("ludivine", "roulette chamber", @chamber.join(""))
         end
     end
 end
