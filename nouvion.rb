@@ -26,15 +26,21 @@ class NouvionBot < Goliath::API
         socket.on :message do |event|
             data = JSON.parse(event.data)
 
+            puts data
+
             message =
                 case data['type']
+                when 'message'
+                    Nouvion::Handlers::Message.new(data)
                 when 'user_typing'
                     Nouvion::Handlers::UserTyping.new(data)
                 else
-                    Nouvion::Handlers::Message.new(data)
+                    nil
                 end
 
-            message.handle
+            unless message.nil?
+                message.handle
+            end
         end
 
         socket.on :close do |event|

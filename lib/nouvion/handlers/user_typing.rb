@@ -1,7 +1,9 @@
 module Nouvion::Handlers
     class UserTyping < Nouvion::Handlers::Message
         def initialize(data)
-            super
+            @type = data['type']
+            @channel = data['channel']
+            @user = data['user']
         end
 
         def handle
