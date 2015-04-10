@@ -1,6 +1,4 @@
-# encoding: utf-8
-
-require "api"
+require 'api'
 
 class Answer
     def health

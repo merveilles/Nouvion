@@ -4,7 +4,7 @@ module API
 
 end
 
-require 'memory'
+# require 'memory'
 
 require 'api/cat'
 require 'api/battle'
