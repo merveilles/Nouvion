@@ -10,15 +10,11 @@ module Nouvion::Handlers
         end
 
         def handle
-            puts "Handling #{@type} message."
-
             message = @text.split(' ')
 
             unless message[0] == 'nouvion' || message[0] == 'nouvion:'
                 return
             end
-
-            puts message
 
             if message[0] == 'nouvion' || message[0] == 'nouvion:'
                 module_name = clean(message[1])
@@ -28,37 +24,35 @@ module Nouvion::Handlers
                 method_name = clean(message[1])
             end
 
-            puts "#{module_name}.#{method_name}"
-
-            puts Dir.entries('lib/modules')
-
-            puts File.exist?("lib/modules/#{module_name}.rb")
-
             if File.exist?("lib/modules/#{module_name}.rb")
                 require "modules/#{module_name}"
             end
 
             answer = Answer.new(module_name, method_name, @user, @channel, @text)
 
+            response = ''
+
             unless module_name == ''
                 unless method_name == ''
                     if answer.respond_to?(method_name)
-                        puts answer.send(method_name)
+                        response = answer.send(method_name)
                     elsif answer.respond_to(module_name)
-                        puts answer.send(module_name)
+                        response = answer.send(module_name)
                     else
-                        puts 'Unknown method.'
+                        response = 'Unknown method.'
                     end
                 else
                     if answer.respond_to?(module_name)
-                        puts answer.send(module_name)
+                        response = answer.send(module_name)
                     else
-                        puts 'Unknown module.'
+                        response = 'Unknown module.'
                     end
                 end
             else
-                puts 'Huh?'
+                response = 'Huh?'
             end
+
+            Slack::Chat.post_message(@channel, response)
         end
 
         private

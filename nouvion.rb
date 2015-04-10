@@ -28,6 +28,10 @@ class NouvionBot < Goliath::API
 
             puts data
 
+            if data.has_key?('subtype') && data['subtype'] == 'bot_message'
+                next
+            end
+
             message =
                 case data['type']
                 when 'message'
