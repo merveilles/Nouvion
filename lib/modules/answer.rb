@@ -9,19 +9,19 @@ class Answer
     end
 
     def hey
-        return "hey #{@username}."
+        return "Hey <@#{@username}>."
     end
 
     def hi
-        return "hi #{@username}!"
+        return "Hi <@#{@username}>!"
     end
 
     def sorry
-        return "Don't worry about it *#{@username}*."
+        return "Don't worry about it <@#{@username}>."
     end
 
     def where
-        return "You are in *#{@channel}*."
+        return "You are in <##{@channel}>."
     end
 
     def say
@@ -45,22 +45,22 @@ class Answer
     def rules
         rules = [
             "Rule #1: You must find yourself a monochromatic avatar.",
-            "Rule #2: I, *Ludivine*, am above the law."
+            "Rule #2: I, <@Nouvion>, am above the law."
         ]
 
         return rules.join("\n")
     end
 
     def forget
-        return "Ludivine never forgets."
+        return "Nouvion never forgets."
     end
 
     def cya
-        return "Bye bye "+@username+"!"
+        return "Bye bye <@#{@username}>!"
     end
 
     def announce
-        sayInChannel("#the-lobby","*"+@username+"* wants your attention in <#"+@channel+">.")
+        # sayInChannel("#the-lobby","*"+@username+"* wants your attention in <#"+@channel+">.")
     end
 
 end
