@@ -12,11 +12,9 @@ module Nouvion::Handlers
         def handle
             message = @text.split(' ')
 
-            unless message[0] == 'nouvion' || message[0] == 'nouvion:'
+            unless message[0].gsub(':', '').downcase == 'nouvion'
                 return
-            end
-
-            if message[0] == 'nouvion' || message[0] == 'nouvion:'
+            else
                 message.shift
             end
 
