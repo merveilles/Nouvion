@@ -1,6 +1,3 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 class Answer
     def lorem
         "My lorem module requires a method, and optionally the # of sentences, from this list:\n`gibson` `stephenson` | `gibson 3` `stephenson 4`."
@@ -12,7 +9,7 @@ class Answer
         sentenceCount = @message.split(' ')[2].to_i.abs
         sentence = text(sentenceCount, words)
 
-        sentence
+        return sentence
     end
 
     def stephenson
@@ -21,7 +18,7 @@ class Answer
         sentenceCount = @message.split(' ')[2].to_i.abs
         sentence = text(sentenceCount, words)
 
-        sentence
+        return sentence
     end
 
   protected
@@ -36,6 +33,6 @@ class Answer
             sentenceCount.times { sentence << words.pop(rand(10 - 7) + 7).join(' ').insert(0, ' ').concat('.') }
         end
 
-        sentence
+        return sentence
     end
 end
