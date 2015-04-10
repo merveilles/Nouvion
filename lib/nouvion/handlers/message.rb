@@ -36,7 +36,7 @@ module Nouvion::Handlers
                 unless method_name == ''
                     if answer.respond_to?(method_name)
                         response = answer.send(method_name)
-                    elsif answer.respond_to(module_name)
+                    elsif answer.respond_to?(module_name)
                         response = answer.send(module_name)
                     else
                         response = 'Unknown method.'
