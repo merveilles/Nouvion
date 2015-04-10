@@ -17,12 +17,11 @@ module Nouvion::Handlers
             end
 
             if message[0] == 'nouvion' || message[0] == 'nouvion:'
-                module_name = clean(message[1])
-                method_name = clean(message[2])
-            else
-                module_name = clean(message[0])
-                method_name = clean(message[1])
+                message.shift
             end
+
+            module_name = clean(message[0])
+            method_name = clean(message[1])
 
             if File.exist?("lib/modules/#{module_name}.rb")
                 require "modules/#{module_name}"
