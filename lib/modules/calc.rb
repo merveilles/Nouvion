@@ -1,14 +1,5 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 class Answer
-    # Available: moduleName,methodName,username,message
-
-    def calc # ludivine calc 1 + 2
-        oper = @message.split(' ')[0]
-        val1 = @message.split(' ')[1].to_i
-        val2 = @message.split(' ')[2].to_i
-
+    def calc
         "My calc module requires a method from this list:\n`add` `subtract` `multiply` `divide`."
     end
 

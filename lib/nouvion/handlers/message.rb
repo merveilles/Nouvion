@@ -20,6 +20,8 @@ module Nouvion::Handlers
                 message.shift
             end
 
+            puts message
+
             module_name = clean(message[0])
             method_name = clean(message[1])
 
@@ -27,7 +29,7 @@ module Nouvion::Handlers
                 require "modules/#{module_name}"
             end
 
-            answer = Answer.new(module_name, method_name, @user, @channel, @text)
+            answer = Answer.new(module_name, method_name, @user, @channel, message.join(' '))
 
             response = ''
 
