@@ -20,8 +20,6 @@ module Nouvion::Handlers
                 message.shift
             end
 
-            puts message
-
             module_name = clean(message[0])
             method_name = clean(message[1])
 
