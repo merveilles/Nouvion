@@ -9,10 +9,8 @@ require 'json'
 require 'nouvion'
 require 'slack'
 
-Faye::WebSocket.load_adapter('goliath')
-
 class NouvionBot < Goliath::API
-    def response(env)
+    EM.run {
         rtm_start = Slack::RTM.start
 
         Slack::Users.set_presence('auto')
@@ -50,7 +48,5 @@ class NouvionBot < Goliath::API
         socket.on :close do |event|
             puts 'closed'
         end
-
-        return [200, {}, Goliath::Response::STREAMING]
-    end
+    }
 end
