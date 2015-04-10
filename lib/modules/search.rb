@@ -1,11 +1,8 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'erb'
 include ERB::Util
 
 class Answer
-    def getTerm(msg)
+    def get_term(msg)
         terms = msg.split(' ')
 
         if terms.length > 2
@@ -28,16 +25,18 @@ class Answer
         term = !term.nil? ? term.lstrip.rstrip : 'cat fact'
         term = url_encode(term)
 
-        "Is <http://www.google.com/search?q=#{term}&btnI|this> what you're looking for?"
+        return "Is <http://www.google.com/search?q=#{term}&btnI|this> what you're looking for?"
     end
 
     def google
-        term = getTerm(@message)
-        "http://www.google.com/search?q=#{term}&btnI"
+        term = get_term(@message)
+
+        return "http://www.google.com/search?q=#{term}&btnI"
     end
 
     def duckduckgo
-        term = getTerm(@message)
-        "https://duckduckgo.com/?q=!ducky+#{term}+%s"
+        term = get_term(@message)
+
+        return "https://duckduckgo.com/?q=!ducky+#{term}+%s"
     end
 end
