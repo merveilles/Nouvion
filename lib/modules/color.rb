@@ -1,9 +1,4 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 class Answer
-    # Available: moduleName,methodName,username,message
-
     def color
         "Use one of the following methods:\n`random` `aura` `date` `today` `hex` `name`"
     end
