@@ -156,7 +156,7 @@ module API::Cat
         end
 
         def fact
-            return "@#{@username}: #{@@facts.shuffle[0]}"
+            return "<@#{@username}>: #{@@facts.sample}"
         end
     end
 end
