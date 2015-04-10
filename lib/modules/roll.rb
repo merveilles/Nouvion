@@ -1,9 +1,4 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 class Answer
-    # Available: moduleName,methodName,username,message
-
     def dice
         diceValue = @message.split(' ')[3].to_i
 
