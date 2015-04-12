@@ -12,7 +12,7 @@ module Slack::Chat
             'channel' => channel,
             'text' => text,
             'username' => 'Nouvion',
-            'icon_emoji' => ':ouroboros:'
+            'as_user' => 'true'
         }
 
         request.body = URI.encode_www_form(params)
