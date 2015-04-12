@@ -18,4 +18,10 @@ class Answer
 
         "My current active modules are:\n#{visible_modules.rstrip}."
     end
+
+    def version
+        sha1 = `git rev-parse HEAD`.gsub("\n", '')
+
+        return "https://github.com/merveilles/nouvion/commit/#{sha1}"
+    end
 end
