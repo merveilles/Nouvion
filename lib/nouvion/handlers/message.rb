@@ -5,8 +5,14 @@ module Nouvion::Handlers
         def initialize(data)
             @type = data['type']
             @channel = data['channel']
-            @user = data['user']
-            @text = data['text']
+
+            unless data.has_key?('message')
+                @text = data['text']
+                @user = data['user']
+            else
+                @user = data['message']['user']
+                @text = data['message']['text']
+            end
         end
 
         def handle
