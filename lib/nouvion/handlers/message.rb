@@ -67,7 +67,7 @@ module Nouvion::Handlers
         def sanitize(string)
             string = string || ''
 
-            return string.gsub(/[^0-9A-Z\s\-_]/i, '').downcase
+            return string.gsub('`', '').downcase
         end
     end
 end
