@@ -22,12 +22,10 @@ A partial implementation of GNU’s `dc` reverse-polish arbitrary-precision
 stack-based command-line calculator. Doesn’t support strings, macros,
 negative number inputs, nor the “Misc” instructions.
 
-*Quick Guide*: Use spaces to separate adjacent numbers, `p` to print the
-top of the stack, `f` to print the whole stack.  `+ - / * ^ %` work as
-expected (aliased to `A R D M E U` to go through ludivine’s alphanumeric
-flter), `v` is sqrt and `|` (aliased to `Q`) is exponential modulo. `r`
-to reverse the two numbers at the top of the stack, `d` to duplicate the
-top one, `c` to clear the stack.
+*Quick Guide*: Use spaces to separate adjacent numbers, `p` to print the top of
+the stack, `f` to print the whole stack.  `+ - / * ^ %` work as expected, `v`
+is sqrt and `|` is exponential modulo. `r` to reverse the two numbers at the
+top of the stack, `d` to duplicate the top one, `c` to clear the stack.
 
 *Example*: Calculate the volume of a cone (radius: 493, height: 1937):
 `3.14159 493 1937 3/rd***p` gives us a uselessly precise
@@ -82,7 +80,7 @@ top one, `c` to clear the stack.
           # There are up to 256 registers in the original dc, keyed by the
           # ascii value of a single character. We theoretically support Unicode,
           # so we probably support a whole lot more registers.
-          address = c[0].ord
+          address = c.ord
           _dc.send "_#{register}".to_sym, address
 
           # Reset the state of the parser and iterate forth.
@@ -127,35 +125,30 @@ class Dc
     b = @stack.pop
     @stack.push(a + b)
   end
-  alias_method :_A, :'_+'
 
   define_method '_-' do
     a = @stack.pop
     b = @stack.pop
     @stack.push(b - a)
   end
-  alias_method :_R, :'_-'
 
   define_method '_*' do
     a = @stack.pop
     b = @stack.pop
     @stack.push(a * b)
   end
-  alias_method :_M, :'_*'
 
   define_method '_/' do
     a = @stack.pop
     b = @stack.pop
     @stack.push(b / a)
   end
-  alias_method :_D, :'_/'
 
   define_method '_%' do
     a = @stack.pop
     b = @stack.pop
     @stack.push(b % a)
   end
-  alias_method :_U, :'_%'
 
   define_method '_~' do
     a = @stack.pop
@@ -163,14 +156,12 @@ class Dc
     @stack.push(b % a)
     @stack.push(b / a)
   end
-  alias_method :_T, :'_~'
 
   define_method '_^' do
     a = @stack.pop
     b = @stack.pop
     @stack.push(b**a)
   end
-  alias_method :_E, :'_^'
 
   define_method '_|' do
     a = @stack.pop
@@ -178,7 +169,6 @@ class Dc
     c = @stack.pop
     @stack.push((c**b) % a)
   end
-  alias_method :_Q, :'_|'
 
   def _v
     a = @stack.pop
@@ -196,7 +186,7 @@ class Dc
   end
 
   def _P
-    # TODO
+    @result.push @stack.pop.chr 'UTF-8'
   end
 
   def _f
