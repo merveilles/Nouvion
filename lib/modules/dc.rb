@@ -35,8 +35,10 @@ top of the stack, `d` to duplicate the top one, `c` to clear the stack.
       # ^ Remove all linebreaks except those in paragraphs. Ok, there's probably an
       # easier and more efficient way to do it but I can't think just now. FIXME
     end
-    
-    API::Dc.exec command
+
+    dc = API::Dc.new
+
+    return dc.exec(command)
   end
 end
 
