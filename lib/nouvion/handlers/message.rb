@@ -7,12 +7,16 @@ module Nouvion::Handlers
             @channel = data['channel']
 
             unless data.has_key?('message')
-                @text = data['text']
                 @user = data['user']
+                @text = data['text']
             else
                 @user = data['message']['user']
                 @text = data['message']['text']
             end
+
+            @text = sanitize(@text)
+
+            puts @text
         end
 
         def handle
@@ -24,8 +28,8 @@ module Nouvion::Handlers
                 message.shift
             end
 
-            module_name = clean(message[0])
-            method_name = clean(message[1])
+            module_name = sanitize(message[0])
+            method_name = sanitize(message[1])
 
             if File.exist?("lib/modules/#{module_name}.rb")
                 require "modules/#{module_name}"
@@ -60,10 +64,10 @@ module Nouvion::Handlers
 
         private
 
-        def clean(string)
+        def sanitize(string)
             string = string || ''
 
-            return string.gsub(/[^0-9A-Z]/i, '').downcase
+            return string.gsub(/[^0-9A-Z\s\-_]/i, '').downcase
         end
     end
 end
