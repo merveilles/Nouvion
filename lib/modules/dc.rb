@@ -80,7 +80,7 @@ top of the stack, `d` to duplicate the top one, `c` to clear the stack.
           # There are up to 256 registers in the original dc, keyed by the
           # ascii value of a single character. We theoretically support Unicode,
           # so we probably support a whole lot more registers.
-          address = c[0].ord
+          address = c.ord
           _dc.send "_#{register}".to_sym, address
 
           # Reset the state of the parser and iterate forth.
@@ -186,7 +186,7 @@ class Dc
   end
 
   def _P
-    # TODO
+    @result.push @stack.pop.chr 'UTF-8'
   end
 
   def _f
