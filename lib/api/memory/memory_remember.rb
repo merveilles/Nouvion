@@ -52,7 +52,6 @@ module API
         end
 
         def update(username, term, definition, relation)
-            puts 'do an update'
             @db.execute('
                 UPDATE remember
                 SET username = ?, term = ?, definition = ?, relation = ?
@@ -62,18 +61,18 @@ module API
         end
 
         def delete(term)
-            return delete_by_term(term)
+            delete_by_term(term)
         end
 
         def delete_by_term(term)
-            return @db.execute('
+            @db.execute('
                 DELETE FROM remember
                 WHERE term = ?
             ', [term])
         end
 
         def delete_by_definition
-            return @db.execute('
+            @db.execute('
                 DELETE FROM remember
                 WHERE definition = ?
             ', [definition])
