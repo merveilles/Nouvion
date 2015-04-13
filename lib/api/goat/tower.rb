@@ -28,7 +28,7 @@ module API::Goat
         end
 
         def climb
-            return "<@#{@username}>: #{@@outcomes.shuffle[0]}"
+            return "<@#{@username}>: #{@@outcomes.sample}"
         end
     end
 end
