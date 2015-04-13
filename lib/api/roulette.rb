@@ -23,14 +23,14 @@ module API
             load_state
 
             if @chamber.include?(1)
-                return "@#{@username}: There is already a bullet in the revolver."
+                return "<@#{@username}>: There is already a bullet in the revolver."
             end
 
             @chamber = [1, 0, 0, 0, 0, 0].shuffle
 
             save_state
 
-            return "@#{@username}: You put a bullet in the revolver. :japanese_ogre:"
+            return "<@#{@username}>: You put a bullet in the revolver. :japanese_ogre:"
         end
 
         def spin_cylinder
@@ -40,7 +40,7 @@ module API
 
             save_state
 
-            return "#{@username} spins the cylinder. :return:"
+            return "<@#{@username}> spins the cylinder. :return:"
         end
 
         def pull_trigger
@@ -53,18 +53,18 @@ module API
 
                 # @health.update(0)
 
-                return "You pull the trigger, the gun goes.. *POW*! :finnadie::collision::gun:\nYou shot yourself in the face and died.."
+                return "<@#{@username}>: You pull the trigger, the gun goes.. *POW*! :finnadie::collision::gun:\nYou shot yourself in the face and died.."
             end
 
             if @chamber.eql?(EMPTY)
-                return "You pull the trigger, the gun goes.. *click*! :relaxed:\nThe gun is empty, you should `load` it."
+                return "<@#{@username}>: You pull the trigger, the gun goes.. *click*! :relaxed:\nThe gun is empty, you should `load` it."
             end
 
             @chamber.rotate!
 
             save_state
 
-            return "You pull the trigger, the gun goes.. *click*! :godmode:\nYou survived."
+            return "<@#{@username}>: You pull the trigger, the gun goes.. *click*! :godmode:\nYou survived."
         end
 
         private
