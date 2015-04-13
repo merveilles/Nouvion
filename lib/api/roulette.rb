@@ -71,7 +71,11 @@ module API
         def load_state
             result = @memory.load
 
-            @chamber = result[0][1].split('').map { |v| v.to_i }
+            if @memory.exists
+                @chamber = result[0][1].split('').map { |v| v.to_i }
+            else
+                @chamber = EMPTY
+            end
         end
 
         def save_state
