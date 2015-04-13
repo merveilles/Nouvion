@@ -1,14 +1,13 @@
-# encoding: utf-8
-
 module API
 
 end
 
-# require 'memory'
+require 'api/memory'
 
 require 'api/battle'
 require 'api/cat'
 require 'api/dc'
 require 'api/goat'
 require 'api/health'
+require 'api/remember'
 require 'api/roulette'
