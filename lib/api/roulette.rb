@@ -1,4 +1,3 @@
-require 'api/memory/memory_roulette'
 # require 'api/health'
 
 module API
@@ -72,7 +71,7 @@ module API
         def load_state
             result = @memory.load
 
-            @chamber = result[0][1].split("").map { |v| v.to_i }
+            @chamber = result[0][1].split('').map { |v| v.to_i }
         end
 
         def save_state

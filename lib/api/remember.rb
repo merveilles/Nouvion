@@ -1,5 +1,3 @@
-require 'api/memory/memory_remember'
-
 module API
     class Remember
         def initialize(username, memory = nil)
