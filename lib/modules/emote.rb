@@ -13,15 +13,14 @@ class Answer
 
         symmetry = rand(1) > 0
 
-        lefteye = eyes.shuffle[0]
+        lefteye = eyes.sample
         righteye = lefteye
-        unless  symmetry
-            righteye = eyes.shuffle[0]
+
+        unless symmetry
+            righteye = eyes.sample
         end
 
-        text = lefteye + mouths.shuffle[0] + righteye
-
-        text
+        return lefteye + mouths.sample + righteye
     end
 
     def flip
