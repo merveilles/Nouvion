@@ -1,20 +1,14 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 class Answer
-
-	def time
-
+    def time
         time = Time.new.strftime("%H:%M:%S")
-        return "The <http://xxiivv.com|XXIIVV> server time is *#{time}*."
 
-	end
+        return "<@#{@username}>: The server time is *#{time}*."
+    end
 
     def day
-
         day = Time.new.strftime("%B %d, %Y")
-        return "We are the *#{day}*."
 
+        return "<@#{@username}>: Today is *#{day}*."
     end
 
     def month
@@ -36,7 +30,7 @@ class Answer
 
         month = desamber[Time.now.month - 1]
 
-        return "The XXIIVV Month is #{month}"
+        return "<@#{@username}>: The XXIIVV Month is #{month}"
 
     end
 
