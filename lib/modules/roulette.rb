@@ -1,6 +1,4 @@
-# encoding: utf-8
-
-require "api"
+require 'api'
 
 class Answer
     def roulette
@@ -8,19 +6,19 @@ class Answer
     end
 
     def load
-        roulette = API::Roulette.new(@username, @memory)
+        roulette = API::Roulette.new(@username)
 
         return roulette.load_revolver
     end
 
     def spin
-        roulette = API::Roulette.new(@username, @memory)
+        roulette = API::Roulette.new(@username)
 
         return roulette.spin_cylinder
     end
 
     def pull
-        roulette = API::Roulette.new(@username, @memory)
+        roulette = API::Roulette.new(@username)
 
         return roulette.pull_trigger
     end

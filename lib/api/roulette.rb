@@ -1,6 +1,5 @@
-# encoding: utf-8
-
-require "api/health"
+require 'api/memory/memory_remember'
+require 'api/health'
 
 module API
     class Roulette
@@ -9,7 +8,7 @@ module API
 
         def initialize(username, memory = nil)
             @username = username
-            @memory = memory == nil ? Memory.new : memory
+            @memory = memory == nil ? MemoryRoulette.new : memory
 
             @health = API::Health.new(@username, @memory)
 
@@ -52,7 +51,7 @@ module API
 
                 save_state
 
-                @health.update(0)
+                # @health.update(0)
 
                 return "You pull the trigger, the gun goes.. *POW*! :finnadie::collision::gun:\nYou shot yourself in the face and died.."
             end
@@ -71,17 +70,17 @@ module API
         private
 
         def load_state
-            @memory.connect
+            result = @memory.load
 
-            result = @memory.load("roulette chamber")
-
-            @chamber = result[0][2].split("").map { |v| v.to_i }
+            @chamber = result[0][1].split("").map { |v| v.to_i }
         end
 
         def save_state
-            @memory.connect
-
-            @memory.save("ludivine", "roulette chamber", @chamber.join(""))
+            if @memory.exists
+                @memory.update(@chamber.join(''))
+            else
+                @memory.add(@chamber.join(''))
+            end
         end
     end
 end
