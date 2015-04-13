@@ -15,10 +15,6 @@ class Answer
         value = term_split[1]
         term = term_split[2]
 
-        if value.include?('http')
-            return 'I cannot remember URLs.'
-        end
-
         if name != '' && value != '' && term != ''
             remember.store(name, value, term)
 
