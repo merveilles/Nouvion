@@ -1,5 +1,5 @@
 require 'api/memory/memory_remember'
-require 'api/health'
+# require 'api/health'
 
 module API
     class Roulette
@@ -10,7 +10,7 @@ module API
             @username = username
             @memory = memory == nil ? MemoryRoulette.new : memory
 
-            @health = API::Health.new(@username, @memory)
+            # @health = API::Health.new(@username, @memory)
 
             @chamber = EMPTY
         end
