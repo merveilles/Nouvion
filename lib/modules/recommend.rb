@@ -1,5 +1,4 @@
-#!/bin/env ruby
-# encoding: utf-8
+require 'api'
 
 class Answer
     def recommend
@@ -15,13 +14,13 @@ class Answer
             target = @username
         end
 
-        @memory.connect
-        thoughts = @memory.load(topic).shuffle
+        remember = API::Remember.new(@username)
+        entries = remember.recall(topic)
 
-        thoughts.each do |known|
-            unless known[2].include?(topic) then next end
+        entries.each do |entry|
+            unless entry[3].include?(topic) then next end
 
-            return "How about *#{known[1]}*, <@#{target}>?"
+            return "How about *#{entry[2]}*, <@#{target}>?"
         end
 
         "<@#{@username}>: What is *#{topic}*?"

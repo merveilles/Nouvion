@@ -28,7 +28,7 @@ module API
         def load(term)
             return @db.execute('
                 SELECT * FROM remember
-                WHERE term = ?
+                WHERE definition = ?
             ', [term])
         end
     end
