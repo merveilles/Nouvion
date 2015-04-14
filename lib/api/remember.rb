@@ -16,5 +16,14 @@ module API
         def recall(term)
             return @memory.load(term)
         end
+
+        def loosely_recall(term)
+            return @memory.load_similar(term)
+        end        
+
+        # can't figure out a better name for that... 'search' and 'find' are equally vague
+        def recall_by_definition(definition)
+            return @memory.load_by_definition(term)
+        end        
     end
 end

@@ -51,6 +51,15 @@ module API
             ', [definition])
         end
 
+        def load_similar(term)
+            similar_to = term.empty? ? '%' : '%' + term + '%'
+            return @db.execute('
+                SELECT * FROM remember
+                WHERE term LIKE ?
+                OR definition LIKE ?
+            ', [similar_to, similar_to])            
+        end
+
         def update(username, term, definition, relation)
             @db.execute('
                 UPDATE remember
