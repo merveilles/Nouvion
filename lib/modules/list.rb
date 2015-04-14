@@ -7,7 +7,7 @@ class Answer
             return "List does a reverse query on my memory with the format :\n`ludivine list single malt`\nYou may also query which topics can be listed with `list all`."
         end
 
-		remember = API::Remember.new(@username)
+        remember = API::Remember.new(@username)
         terms = remember.recall_by_definition(topic).map { |x| x[1] }.uniq
 
         if matches.size == 1 then
