@@ -2,6 +2,9 @@ require 'sqlite3'
 
 module API
     class MemoryRemember
+        #how to think of this API:
+        # term may be thought of as your module name. usernames may correspond to slack users, and relations may correspond to entities within your module. The three feilds I've mentioned thus far are keys, while definitions are their corresponding values. All keys are optional, but it is recommended that you use your own term.
+        
         def initialize
             @db = SQLite3::Database.new('nouvion.db')
 
@@ -15,6 +18,7 @@ module API
                 );
                 CREATE INDEX IF NOT EXISTS remember_by_usernamexterm ON remember (username, term);
                 CREATE INDEX IF NOT EXISTS remember_by_usernamextermxrelation ON remember (username, term, relation);
+                CREATE INDEX IF NOT EXISTS remember_by_termxrelation ON remember (term, relation);
                 CREATE INDEX IF NOT EXISTS remember_by_definition ON remember (definition);
             '
 
@@ -71,8 +75,6 @@ module API
                     AND term = ?
             ', [username, term, definition, relation, username, term])
         end
-        
-        def usernames_for_term(
         
         def delete(term)
             delete_by_term(term)
