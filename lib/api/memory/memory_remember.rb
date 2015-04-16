@@ -66,14 +66,53 @@ module API
                 OR definition LIKE ?
             ', [similar_to, similar_to])            
         end
-
-        def update(username, term, definition, relation)
+        
+        #note, if multiple matches, deletes all
+        def replace_by_username_term_relation(username, term, relation,  new_definition)
+            @db.execute('
+                DELETE FROM remember
+                WHERE username = ?
+                AND term = ?
+                AND relation = ?
+            ', [username, term, relation])
+            @db.execute('
+                INSERT INTO remember (username, term, definition, relation)
+                VALUES (?, ?, ?, ?)
+            ', [username, term, new_definition, relation])
+        end
+        
+        def replace_by_username_term(username, term,  new_definition)
+            @db.execute('
+                DELETE FROM remember
+                WHERE username = ?
+                AND term = ?
+            ', [username, term])
+            @db.execute('
+                INSERT INTO remember (username, term, definition, relation)
+                VALUES (?, ?, ?, NULL)
+            ', [username, term, new_definition])
+        end
+        
+        def replace_by_term(term, new_definition)
+            @db.execute('
+                DELETE FROM remember
+                WHERE term = ?
+            ', [term])
+            @db.execute('
+                INSERT INTO remember (username, term, definition, relation)
+                VALUES (NULL, ?, ?, NULL)
+            ', [term, new_definition])
+        end
+        
+        def replace_by_username_term_relation_definition(username, term, relation, old_definition,  new_definition)
             @db.execute('
                 UPDATE remember
-                SET username = ?, term = ?, definition = ?, relation = ?
+                SET definition = ?
                 WHERE username = ?
-                    AND term = ?
-            ', [username, term, definition, relation, username, term])
+                AND term = ?
+                AND relation = ?
+                AND definition = ?
+            ', [new_definition, username, term, relation, old_definition])
         end
         
         def delete(term)
