@@ -20,7 +20,7 @@ module Slack::Users
     end
 
     def self.info(user)
-        uri = URI.parse('https://slack.com/api/users.getPresence')
+        uri = URI.join(Slack.base_url, 'users.getPresence')
 
         https = Net::HTTP.new(uri.host, uri.port)
         https.use_ssl = true
@@ -40,7 +40,7 @@ module Slack::Users
     end
 
     def self.list
-        uri = URI.parse('https://slack.com/api/users.getPresence')
+        uri = URI.join(Slack.base_url, 'users.getPresence')
 
         https = Net::HTTP.new(uri.host, uri.port)
         https.use_ssl = true
@@ -59,7 +59,7 @@ module Slack::Users
     end
 
     def self.set_presence(presence)
-        uri = URI.parse('https://slack.com/api/users.setPresence')
+        uri = URI.join(Slack.base_url, 'users.getPresence')
 
         https = Net::HTTP.new(uri.host, uri.port)
         https.use_ssl = true
