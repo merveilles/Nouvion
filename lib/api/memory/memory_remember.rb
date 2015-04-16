@@ -86,6 +86,31 @@ module API
                 WHERE term = ?
             ', [term])
         end
+        
+        def delete_by_username_term(username, term)
+            @db.execute('
+                DELETE FROM remember
+                WHERE username = ?
+                AND term = ?
+            ', [username, term])
+        end
+        
+        def delete_by_username_term_relation(username, term, relation)
+            @db.execute('
+                DELETE FROM remember
+                WHERE username = ?
+                AND term = ?
+                AND relation = ?
+            ', [username, term, relation])
+        end
+        
+        def delete_by_term_relation(term, relation)
+            @db.execute('
+                DELETE FROM remember
+                AND term = ?
+                AND relation = ?
+            ', [term, relation])
+        end
 
         def delete_by_definition
             @db.execute('
