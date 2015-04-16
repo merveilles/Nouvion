@@ -59,7 +59,7 @@ module Slack::Users
     end
 
     def self.set_presence(presence)
-        uri = URI.join(Slack.base_url, 'users.getPresence')
+        uri = URI.join(Slack.base_url, 'users.setPresence')
 
         https = Net::HTTP.new(uri.host, uri.port)
         https.use_ssl = true
