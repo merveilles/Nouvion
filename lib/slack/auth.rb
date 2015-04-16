@@ -1,6 +1,6 @@
 module Slack::Auth
     def self.test
-        uri = URI.parse('https://slack.com/api/auth.test')
+        uri = URI.join(Slack.base_url, 'auth.test')
 
         https = Net::HTTP.new(uri.host, uri.port)
         https.use_ssl = true

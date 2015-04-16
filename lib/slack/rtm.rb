@@ -1,6 +1,6 @@
 module Slack::RTM
     def self.start
-        uri = URI.parse('https://slack.com/api/rtm.start')
+        uri = URI.join(Slack.base_url, 'rtm.start')
 
         https = Net::HTTP.new(uri.host, uri.port)
         https.use_ssl = true

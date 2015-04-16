@@ -1,6 +1,6 @@
 module Slack::Chat
     def self.post_message(channel, text, options = nil)
-        uri = URI.parse('https://slack.com/api/chat.postMessage')
+        uri = URI.join(Slack.base_url, 'chat.postMessage')
 
         https = Net::HTTP.new(uri.host, uri.port)
         https.use_ssl = true
