@@ -6,11 +6,7 @@ module API
         end
 
         def store(term, definition, relation)
-            if @memory.exists(@username, term)
-                @memory.update(@username, term, definition, relation)
-            else
-                @memory.add(@username, term, definition, relation)
-            end
+            @memory.replace_by_username_term_relation(@username, term, relation, definition)
         end
 
         def recall(term)
