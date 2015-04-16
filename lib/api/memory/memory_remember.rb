@@ -2,6 +2,9 @@ require 'sqlite3'
 
 module API
     class MemoryRemember
+        #how to think of this API:
+        # term may be thought of as your module name. usernames may correspond to slack users, and relations may correspond to entities within your module. The three feilds I've mentioned thus far are keys, while definitions are their corresponding values. All keys are optional, but it is recommended that you use your own term.
+        
         def initialize
             @db = SQLite3::Database.new('nouvion.db')
 
@@ -13,11 +16,15 @@ module API
                     definition TEXT,
                     relation TEXT
                 );
+                CREATE INDEX IF NOT EXISTS remember_by_usernamexterm ON remember (username, term);
+                CREATE INDEX IF NOT EXISTS remember_by_usernamextermxrelation ON remember (username, term, relation);
+                CREATE INDEX IF NOT EXISTS remember_by_termxrelation ON remember (term, relation);
+                CREATE INDEX IF NOT EXISTS remember_by_definition ON remember (definition);
             '
 
             @db.execute(table)
         end
-
+        
         def exists(username, term)
             return @db.execute('
                 SELECT * FROM remember
@@ -68,7 +75,7 @@ module API
                     AND term = ?
             ', [username, term, definition, relation, username, term])
         end
-
+        
         def delete(term)
             delete_by_term(term)
         end
@@ -78,6 +85,31 @@ module API
                 DELETE FROM remember
                 WHERE term = ?
             ', [term])
+        end
+        
+        def delete_by_username_term(username, term)
+            @db.execute('
+                DELETE FROM remember
+                WHERE username = ?
+                AND term = ?
+            ', [username, term])
+        end
+        
+        def delete_by_username_term_relation(username, term, relation)
+            @db.execute('
+                DELETE FROM remember
+                WHERE username = ?
+                AND term = ?
+                AND relation = ?
+            ', [username, term, relation])
+        end
+        
+        def delete_by_term_relation(term, relation)
+            @db.execute('
+                DELETE FROM remember
+                AND term = ?
+                AND relation = ?
+            ', [term, relation])
         end
 
         def delete_by_definition
