@@ -13,11 +13,14 @@ module API
                     definition TEXT,
                     relation TEXT
                 );
+                CREATE INDEX IF NOT EXISTS remember_by_usernamexterm ON remember (username, term);
+                CREATE INDEX IF NOT EXISTS remember_by_usernamextermxrelation ON remember (username, term, relation);
+                CREATE INDEX IF NOT EXISTS remember_by_definition ON remember (definition);
             '
 
             @db.execute(table)
         end
-
+        
         def exists(username, term)
             return @db.execute('
                 SELECT * FROM remember
@@ -68,7 +71,9 @@ module API
                     AND term = ?
             ', [username, term, definition, relation, username, term])
         end
-
+        
+        def usernames_for_term(
+        
         def delete(term)
             delete_by_term(term)
         end
