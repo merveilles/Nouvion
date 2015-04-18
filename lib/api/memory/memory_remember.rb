@@ -3,7 +3,7 @@ require 'sqlite3'
 module API
     class MemoryRemember
         #how to think of this API:
-        # term may be thought of as your module name. usernames may correspond to slack users, and relations may correspond to entities within your module. The three feilds I've mentioned thus far are keys, while definitions are their corresponding values. All keys are optional, but it is recommended that each module use its own term.
+        # term may be thought of as your module name. usernames may correspond to slack users, and relations may correspond to entities within your module. The three feilds I've mentioned thus far are keys, while definitions are their corresponding values. All keys are optional, but it is recommended that each module use a term named after it for storing its data.
         
         def initialize
             @db = SQLite3::Database.new('nouvion.db')
