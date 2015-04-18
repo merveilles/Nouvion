@@ -16,7 +16,7 @@ class Answer
 	end
 	
 	def handout
-		amount = @message[0].to_i
+		amount = @message.split(' ')[0].to_i
 		if amount >= 0
 			return "no."
 		else
@@ -28,15 +28,15 @@ class Answer
 		end
 	end
 	
-	def contents
+	def balance
 		return "you have #{Wallet.new(@username, @memory).contents}XEN."
 	end
 	
 	def help
 		return "
-transfer <amount of xen to transfer> <user to transfer to>
-handout <amount of xen you want from the bank>
-contents
+transfer <amount of xen to transfer> <user to transfer to> : hand money to someone
+handout <amount of xen you want from the bank> : get free money
+balance : tells how much xenon you have
 "
 	end
 
