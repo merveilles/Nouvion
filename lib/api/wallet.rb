@@ -40,7 +40,7 @@ module API
 			return Wallet.new("nouvion", @mem)
 		end
 		def self.the_house(mem)
-			return Wallet.new("nouvion", @mem)
+			return Wallet.new("nouvion", mem)
 		end
 		
 		def transfer(amount, to = house_wallet) #to can be a string or a Wallet
