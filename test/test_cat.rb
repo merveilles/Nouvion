@@ -1,20 +1,16 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestCat < Minitest::Test
     def setup
-        require_relative '../module.cat'
+        require_relative '../lib/modules/cat'
     end
 
     def test_cat_cat
-        answer = Answer.new('cat', 'cat', 'maxdeviant', 'cat', 'theartificiallounge')
+        answer = Answer.new('cat', 'cat', 'maxdeviant', 'theartificiallounge', 'cat')
 
         fact = answer.cat
 
@@ -22,7 +18,7 @@ class TestCat < Minitest::Test
     end
 
     def test_cat_fact
-        answer = Answer.new('cat', 'fact', 'maxdeviant', 'cat fact', 'theartificiallounge')
+        answer = Answer.new('cat', 'fact', 'maxdeviant', 'theartificiallounge', 'cat fact')
 
         fact = answer.fact
 
