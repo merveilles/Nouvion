@@ -1,16 +1,12 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestWhat < Minitest::Test
     def setup
-        require_relative '../module.what'
+        require_relative '../lib/modules/what'
     end
 
     # def test_what_time
@@ -46,11 +42,3 @@ class TestWhat < Minitest::Test
     # end
 end
 
-class MemoryTest < Memory
-    def load(_query)
-        [
-          ['ludivine', 'javascript', 'programming language'],
-          %w(ludivine beer alcohol)
-        ]
-    end
-end
