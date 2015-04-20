@@ -1,20 +1,16 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestHighFive < Minitest::Test
     def setup
-        require_relative '../module.highfive'
+        require_relative '../lib/modules/highfive'
     end
 
     def test_highfive_highfive
-        answer = Answer.new('highfive', 'highfive', 'maxdeviant', 'highfive', 'theartificiallounge')
+        answer = Answer.new('highfive', 'highfive', 'maxdeviant', 'theartificiallounge', 'highfive')
 
         highfive = answer.highfive
 
