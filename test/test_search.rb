@@ -1,20 +1,16 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestSearch < Minitest::Test
     def setup
-        require_relative '../module.search'
+        require_relative '../lib/modules/search'
     end
 
     def test_search_search
-        answer = Answer.new('search', 'search', 'maxdeviant', 'search', 'theartificiallounge')
+        answer = Answer.new('search', 'search', 'maxdeviant', 'theartificiallounge', 'search')
 
         search = answer.search
 
@@ -27,7 +23,7 @@ class TestSearch < Minitest::Test
         ]
 
         queries.each do |query|
-            answer = Answer.new('search', 'search', 'maxdeviant', "search #{query}", 'theartificiallounge')
+            answer = Answer.new('search', 'search', 'maxdeviant', 'theartificiallounge', "search #{query}")
 
             search = answer.search
 
@@ -36,7 +32,7 @@ class TestSearch < Minitest::Test
     end
 
     def test_search_google
-        answer = Answer.new('search', 'google', 'maxdeviant', 'search google cat fact', 'theartificiallounge')
+        answer = Answer.new('search', 'google', 'maxdeviant', 'theartificiallounge', 'search google cat fact')
 
         google = answer.google
 
@@ -44,7 +40,7 @@ class TestSearch < Minitest::Test
     end
 
     def test_search_duckduckgo
-        answer = Answer.new('search', 'duckduckgo', 'maxdeviant', 'search duckduckgo cat fact', 'theartificiallounge')
+        answer = Answer.new('search', 'duckduckgo', 'maxdeviant', 'theartificiallounge', 'search duckduckgo cat fact')
 
         duckduckgo = answer.duckduckgo
 
