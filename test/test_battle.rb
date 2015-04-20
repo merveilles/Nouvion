@@ -6,50 +6,50 @@ require_relative '../lib/modules/answer'
 
 class TestBattle < Minitest::Test
     def setup
-        require_relative '../lib/modules/battle'
+        # require_relative '../lib/modules/battle'
     end
 
     def test_battle_profession
-        answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession')
+        # answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession')
 
-        battle = answer.profession
+        # battle = answer.profession
 
-        answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession rogue')
+        # answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession rogue')
 
-        battle = answer.profession
+        # battle = answer.profession
 
-        answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession')
+        # answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession')
 
-        battle = answer.profession
+        # battle = answer.profession
 
-        answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession rogue')
+        # answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession rogue')
 
-        battle = answer.profession
+        # battle = answer.profession
 
-        answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession potato')
+        # answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession potato')
 
-        battle = answer.profession
+        # battle = answer.profession
     end
 
     def test_battle_attack
-        answer = Answer.new('battle', 'attack', 'strstr', 'theartificiallounge', 'battle attack potato')
+        # answer = Answer.new('battle', 'attack', 'strstr', 'theartificiallounge', 'battle attack potato')
 
-        battle = answer.attack
+        # battle = answer.attack
 
-        answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession rogue')
+        # answer = Answer.new('battle', 'profession', 'strstr', 'theartificiallounge', 'battle profession rogue')
 
-        battle = answer.profession
+        # battle = answer.profession
 
-        answer = Answer.new('battle', 'attack', 'strstr', 'theartificiallounge', 'battle attack potato')
+        # answer = Answer.new('battle', 'attack', 'strstr', 'theartificiallounge', 'battle attack potato')
 
-        battle = answer.attack
+        # battle = answer.attack
 
-        answer = Answer.new('battle', 'raise', 'strstr', 'theartificiallounge', 'battle raise strstr')
+        # answer = Answer.new('battle', 'raise', 'strstr', 'theartificiallounge', 'battle raise strstr')
 
-        battle = answer.raise
+        # battle = answer.raise
 
-        answer = Answer.new('battle', 'raise', 'strstr', 'theartificiallounge', 'battle raise potato')
+        # answer = Answer.new('battle', 'raise', 'strstr', 'theartificiallounge', 'battle raise potato')
 
-        battle = answer.raise
+        # battle = answer.raise
     end
 end

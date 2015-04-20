@@ -1,16 +1,12 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestWeather < Minitest::Test
     def setup
-        require_relative '../module.define'
+        require_relative '../lib/modules/define'
     end
 
     def test_define
