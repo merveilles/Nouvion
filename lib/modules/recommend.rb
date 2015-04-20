@@ -15,7 +15,7 @@ class Answer
         end
 
         remember = API::Remember.new(@username)
-        entries = remember.recall(topic)
+        entries = remember.recall_by_definition(topic)
 
         entries.each do |entry|
             unless entry[3].include?(topic) then next end

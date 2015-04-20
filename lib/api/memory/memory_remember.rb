@@ -2,9 +2,12 @@ require 'sqlite3'
 
 module API
     class MemoryRemember
-        #how to think of this API:
-        # term may be thought of as your module name. usernames may correspond to slack users, and relations may correspond to entities within your module. The three feilds I've mentioned thus far are keys, while definitions are their corresponding values. All keys are optional, but it is recommended that each module use a term named after it for storing its data.
-        
+        # How to think of this API:
+        # Term may be thought of as your module name.
+        # Usernames may correspond to Slack users, and relations may correspond to entities within your module.
+        # The three feilds I've mentioned thus far are keys, while definitions are their corresponding values.
+        # All keys are optional, but it is recommended that each module use a term named after it for storing its data.
+
         def initialize
             @db = SQLite3::Database.new('nouvion.db')
 
@@ -24,7 +27,7 @@ module API
 
             @db.execute(table)
         end
-        
+
         def exists(username, term)
             return @db.execute('
                 SELECT * FROM remember
@@ -57,14 +60,14 @@ module API
                 WHERE definition = ?
             ', [definition])
         end
-        
+
         def load_by_username_term_relation(username, term, relation)
            return @db.execute('
                SELECT * FROM remember
                WHERE username = ?
                AND term = ?
                AND relation = ?
-           ', [username,term,relation]) 
+           ', [username,term,relation])
         end
 
         def load_similar(term)
@@ -73,9 +76,9 @@ module API
                 SELECT * FROM remember
                 WHERE term LIKE ?
                 OR definition LIKE ?
-            ', [similar_to, similar_to])            
+            ', [similar_to, similar_to])
         end
-        
+
         #note, if multiple matches, deletes all
         def replace_by_username_term_relation(username, term, relation,  new_definition)
             @db.execute('
@@ -89,7 +92,7 @@ module API
                 VALUES (?, ?, ?, ?)
             ', [username, term, new_definition, relation])
         end
-        
+
         def replace_by_username_term(username, term,  new_definition)
             @db.execute('
                 DELETE FROM remember
@@ -101,7 +104,7 @@ module API
                 VALUES (?, ?, ?, NULL)
             ', [username, term, new_definition])
         end
-        
+
         def replace_by_term(term, new_definition)
             @db.execute('
                 DELETE FROM remember
@@ -112,7 +115,7 @@ module API
                 VALUES (NULL, ?, ?, NULL)
             ', [term, new_definition])
         end
-        
+
         def replace_by_username_term_relation_definition(username, term, relation, old_definition,  new_definition)
             @db.execute('
                 UPDATE remember
@@ -123,7 +126,7 @@ module API
                 AND definition = ?
             ', [new_definition, username, term, relation, old_definition])
         end
-        
+
         def delete(term)
             delete_by_term(term)
         end
@@ -134,7 +137,7 @@ module API
                 WHERE term = ?
             ', [term])
         end
-        
+
         def delete_by_username_term(username, term)
             @db.execute('
                 DELETE FROM remember
@@ -142,7 +145,7 @@ module API
                 AND term = ?
             ', [username, term])
         end
-        
+
         def delete_by_username_term_relation(username, term, relation)
             @db.execute('
                 DELETE FROM remember
@@ -151,7 +154,7 @@ module API
                 AND relation = ?
             ', [username, term, relation])
         end
-        
+
         def delete_by_term_relation(term, relation)
             @db.execute('
                 DELETE FROM remember
