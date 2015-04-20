@@ -1,20 +1,16 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestGoat < Minitest::Test
     def setup
-        require_relative '../module.goat'
+        require_relative '../lib/modules/goat'
     end
 
     def test_goat_goat
-        answer = Answer.new('goat', 'goat', 'maxdeviant', 'goat', 'theartificiallounge')
+        answer = Answer.new('goat', 'goat', 'maxdeviant', 'theartificiallounge', 'goat')
 
         goat = answer.goat
 
@@ -22,7 +18,7 @@ class TestGoat < Minitest::Test
     end
 
     def test_goat_tower
-        answer = Answer.new('goat', 'tower', 'maxdeviant', 'goat tower', 'theartificiallounge')
+        answer = Answer.new('goat', 'tower', 'maxdeviant', 'theartificiallounge', 'goat tower')
 
         tower = answer.tower
 
@@ -30,7 +26,7 @@ class TestGoat < Minitest::Test
     end
 
     def test_goat_thrower
-        answer = Answer.new('goat', 'thrower', 'maxdeviant', 'goat thrower', 'theartificiallounge')
+        answer = Answer.new('goat', 'thrower', 'maxdeviant', 'theartificiallounge', 'goat thrower')
 
         thrower = answer.thrower
 
