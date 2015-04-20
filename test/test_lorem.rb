@@ -1,20 +1,16 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestLorem < Minitest::Test
     def setup
-        require_relative '../module.lorem'
+        require_relative '../lib/modules/lorem'
     end
 
     def test_lorem_gibson
-        answer = Answer.new('lorem', 'gibson', 'maxdeviant', 'lorem gibson', 'theartificiallounge')
+        answer = Answer.new('lorem', 'gibson', 'maxdeviant', 'theartificiallounge', 'lorem gibson')
 
         gibson = answer.gibson
 
