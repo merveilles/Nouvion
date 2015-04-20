@@ -1,20 +1,16 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestEmote < Minitest::Test
     def setup
-        require_relative '../module.emote'
+        require_relative '../lib/modules/emote'
     end
 
     def test_emote_emote
-        answer = Answer.new('emote', 'emote', 'maxdeviant', 'emote', 'theartificiallounge')
+        answer = Answer.new('emote', 'emote', 'maxdeviant', 'theartificiallounge', 'emote')
 
         emote = answer.emote
 
@@ -22,11 +18,11 @@ class TestEmote < Minitest::Test
     end
 
     def test_emote_smile
-        answer = Answer.new('emote', 'smile', 'maxdeviant', 'emote smile', 'theartificiallounge')
+        answer = Answer.new('emote', 'smile', 'maxdeviant', 'theartificiallounge', 'emote smile')
     end
 
     def test_cat_fact
-        answer = Answer.new('cat', 'fact', 'maxdeviant', 'cat fact', 'theartificiallounge')
+        answer = Answer.new('cat', 'fact', 'maxdeviant', 'theartificiallounge', 'cat fact')
 
         emote = answer.emote
 
@@ -34,41 +30,28 @@ class TestEmote < Minitest::Test
     end
 
     def test_flip
-        # mock memory
-        memory = FlipMemoryTest.new
+        answer = Answer.new('emote', 'flip', 'strstr', 'theartificiallounge', 'emote flip')
 
-        # flip once...
-        answer = Answer.new('emote', 'flip', 'strstr', 'emote flip', 'theartificiallounge', memory)
-        emote1 = answer.flip
-        assert_equal true, answer.flippingEmojis.include?(emote1)
+        emote = answer.flip
 
-        # unflip
-        answer = Answer.new('emote', 'flip', 'strstr', 'emote flip', 'theartificiallounge', memory)
-        emote2 = answer.flip
-        assert_equal true, answer.unflippingEmojis.include?(emote2)
+        assert_equal true, (emote.instance_of? String)
 
-        # flip again
-        answer = Answer.new('emote', 'flip', 'strstr', 'emote flip', 'theartificiallounge', memory)
-        emote3 = answer.flip
-        assert_equal true, answer.flippingEmojis.include?(emote3)
+        answer = Answer.new('emote', 'flip', 'strstr', 'theartificiallounge', 'emote flip')
 
-        # and confirm unflip
-        answer = Answer.new('emote', 'flip', 'strstr', 'emote flip', 'theartificiallounge', memory)
-        emote4 = answer.flip
-        assert_equal true, answer.unflippingEmojis.include?(emote4)
-    end
-end
+        emote = answer.flip
 
-class FlipMemoryTest < Memory
-    def initialize
-      @mem = [['ludivine', 'table flipped', 'no'], ['ludivine', 'other thing', 'potato']]
-    end
+        assert_equal true, (emote.instance_of? String)
 
-    def load(_query)
-        @mem
-    end
+        answer = Answer.new('emote', 'flip', 'strstr', 'theartificiallounge', 'emote flip')
 
-    def save(_owner, _key, value)
-        @mem[0][2] = value
+        emote = answer.flip
+
+        assert_equal true, (emote.instance_of? String)
+
+        answer = Answer.new('emote', 'flip', 'strstr', 'theartificiallounge', 'emote flip')
+
+        emote = answer.flip
+
+        assert_equal true, (emote.instance_of? String)
     end
 end
