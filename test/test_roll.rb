@@ -1,26 +1,22 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestRoll < Minitest::Test
     def setup
-        require_relative '../module.roll'
+        require_relative '../lib/modules/roll'
     end
 
     def test_roll_dice
-        answer = Answer.new('roll', 'dice', 'maxdeviant', 'roll dice 20', 'theartificiallounge')
+        answer = Answer.new('roll', 'dice', 'maxdeviant', 'theartificiallounge', 'roll dice 20')
 
         dice = answer.dice
 
         assert_equal true, (dice.instance_of? String)
 
-        answer = Answer.new('roll', 'dice', 'maxdeviant', 'roll dice', 'theartificiallounge')
+        answer = Answer.new('roll', 'dice', 'maxdeviant', 'theartificiallounge', 'roll dice')
 
         dice = answer.dice
 
@@ -28,7 +24,7 @@ class TestRoll < Minitest::Test
     end
 
     def test_roll_barrel
-        answer = Answer.new('roll', 'barrel', 'maxdeviant', 'roll barrel ', 'theartificiallounge')
+        answer = Answer.new('roll', 'barrel', 'maxdeviant', 'theartificiallounge', 'roll barrel ')
 
         barrel = answer.barrel
 
@@ -36,7 +32,7 @@ class TestRoll < Minitest::Test
     end
 
     def test_roll_cigarette
-        answer = Answer.new('roll', 'cigarette', 'maxdeviant', 'roll cigarette ', 'theartificiallounge')
+        answer = Answer.new('roll', 'cigarette', 'maxdeviant', 'theartificiallounge', 'roll cigarette ')
 
         cigarette = answer.cigarette
 
@@ -44,7 +40,7 @@ class TestRoll < Minitest::Test
     end
 
     def test_roll_katamari
-        answer = Answer.new('roll', 'katamari', 'maxdeviant', 'roll katamari ', 'theartificiallounge')
+        answer = Answer.new('roll', 'katamari', 'maxdeviant', 'theartificiallounge', 'roll katamari ')
 
         katamari = answer.katamari
 
