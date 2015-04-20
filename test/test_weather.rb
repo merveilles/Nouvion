@@ -1,16 +1,12 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestWeather < Minitest::Test
     def setup
-        require_relative '../module.weather'
+        require_relative '../lib/modules/weather'
     end
 
     # TODO: add tests for API success/failure
