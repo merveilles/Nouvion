@@ -1,20 +1,16 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestHelp < Minitest::Test
     def setup
-        require_relative '../module.help'
+        require_relative '../lib/modules/help'
     end
 
     def test_help_help
-        answer = Answer.new('help', 'help', 'maxdeviant', 'help', 'theartificiallounge')
+        answer = Answer.new('help', 'help', 'maxdeviant', 'theartificiallounge', 'help')
 
         help = answer.help
 
@@ -22,7 +18,7 @@ class TestHelp < Minitest::Test
     end
 
     def test_help_modules
-        answer = Answer.new('help', 'modules', 'maxdeviant', 'help modules', 'theartificiallounge')
+        answer = Answer.new('help', 'modules', 'maxdeviant', 'theartificiallounge', 'help modules')
 
         modules = answer.modules
 
