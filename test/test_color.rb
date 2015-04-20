@@ -1,20 +1,16 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
+require_relative '../lib/modules/answer'
 
 class TestColor < Minitest::Test
     def setup
-        require_relative '../module.color'
+        require_relative '../lib/modules/color'
     end
 
     def test_color_color
-        answer = Answer.new('color', 'color', 'maxdeviant', 'color', 'theartificiallounge')
+        answer = Answer.new('color', 'color', 'maxdeviant', 'theartificiallounge', 'color')
 
         color = answer.color
 
@@ -22,7 +18,7 @@ class TestColor < Minitest::Test
     end
 
     def test_color_random
-        answer = Answer.new('color', 'random', 'maxdeviant', 'color random', 'theartificiallounge')
+        answer = Answer.new('color', 'random', 'maxdeviant', 'theartificiallounge', 'color random')
 
         random = answer.random
 
@@ -30,7 +26,7 @@ class TestColor < Minitest::Test
     end
 
     def test_color_today
-        answer = Answer.new('color', 'today', 'maxdeviant', 'color today', 'theartificiallounge')
+        answer = Answer.new('color', 'today', 'maxdeviant', 'theartificiallounge', 'color today')
 
         today = answer.today
 
@@ -38,7 +34,7 @@ class TestColor < Minitest::Test
     end
 
     def test_color_aura
-        answer = Answer.new('color', 'aura', 'maxdeviant', 'color aura', 'theartificiallounge')
+        answer = Answer.new('color', 'aura', 'maxdeviant', 'theartificiallounge', 'color aura')
 
         aura = answer.aura
 
