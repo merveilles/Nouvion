@@ -30,13 +30,12 @@ module Nouvion::Handlers
 
             module_name = sanitize(message[0])
             method_name = sanitize(message[1])
-            message_without_call = message[2..-1].join(' ')
 
             if File.exist?("lib/modules/#{module_name}.rb")
                 require "modules/#{module_name}"
             end
 
-            answer = Answer.new(module_name, method_name, @user, @channel, message_without_call)
+            answer = Answer.new(module_name, method_name, @user, @channel, message.join(' '))
 
             response = ''
 
