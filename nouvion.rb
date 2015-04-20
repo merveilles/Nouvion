@@ -12,16 +12,21 @@ require 'slack'
 USERS = {}
 CHANNELS = {}
 
+USER_NAMES = {}
+CHANNEL_NAMES = {}
+
 class NouvionBot < Goliath::API
     EM.run {
         rtm_start = Slack::RTM.start
 
         rtm_start['users'].each do |user|
             USERS[user['id']] = user['name']
+            USER_NAMES[user['name']] = user['id']
         end
 
         rtm_start['channels'].each do |channel|
             CHANNELS[channel['id']] = channel['name']
+            CHANNEL_NAMES[channel['name']] = channel['id']
         end
 
         Slack::Users.set_presence('auto')
