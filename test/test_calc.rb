@@ -2,7 +2,6 @@ require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
 require_relative '../lib/modules/answer'
 
 class TestCalc < Minitest::Test
