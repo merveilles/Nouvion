@@ -25,6 +25,10 @@ class Answer
             end
         end
 
+        if definition == ''
+            return "<@#{@username}>: I do not know *#{term}*."
+        end
+
         return "<@#{@username}>: *#{term.capitalize}* #{relation} *#{definition}*."
     end
 end
