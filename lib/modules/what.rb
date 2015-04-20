@@ -8,11 +8,6 @@ class Answer
         definition = ''
         relation = ''
 
-        puts term
-        puts USER_NAMES[term]
-
-        puts USER_NAMES
-
         if USER_NAMES[term] != nil
             return "<@#{@username}>: #{term} is a *who*, not a *what*!"
         end
