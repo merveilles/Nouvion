@@ -1,19 +1,18 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 require 'coveralls'
 Coveralls.wear!
 
 require 'minitest/autorun'
-require 'memory'
-require_relative '../answer'
-require_relative '../module.dc'
+require_relative '../lib/modules/answer'
 
 def dc_answer(op)
-    Answer.new('dc', 'dc', 'aliceffekt', "dc #{op}", 'theartificiallounge').dc
+    Answer.new('dc', 'dc', 'aliceffekt', 'theartificiallounge', "dc #{op}").dc
 end
 
 class TestDc < Minitest::Test
+    def setup
+        require_relative '../lib/modules/dc'
+    end
+
     def test_dc_noop
         assert_match /^A partial/, dc_answer('')
     end
