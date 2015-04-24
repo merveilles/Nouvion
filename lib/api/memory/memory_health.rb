@@ -23,7 +23,13 @@ module API
             ', [username, health])
         end
 
-        def load(username)
+        def load(username = nil)
+            if username.nil?
+                return @db.execute('
+                    SELECT * FROM health
+                ')
+            end
+
             return @db.execute('
                 SELECT * FROM health
                 WHERE username = ?

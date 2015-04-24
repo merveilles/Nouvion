@@ -43,7 +43,7 @@ module API
         end
 
         def get_health_all
-            result = @memory.load('*')
+            result = @memory.load
 
             puts result
 
