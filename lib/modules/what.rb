@@ -8,7 +8,7 @@ class Answer
         definition = ''
         relation = ''
 
-        if USER_NAMES[term] != nil
+        if USERS_BY_NAME[term] != nil
             return "<@#{@username}>: #{term} is a *who*, not a *what*!"
         end
 

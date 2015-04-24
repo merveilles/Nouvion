@@ -7,7 +7,7 @@ class Answer
         username = message[2]
         definition = ''
 
-        if USER_NAMES[username] == nil
+        if USERS_BY_NAME[username] == nil
             return "<@#{@username}>: I do not know *#{username}*."
         end
 
