@@ -28,6 +28,3 @@ class Answer
         return "I couldn't get weather information for #{cityname}."
     end
 end
-
-
-answer = Answer.new
