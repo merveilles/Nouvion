@@ -7,7 +7,7 @@ class Answer
     end
 
     def in # get weather for a city
-        cityname = @message.split(' ')[2].lstrip.rstrip
+        cityname = @message.split(' ')[2..-1].join('-')
 
         url = "http://api.openweathermap.org/data/2.5/weather?mode=json&units=metric&q=#{cityname}"
         response = Net::HTTP.get_response(URI.parse(url))
@@ -28,3 +28,6 @@ class Answer
         return "I couldn't get weather information for #{cityname}."
     end
 end
+
+
+answer = Answer.new
