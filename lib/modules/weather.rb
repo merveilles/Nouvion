@@ -3,7 +3,7 @@ require 'json'
 
 class Answer
     def weather
-        "Enter a city name to get current weather conditions from OpenWeather API.\nExample usage: ```ludivine weather in vancouver```"
+        "Enter a city name to get current weather conditions from OpenWeather API.\nExample usage: ```nouvion weather in vancouver```"
     end
 
     def in # get weather for a city
